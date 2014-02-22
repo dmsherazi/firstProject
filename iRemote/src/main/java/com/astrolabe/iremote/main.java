@@ -324,7 +324,7 @@ public class main extends FragmentActivity implements View.OnClickListener, View
                     publishProgress(message);
                 }
             });
-            returnedVal = mTcpClient.run(sc.getSite(account));
+            returnedVal = mTcpClient.run_tcp(sc.getSite(account));
 
 
             return null;

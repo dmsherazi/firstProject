@@ -5,6 +5,7 @@ package com.astrolabe.iremote;
  for $(COMPANY)
  */
 
+import android.os.Handler;
 import android.util.Log;
 
 import java.io.BufferedReader;
@@ -29,6 +30,8 @@ public class TCPClient {
     public boolean isConnected = false;
     public BufferedReader in;
     public Socket socket;
+    private String mSite="123";
+
     // Context ourContext;
 
     public TCPClient(OnMessageReceived listener) {
@@ -60,8 +63,12 @@ public class TCPClient {
         }
         mRun = false;
     }
+    Handler reconnectConnHandler = new Handler();
 
-    public int run(String siteNumber) {
+
+    public int run_tcp(String siteNumber) {
+
+        mSite=siteNumber;
 
         mRun = true;
         int returnVal = 0;
