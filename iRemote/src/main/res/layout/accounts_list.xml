@@ -1,0 +1,95 @@
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_marginRight="@dimen/marginLeftRightLists"
+    android:layout_marginLeft="@dimen/marginLeftRightLists">
+
+
+
+
+    <Button
+        android:layout_marginTop="@dimen/margin_top_lists_first"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/accounts_list_height"
+        android:background="@drawable/al_text_box"
+        android:id="@+id/acc_1"
+        android:textColor="@drawable/account_list_color"
+        android:typeface="monospace"
+        android:textStyle="bold"
+        />
+
+    <Button
+        android:layout_marginTop="@dimen/margin_top_lists"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/accounts_list_height"
+        android:background="@drawable/al_text_box"
+        android:id="@+id/acc_2"
+        android:textColor="@drawable/account_list_color"
+        android:typeface="monospace"
+        android:textStyle="bold"
+        />
+
+    <Button
+        android:layout_marginTop="@dimen/margin_top_lists"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/accounts_list_height"
+        android:background="@drawable/al_text_box"
+        android:id="@+id/acc_3"
+        android:textColor="@drawable/account_list_color"
+        android:typeface="monospace"
+        android:textStyle="bold" />
+
+    <Button
+        android:layout_marginTop="@dimen/margin_top_lists"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/accounts_list_height"
+        android:background="@drawable/al_text_box"
+        android:id="@+id/acc_4"
+        android:textColor="@drawable/account_list_color"
+        android:typeface="monospace"
+        android:textStyle="bold"/>
+
+    <Button
+        android:layout_marginTop="@dimen/margin_top_lists"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/accounts_list_height"
+        android:background="@drawable/al_text_box"
+        android:id="@+id/acc_5"
+        android:textColor="@drawable/account_list_color"
+        android:typeface="monospace"
+        android:textStyle="bold"/>
+
+    <Button
+        android:layout_marginTop="@dimen/margin_top_lists"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/accounts_list_height"
+        android:background="@drawable/al_text_box"
+        android:id="@+id/acc_6"
+        android:textColor="@drawable/account_list_color"
+        android:typeface="monospace"
+        android:textStyle="bold"/>
+
+    <Button
+        android:layout_marginTop="@dimen/margin_top_lists"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/accounts_list_height"
+        android:background="@drawable/al_text_box"
+        android:id="@+id/acc_7"
+        android:textColor="@drawable/account_list_color"
+        android:typeface="monospace"
+        android:textStyle="bold"/>
+
+    <Button
+        android:layout_marginTop="@dimen/margin_top_lists"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/accounts_list_height"
+        android:background="@drawable/al_text_box"
+        android:id="@+id/acc_8"
+        android:textColor="@drawable/account_list_color"
+        android:typeface="monospace"
+        android:textStyle="bold"/>
+
+
+</LinearLayout>

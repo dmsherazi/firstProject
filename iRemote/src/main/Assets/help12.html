@@ -1,0 +1,178 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=utf-8">
+	<TITLE></TITLE>
+	<META NAME="GENERATOR" CONTENT="LibreOffice 4.1.2.3 (Linux)">
+	<META NAME="AUTHOR" CONTENT="AbuUmar">
+	<META NAME="CREATED" CONTENT="20130608;163100000000000">
+	<META NAME="CHANGEDBY" CONTENT="AbuUmar">
+	<META NAME="CHANGED" CONTENT="20130610;134400000000000">
+	<META NAME="AppVersion" CONTENT="14.0000">
+	<META NAME="Company" CONTENT="Astrolabe Tech">
+	<META NAME="DocSecurity" CONTENT="0">
+	<META NAME="HyperlinksChanged" CONTENT="false">
+	<META NAME="LinksUpToDate" CONTENT="false">
+	<META NAME="ScaleCrop" CONTENT="false">
+	<META NAME="ShareDoc" CONTENT="false">
+	<STYLE TYPE="text/css">
+	<!--
+		@page { size: 11in 8.5in; margin-left: 1in; margin-right: 1in; margin-top: 0.75in; margin-bottom: 0.5in }
+		P { margin-bottom: 0.08in; direction: ltr; widows: 2; orphans: 2 }
+		H1 { margin-top: 0.42in; margin-bottom: 0.06in; border-top: none; border-bottom: 1.50pt solid #365f91; border-left: none; border-right: none; padding-top: 0in; padding-bottom: 0.01in; padding-left: 0in; padding-right: 0in; direction: ltr; color: #365f91; widows: 2; orphans: 2; page-break-after: auto }
+		H1.western { font-family: "Cambria", serif; font-size: 12pt }
+		H1.cjk { font-size: 12pt }
+		H1.ctl { font-family: ; font-size: 12pt }
+		H4 { margin-top: 0.14in; margin-bottom: 0.06in; border-top: none; border-bottom: 1px solid #b8cce4; border-left: none; border-right: none; padding-top: 0in; padding-bottom: 0.03in; padding-left: 0in; padding-right: 0in; direction: ltr; color: #4f81bd; widows: 2; orphans: 2; page-break-after: auto }
+		H4.western { font-family: "Cambria", serif; font-style: italic; font-weight: normal }
+		H4.cjk { font-family: "Droid Sans"; font-style: italic; font-weight: normal }
+		H4.ctl { font-family: ; font-style: italic; font-weight: normal }
+	-->
+	</STYLE>
+</HEAD>
+<BODY LANG="en-US" DIR="LTR">
+<P ALIGN=CENTER STYLE="text-indent: 0in; margin-bottom: 0in; border-top: 1.00pt solid #a7bfde; border-bottom: 3.00pt solid #9bbb59; border-left: none; border-right: none; padding-top: 0.14in; padding-bottom: 0.21in; padding-left: 0in; padding-right: 0in">
+<FONT COLOR="#243f60"><FONT FACE="Cambria, serif"><FONT SIZE=6 STYLE="font-size: 30pt"><I>Astrolabe
+Tech</I></FONT></FONT></FONT></P>
+<P STYLE="margin-bottom: 0in"><BR>
+</P>
+<P ALIGN=RIGHT STYLE="text-indent: 0in; margin-top: 0.14in; margin-bottom: 0.63in">
+<FONT SIZE=3><I><FONT SIZE=4 STYLE="font-size: 15pt">Installers/user’s
+Manual</FONT></I></FONT></P>
+<P ALIGN=RIGHT STYLE="text-indent: 0in; margin-top: 0.14in; margin-bottom: 0.63in">
+<FONT SIZE=3><I><FONT SIZE=4 STYLE="font-size: 15pt">Shaula 720</FONT></I></FONT></P>
+<P STYLE="margin-bottom: 0in"><BR>
+</P>
+<P STYLE="margin-bottom: 0in; page-break-before: always"><BR>
+</P>
+<H1 CLASS="western">INTRODUCTION:</H1>
+<P STYLE="margin-bottom: 0in"><BR>
+</P>
+<P STYLE="margin-bottom: 0in"><B>Shaula 720</B> is one of the
+advanced security and smart Home automation system from Astrolabe
+tech. In order to use it properly and get most out of it, the
+Installer should follow this guide. This guide describes Programming
+and setup of the system. It will help the reader to understand the
+commands and their structures with help of examples.</P>
+<H1 CLASS="western">USERS:</H1>
+<P STYLE="text-indent: 0in; margin-bottom: 0in"><B>Shaula 720</B>
+supports three types of Users, which we will explain in detail. These
+are:</P>
+<P STYLE="margin-bottom: 0in"><BR>
+</P>
+<UL>
+	<LI><P STYLE="text-indent: 0in; margin-bottom: 0in">Super User (SU)</P>
+	<LI><P STYLE="text-indent: 0in; margin-bottom: 0in">Master User (MU)</P>
+	<LI><P STYLE="text-indent: 0in; margin-bottom: 0in">Normal User (NU)</P>
+</UL>
+<P STYLE="margin-bottom: 0in"><BR>
+</P>
+<P STYLE="text-indent: 0in; margin-bottom: 0in">Each of these users
+has different roles, functions and access levels. Furthermore the
+system supports specific number of these users based on the firmware
+of the board.</P>
+<P STYLE="margin-bottom: 0in"><BR>
+</P>
+<H4 CLASS="western"><FONT COLOR="#00000a"><FONT FACE="Calibri, serif"><FONT SIZE=2 STYLE="font-size: 11pt">Super</FONT></FONT></FONT>
+<FONT COLOR="#00000a"><FONT FACE="Calibri, serif"><FONT SIZE=2 STYLE="font-size: 11pt">user</FONT></FONT></FONT>:
+</H4>
+<P STYLE="margin-bottom: 0in">There is only one super user in every
+firmware. Super User has the highest access level. A super user can
+only be added when the system is in factory default status or if a
+soft reset has been applied, there are no other users in both these
+conditions. Until a super user has been added <B>Shuala 720</B> will
+function with minimum functionality. It will work on remote control
+and keypad (if installed), will make siren if an alarm is activated,
+but there will be no calls. Furthermore all the zones will be set as
+General alarms and will follow Away mode in case of default state,</P>
+<P STYLE="margin-bottom: 0in">A super user can be deleted only by
+default and soft reset. While adding a Super User a password is also
+required to be chosen, this will be used when using the TCP Remote
+app.</P>
+<P STYLE="margin-bottom: 0in"><BR>
+</P>
+<H4 CLASS="western"><FONT COLOR="#00000a"><FONT FACE="Calibri, serif"><FONT SIZE=2 STYLE="font-size: 11pt">Master</FONT></FONT></FONT>
+<FONT COLOR="#00000a"><FONT FACE="Calibri, serif"><FONT SIZE=2 STYLE="font-size: 11pt">users</FONT></FONT></FONT>:</H4>
+<P STYLE="margin-bottom: 0in">A minimum of 8 Master Users are
+supported by the system. Some firmware can support more, exact
+details can be found in the firmware details section. Master users
+can be added once a Super user has been added to the system. Each
+master user is given its Access level by the Super User while adding.
+Access levels and permissions details will come ahead in the details
+of command for adding a master user. A master user can be deleted by
+a command as well. While adding a Master User a password is also
+required to be chosen, this will be used when using the TCP Remote
+app. This password can be changed later by change password command.</P>
+<P STYLE="margin-bottom: 0in"><BR>
+</P>
+<H4 CLASS="western"><FONT COLOR="#00000a"><FONT FACE="Calibri, serif"><FONT SIZE=2 STYLE="font-size: 11pt">Normal</FONT></FONT></FONT>
+<FONT COLOR="#00000a"><FONT FACE="Calibri, serif"><FONT SIZE=2 STYLE="font-size: 11pt">users</FONT></FONT></FONT>:</H4>
+<P STYLE="margin-bottom: 0in">Normal users can vary from none to 8.
+Normal users have no access to the system through any App. They have
+no passwords. They can only Open and close the Entry gates via Call
+or SMS.</P>
+<H1 CLASS="western">ZONES</H1>
+<P STYLE="margin-bottom: 0in"><B>Shaula 720</B> supports 16 Physical
+zones and 4 Virtual Zones. Each zone can be given a name not more
+than 15 chars; this makes a better idea of the zone when an alert is
+received. Each zone has some parameters listed below:</P>
+<UL>
+	<LI><P STYLE="text-indent: 0in; margin-bottom: 0in">Name</P>
+	<LI><P STYLE="text-indent: 0in; margin-bottom: 0in">Type</P>
+	<LI><P STYLE="text-indent: 0in; margin-bottom: 0in">Mode</P>
+	<LI><P STYLE="text-indent: 0in; margin-bottom: 0in">Enable/Disable
+	Zone</P>
+</UL>
+<P STYLE="margin-left: 0.5in; text-indent: 0in; margin-bottom: 0in"><BR>
+</P>
+<H4 CLASS="western"><FONT COLOR="#00000a"><FONT FACE="Calibri, serif"><FONT SIZE=2 STYLE="font-size: 11pt">Name</FONT></FONT></FONT>:</H4>
+<P STYLE="margin-bottom: 0in">Each zone has a name, that helps
+identify the area for the zone. Name can be max 15 characters long. 
+</P>
+<H4 CLASS="western"><FONT COLOR="#00000a"><FONT FACE="Calibri, serif"><FONT SIZE=2 STYLE="font-size: 11pt">Type</FONT></FONT></FONT>:</H4>
+<P STYLE="margin-bottom: 0in">A zone can be one of the following
+types.</P>
+<UL>
+	<LI><P STYLE="text-indent: 0in; margin-bottom: 0in">General Alarm	:
+		Makes an alarm if armed and the zone follows the current mode of
+	System and the zone is enabled.</P>
+	<LI><P STYLE="text-indent: 0in; margin-bottom: 0in">Panic		:	Makes
+	an alarm if armed and zone is enabled. (Panic Alarms don’t make
+	sound)</P>
+	<LI><P STYLE="text-indent: 0in; margin-bottom: 0in">Fire		:	makes a
+	Fire alarm if alarm is produced from this zone.</P>
+	<LI><P STYLE="text-indent: 0in; margin-bottom: 0in">24 Hours	:	it’s
+	a general alarm that doesn’t follow any zone and works even if
+	disarmed.<BR><BR>
+	</P>
+</UL>
+<P STYLE="margin-bottom: 0in"><BR>
+</P>
+<P STYLE="text-indent: 0in; margin-bottom: 0in"><BR>
+</P>
+<P STYLE="margin-bottom: 0in"><BR>
+</P>
+<P STYLE="margin-bottom: 0in; page-break-before: always"><BR>
+</P>
+<H4 CLASS="western"><FONT COLOR="#00000a"><FONT FACE="Calibri, serif"><FONT SIZE=2 STYLE="font-size: 11pt">Mode</FONT></FONT></FONT></H4>
+<P STYLE="margin-bottom: 0in"><B>Shaula 720</B> can be armed in two
+modes. <B>Stay</B> and <B>Away</B>.  Each zone can be configured to
+follow <B>Stay Mode</B>, <B>Away mode</B> or <B>both</B> if its type
+is to General Alarm. When the system is armed in Away Mode, siren
+makes three squawks. Two when disarmed and one if armed in stay mode.
+Using remote if same button is pressed again the system will ignore
+it if the last press was within 10 seconds.</P>
+<H4 CLASS="western"><FONT COLOR="#00000a"><FONT FACE="Calibri, serif"><FONT SIZE=2 STYLE="font-size: 11pt">Enable/disable
+Zone</FONT></FONT></FONT></H4>
+<P STYLE="margin-bottom: 0in">A zone can be disabled or made enabled.
+A disabled zone is completely ignored by the system even if some
+sensors are connected.</P>
+
+<DIV TYPE=FOOTER>
+	<P ALIGN=RIGHT STYLE="margin-top: 0.46in; margin-bottom: 0in; border-top: 3.00pt solid #9bbb59; border-bottom: none; border-left: none; border-right: none; padding-top: 0.07in; padding-bottom: 0in; padding-left: 0in; padding-right: 0in">
+	<FONT COLOR="#8c8c8c"><I>Astrolabe Tech</I></FONT></P>
+	<P STYLE="margin-bottom: 0in"><BR>
+	</P>
+</DIV>
+</BODY>
+</HTML>

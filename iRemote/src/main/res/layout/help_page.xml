@@ -1,0 +1,73 @@
+<RelativeLayout
+    android:layout_width="wrap_content"
+    android:layout_height="fill_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:clickable="false"
+    android:focusableInTouchMode="true"
+    android:paddingLeft="10dp"
+    android:paddingRight="20dp">
+
+
+
+
+    <WebView
+
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/webHelp"
+            android:layout_marginTop="5dp"
+        android:focusableInTouchMode="false">
+
+        </WebView>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:id="@+id/ButtonsLO"
+        >
+
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/accounts_list_height"
+            android:text="APP HELP "
+            android:id="@+id/button"
+            android:background="@drawable/al_text_box"
+            android:textColor="@drawable/account_list_color"
+
+            android:textStyle="bold"
+            android:layout_marginRight="@dimen/marginLeftRightLists"
+            android:layout_marginLeft="@dimen/marginLeftRightLists" />
+
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/accounts_list_height"
+            android:text="SHAULA V9 HELP "
+            android:id="@+id/button2"
+            android:background="@drawable/al_text_box"
+            android:textColor="@drawable/account_list_color"
+            android:textStyle="bold"
+            android:layout_marginTop="@dimen/margin_top_lists"
+            android:layout_marginLeft="@dimen/marginLeftRightLists"
+            android:layout_marginRight="@dimen/marginLeftRightLists"
+            android:layout_below="@id/button"
+       />
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/accounts_list_height"
+            android:text="SHAULA 720 HELP"
+            android:id="@+id/button3"
+            android:background="@drawable/al_text_box"
+            android:textColor="@drawable/account_list_color"
+            android:textStyle="bold"
+            android:layout_marginTop="@dimen/margin_top_lists"
+            android:layout_marginLeft="@dimen/marginLeftRightLists"
+            android:layout_marginRight="@dimen/marginLeftRightLists"
+            android:layout_below="@id/button2"
+            />
+    </RelativeLayout>
+</RelativeLayout>
+
+

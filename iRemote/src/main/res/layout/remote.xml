@@ -1,0 +1,210 @@
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="fill_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:clickable="false"
+    android:focusableInTouchMode="true"
+    android:id="@+id/main_rem"
+    android:visibility="visible">
+
+
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:gravity="center"
+            android:id="@+id/LLO">
+
+            <RelativeLayout
+                android:layout_height="@dimen/widthHeightCenterDial"
+                android:layout_width="@dimen/widthHeightCenterDial"
+                android:id="@+id/frameLayout">
+
+                <ImageButton
+                    android:layout_width="@dimen/widthHeightCenterDial"
+                    android:layout_height="@dimen/widthHeightCenterDial"
+                    android:id="@+id/cdial"
+                    android:layout_alignParentEnd="false"
+                    android:background="@drawable/r_720_inactive"
+                    android:layout_gravity="center"
+                    android:visibility="visible"
+                    android:contentDescription="@string/descCD" />
+
+
+                <ImageButton
+                    android:layout_width="@dimen/widthHeightCenterDial"
+                    android:layout_height="@dimen/widthHeightCenterDial"
+                    android:id="@+id/cdSureButn"
+                    android:layout_centerVertical="true"
+                    android:background="@android:color/transparent"
+                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="center"
+                    android:visibility="visible"
+                    android:textAlignment="center"
+                    android:contentDescription="@string/desc_sureButton" />
+                <ImageButton
+                    android:layout_width="@dimen/widthHeightCenterDial"
+                    android:layout_height="@dimen/widthHeightCenterDial"
+                    android:id="@+id/status_o_ring"
+                    android:layout_centerVertical="true"
+                    android:background="@android:color/transparent"
+                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="center"
+                    android:visibility="visible"
+                    android:textAlignment="center"
+                    android:contentDescription="status orange ring" />
+
+                <ImageButton
+                    android:layout_width="@dimen/widthHeightCenterDial"
+                    android:layout_height="@dimen/widthHeightCenterDial"
+                    android:id="@+id/status_o_arm_state"
+                    android:layout_centerVertical="true"
+                    android:background="@android:color/transparent"
+                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="center"
+                    android:visibility="visible"
+                    android:textAlignment="center"
+                    android:contentDescription="status arm ring" />
+                <ImageButton
+                    android:layout_width="@dimen/widthHeightCenterDial"
+                    android:layout_height="@dimen/widthHeightCenterDial"
+                    android:id="@+id/status_door_ring"
+                    android:layout_centerVertical="true"
+                    android:background="@android:color/transparent"
+                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="center"
+                    android:visibility="visible"
+                    android:textAlignment="center"
+                    android:contentDescription="status door ring" />
+                <ImageButton
+                    android:layout_width="@dimen/widthHeightCenterDial"
+                    android:layout_height="@dimen/widthHeightCenterDial"
+                    android:id="@+id/status_w_door_ring"
+                    android:layout_centerVertical="true"
+                    android:background="@android:color/transparent"
+                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="center"
+                    android:visibility="visible"
+                    android:textAlignment="center"
+                    android:contentDescription="status wood door ring" />
+                <ImageButton
+                    android:layout_width="@dimen/widthHeightCenterDial"
+                    android:layout_height="@dimen/widthHeightCenterDial"
+                    android:id="@+id/status_gate_ring"
+                    android:layout_centerVertical="true"
+                    android:background="@android:color/transparent"
+                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="center"
+                    android:visibility="visible"
+                    android:textAlignment="center"
+                    android:contentDescription="status gate ring" />
+                <ImageButton
+                    android:layout_width="85dp"
+                    android:layout_height="40dp"
+                    android:id="@+id/disarmDapan"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:background="@android:color/transparent"
+                    android:layout_marginTop="5dp"
+                    android:contentDescription="@string/desc_Disarm" />
+
+                <ImageButton
+                    android:layout_width="85dp"
+                    android:layout_height="40dp"
+                    android:id="@+id/refDapan"
+                    android:layout_alignParentBottom="true"
+                    android:background="@android:color/transparent"
+                    android:layout_alignLeft="@+id/disarmDapan"
+                    android:layout_marginBottom="4dp"
+                    android:contentDescription="@string/desc_status_button" />
+
+                <ImageButton
+                    android:layout_width="45dp"
+                    android:layout_height="70dp"
+                    android:id="@+id/armStayDapan"
+                    android:background="@android:color/transparent"
+                    android:cropToPadding="true"
+                    android:layout_above="@+id/armSSDapan"
+                    android:layout_toLeftOf="@+id/R_cd_Text"
+                    android:layout_marginBottom="10dp"
+                    android:contentDescription="@string/desc_armStay" />
+
+                <ImageButton
+                    android:layout_width="55dp"
+                    android:layout_height="75dp"
+                    android:id="@+id/armADapan"
+                    android:background="@android:color/transparent"
+                    android:layout_alignBottom="@+id/armStayDapan"
+                    android:layout_toRightOf="@+id/R_cd_Text"
+                    android:contentDescription="@string/desc_arm_away" />
+
+                <ImageButton
+                    android:layout_width="55dp"
+                    android:layout_height="75dp"
+                    android:id="@+id/doordapan"
+                    android:background="@android:color/transparent"
+                    android:layout_alignTop="@+id/gateDapan"
+                    android:layout_toLeftOf="@+id/R_cd_Text"
+                    android:contentDescription="@string/desc_open_door" />
+
+                <ImageButton
+                    android:layout_width="45dp"
+                    android:layout_height="75dp"
+                    android:id="@+id/armSSDapan"
+                    android:background="@android:color/transparent"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentLeft="true"
+                    android:contentDescription="@string/desc_arm_stay_sil" />
+
+                <ImageButton
+                    android:layout_width="45dp"
+                    android:layout_height="75dp"
+                    android:id="@+id/armASDapan"
+                    android:background="@android:color/transparent"
+                    android:layout_alignTop="@+id/armSSDapan"
+                    android:layout_alignParentRight="true"
+                    android:contentDescription="@string/desc_arm_away_silent" />
+
+                <ImageButton
+                    android:layout_width="55dp"
+                    android:layout_height="75dp"
+                    android:id="@+id/gateDapan"
+                    android:background="@android:color/transparent"
+                    android:layout_below="@+id/armASDapan"
+                    android:layout_toRightOf="@+id/R_cd_Text"
+                    android:layout_marginTop="10dp"
+                    android:contentDescription="@string/desc_open_gate" />
+
+                <TextView
+                    android:layout_width="130dp"
+                    android:layout_height="130dp"
+                    android:id="@+id/R_cd_Text"
+                    android:layout_centerVertical="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_alignParentEnd="false"
+                    android:layout_alignParentStart="false"
+                    android:textSize="15dp"
+                    android:textAlignment="inherit"
+                    android:textColor="@drawable/color_remote_dial_text"
+                    android:textStyle="normal"
+                    android:clickable="true"
+                    android:editable="false"
+                    android:gravity="center"
+                    android:focusable="false"
+                    android:textIsSelectable="false"
+                    android:layout_gravity="center"
+                    android:singleLine="false"
+                    android:enabled="false"
+                    android:typeface="monospace" />
+            </RelativeLayout>
+
+        </LinearLayout>
+    <WebView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/loadingWebView"
+        android:layout_centerInParent="true"
+
+        />
+
+</RelativeLayout>

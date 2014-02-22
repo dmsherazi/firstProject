@@ -1,0 +1,30 @@
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:clickable="false"
+    android:focusableInTouchMode="true">
+
+
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginLeft="@dimen/marginLeftRight"
+    android:layout_marginRight="@dimen/marginLeftRight"
+    android:layout_centerInParent="true"
+    android:layout_centerHorizontal="true"
+    android:layout_centerVertical="true">
+    <TextView
+
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvInfo"
+        android:textColor="@color/white"
+        android:layout_gravity="center_vertical"
+        android:background="@drawable/toast_frame"
+        android:gravity="center" />
+</LinearLayout>
+
+
+</RelativeLayout>

@@ -1,0 +1,439 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="http://schemas.android.com/apk/res/android">
+
+    <string name="app_name">iRemote</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_remote">Remote</string>
+    <string name="title_activity_account_settings">Add Account</string>
+    <string name="func_not_supported">Function not supported by selected control panel</string>
+    <string name="select_contact_phone_number_and_type">Select number</string>
+    <string name="List_is_full">List is full, Please delete/modify existing accounts</string>
+    <string name="shaula720">SHAULA 720</string>
+    <string name="shaula710">SHAULA 710</string>
+    <string name="shaulaV9">SHAULA V9</string>
+    <string name="choose_an_account">Choose an account</string>
+    <string name="get_set_extra">extra</string>
+    <string name="no_record_in_accounts">No records found.Please add an account</string>
+    <string name="site_name_and_number_cant_be">1- Site Name can\'t be Empty\n2- Number should be 6 chars or more</string>
+    <string name="name_cant_be_empty">1- Site Name can\'t be Empty</string>
+    <string name="number_cant_be_less_than">1- Number should be 6 chars or more</string>
+    <string name="double_press_to_quit">press  again to exit</string>
+    <string name="feature_not_available">Feature not supported in selected control panel</string>
+    <string name="pass_cant_be_empty">password can\'t be empty</string>
+    <string name="num_starts_withPlus">Number should be at least 6 chars long, starting with +</string>
+    <string name="no_data_to_update">No data to update</string>
+    <string name="done_label">Done</string>
+    <string name="day_picker_description">Month grid of days</string>
+    <string name="year_picker_description">Year list</string>
+    <string name="select_day">Select month and day</string>
+    <string name="select_year">Select year</string>
+    <string name="item_is_selected">%1$s selected</string>
+    <string name="sans_serif" translatable="false">sans-serif</string>
+    <string name="day_of_week_label_typeface" translatable="false">sans-serif</string>
+    <string name="time_placeholder" translatable="false">--</string>
+    <string name="time_separator" translatable="false">:</string>
+
+    <!-- Accessibility announcement when a number that had been typed in is deleted [CHAR_LIMIT=NONE] -->
+    <string name="deleted_key"><xliff:g id="key" example="4">%1$s</xliff:g> deleted</string>
+    <!--
+         Content description for the hour selector in the time picker, which displays
+         selectable hours of the day along the inside edge of a circle, as in an analog clock.
+         [CHAR LIMIT=50]
+    -->
+    <string name="hour_picker_description">Hours circular slider</string>
+    <!--
+         Content description for the minute selector in the time picker, which displays
+         selectable five-minute intervals along the inside edge of a circle, as in an analog clock.
+         [CHAR LIMIT=50]
+    -->
+    <string name="minute_picker_description">Minutes circular slider</string>
+    <string name="radial_numbers_typeface" translatable="false">sans-serif</string>
+    <string name="select_hours">Select hours</string>
+    <string name="select_minutes">Select minutes</string>
+    <string name="Tap_to_set_timer">TAP TO SET</string>
+    <string name="settings_for_timer">SETTINGS FOR TIMER</string>
+    <string name="defaultString">DEFAULT</string>
+    <string name="forced_on">ON</string>
+    <string name="forced_off">OFF</string>
+    <string name="auto_mode">AUTO MODE</string>
+    <string name="man_mode">MANUAL MODE</string>
+    <string name="set_on_time">SET ON TIME</string>
+    <string name="set_off_time">SET OFF TIME</string>
+    <string name="set_on_and_off_time">set both ON and OFF time or disable auto mode</string>
+    <string name="to_set_time_select_auto"></string>
+    <string name="to_set_time_select_aut">enable AUTO mode to change time</string>
+    <string name="country_code_failed">failed to get country code, make sure your SIM card is regestered to the network</string>
+    <string name="Tit_about">ABOUT SMS REMOTE</string>
+    <string name="Tit_add_account">ADD/MODIFY ACCOUNT</string>
+    <string name="Tit_List">ACCOUNTS LIST</string>
+    <string name="Tit_Areas">ZONE SETTINGS</string>
+    <string name="Tit_timers">TIMER SETTINGS</string>
+    <string name="Tit_users">SETTINGS</string>
+    <string name="Tit_help">HELP</string>
+    <string name="select_zone">SELECT ZONE</string>
+    <string name="title_remote">REMOTE</string>
+    <string name="ip_server">192.168.1.3</string>
+    <string name="Tit_launch_page">ADD ACCOUNT</string>
+    <string name="zone_1">ZONE 1</string>
+    <string name="zone_2">ZONE 2</string>
+    <string name="zone_3">ZONE 3</string>
+    <string name="zone_4">ZONE 4</string>
+    <string name="zone_5">ZONE 5</string>
+    <string name="zone_6">ZONE 6</string>
+    <string name="zone_7">ZONE 7</string>
+    <string name="zone_8">ZONE 8</string>
+    <string name="zone_9">ZONE 9</string>
+    <string name="zone_A">ZONE A</string>
+    <string name="zone_B">ZONE B</string>
+    <string name="zone_C">ZONE C</string>
+    <string name="zone_D">ZONE D</string>
+    <string name="zone_E">ZONE E</string>
+    <string name="zone_F">ZONE F</string>
+    <string name="zone_G">ZONE G</string>
+    <string name="enter_desired_name_for_zone">Enter desired Name for the zone</string>
+    <string name="commandSvi">**#svi:</string>
+    <string name="commandTail">:!!</string>
+    <string name="commandDoor">**#door:</string>
+    <string name="Door_Opened">Door Opened!!</string>
+    <string name="Astrolabe">ASTROLABE</string>
+    <string name="commandlogin">**#login:</string>
+    <string name="could_not_connect">Connection Error!\nCould not connect to the board.</string>
+    <string name="commandDisarm">**#darm:</string>
+    <string name="commandArmA">**#arm aq:</string>
+    <string name="commandArmAs">**#arm as:</string>
+    <string name="commandGate">**#gate:</string>
+    <string name="commandArmSS">**#arm ss:</string>
+    <string name="commandArmS">**#arm sq:</string>
+    <string name="Gate_Opened">Gate Opened!!</string>
+    <string name="Armed_Away_scl">Armed Away Silent!!</string>
+    <string name="title_activity_add_account">iRemote</string>
+
+    <string-array name="CountryCodes">
+        <item>93,AF</item>
+        <item>355,AL</item>
+        <item>213,DZ</item>
+        <item>376,AD</item>
+        <item>244,AO</item>
+        <item>672,AQ</item>
+        <item>54,AR</item>
+        <item>374,AM</item>
+        <item>297,AW</item>
+        <item>61,AU</item>
+        <item>43,AT</item>
+        <item>994,AZ</item>
+        <item>973,BH</item>
+        <item>880,BD</item>
+        <item>375,BY</item>
+        <item>32,BE</item>
+        <item>501,BZ</item>
+        <item>229,BJ</item>
+        <item>975,BT</item>
+        <item>591,BO</item>
+        <item>387,BA</item>
+        <item>267,BW</item>
+        <item>55,BR</item>
+        <item>673,BN</item>
+        <item>359,BG</item>
+        <item>226,BF</item>
+        <item>95,MM</item>
+        <item>257,BI</item>
+        <item>855,KH</item>
+        <item>237,CM</item>
+        <item>1,CA</item>
+        <item>238,CV</item>
+        <item>236,CF</item>
+        <item>235,TD</item>
+        <item>56,CL</item>
+        <item>86,CN</item>
+        <item>61,CX</item>
+        <item>61,CC</item>
+        <item>57,CO</item>
+        <item>269,KM</item>
+        <item>242,CG</item>
+        <item>243,CD</item>
+        <item>682,CK</item>
+        <item>506,CR</item>
+        <item>385,HR</item>
+        <item>53,CU</item>
+        <item>357,CY</item>
+        <item>420,CZ</item>
+        <item>45,DK</item>
+        <item>253,DJ</item>
+        <item>670,TL</item>
+        <item>593,EC</item>
+        <item>20,EG</item>
+        <item>503,SV</item>
+        <item>240,GQ</item>
+        <item>291,ER</item>
+        <item>372,EE</item>
+        <item>251,ET</item>
+        <item>500,FK</item>
+        <item>298,FO</item>
+        <item>679,FJ</item>
+        <item>358,FI</item>
+        <item>33,FR</item>
+        <item>689,PF</item>
+        <item>241,GA</item>
+        <item>220,GM</item>
+        <item>995,GE</item>
+        <item>49,DE</item>
+        <item>233,GH</item>
+        <item>350,GI</item>
+        <item>30,GR</item>
+        <item>299,GL</item>
+        <item>502,GT</item>
+        <item>224,GN</item>
+        <item>245,GW</item>
+        <item>592,GY</item>
+        <item>509,HT</item>
+        <item>504,HN</item>
+        <item>852,HK</item>
+        <item>36,HU</item>
+        <item>91,IN</item>
+        <item>62,ID</item>
+        <item>98,IR</item>
+        <item>964,IQ</item>
+        <item>353,IE</item>
+        <item>44,IM</item>
+        <item>972,IL</item>
+        <item>39,IT</item>
+        <item>225,CI</item>
+        <item>81,JP</item>
+        <item>962,JO</item>
+        <item>7,KZ</item>
+        <item>254,KE</item>
+        <item>686,KI</item>
+        <item>965,KW</item>
+        <item>996,KG</item>
+        <item>856,LA</item>
+        <item>371,LV</item>
+        <item>961,LB</item>
+        <item>266,LS</item>
+        <item>231,LR</item>
+        <item>218,LY</item>
+        <item>423,LI</item>
+        <item>370,LT</item>
+        <item>352,LU</item>
+        <item>853,MO</item>
+        <item>389,MK</item>
+        <item>261,MG</item>
+        <item>265,MW</item>
+        <item>60,MY</item>
+        <item>960,MV</item>
+        <item>223,ML</item>
+        <item>356,MT</item>
+        <item>692,MH</item>
+        <item>222,MR</item>
+        <item>230,MU</item>
+        <item>262,YT</item>
+        <item>52,MX</item>
+        <item>691,FM</item>
+        <item>373,MD</item>
+        <item>377,MC</item>
+        <item>976,MN</item>
+        <item>382,ME</item>
+        <item>212,MA</item>
+        <item>258,MZ</item>
+        <item>264,NA</item>
+        <item>674,NR</item>
+        <item>977,NP</item>
+        <item>31,NL</item>
+        <item>599,AN</item>
+        <item>687,NC</item>
+        <item>64,NZ</item>
+        <item>505,NI</item>
+        <item>227,NE</item>
+        <item>234,NG</item>
+        <item>683,NU</item>
+        <item>850,KP</item>
+        <item>47,NO</item>
+        <item>968,OM</item>
+        <item>92,PK</item>
+        <item>680,PW</item>
+        <item>507,PA</item>
+        <item>675,PG</item>
+        <item>595,PY</item>
+        <item>51,PE</item>
+        <item>63,PH</item>
+        <item>870,PN</item>
+        <item>48,PL</item>
+        <item>351,PT</item>
+        <item>1,PR</item>
+        <item>974,QA</item>
+        <item>40,RO</item>
+        <item>7,RU</item>
+        <item>250,RW</item>
+        <item>590,BL</item>
+        <item>685,WS</item>
+        <item>378,SM</item>
+        <item>239,ST</item>
+        <item>966,SA</item>
+        <item>221,SN</item>
+        <item>381,RS</item>
+        <item>248,SC</item>
+        <item>232,SL</item>
+        <item>65,SG</item>
+        <item>421,SK</item>
+        <item>386,SI</item>
+        <item>677,SB</item>
+        <item>252,SO</item>
+        <item>27,ZA</item>
+        <item>82,KR</item>
+        <item>34,ES</item>
+        <item>94,LK</item>
+        <item>290,SH</item>
+        <item>508,PM</item>
+        <item>249,SD</item>
+        <item>597,SR</item>
+        <item>268,SZ</item>
+        <item>46,SE</item>
+        <item>41,CH</item>
+        <item>963,SY</item>
+        <item>886,TW</item>
+        <item>992,TJ</item>
+        <item>255,TZ</item>
+        <item>66,TH</item>
+        <item>228,TG</item>
+        <item>690,TK</item>
+        <item>676,TO</item>
+        <item>216,TN</item>
+        <item>90,TR</item>
+        <item>993,TM</item>
+        <item>688,TV</item>
+        <item>971,AE</item>
+        <item>256,UG</item>
+        <item>44,GB</item>
+        <item>380,UA</item>
+        <item>598,UY</item>
+        <item>1,US</item>
+        <item>998,UZ</item>
+        <item>678,VU</item>
+        <item>39,VA</item>
+        <item>58,VE</item>
+        <item>84,VN</item>
+        <item>681,WF</item>
+        <item>967,YE</item>
+        <item>260,ZM</item>
+        <item>263,ZW</item>
+    </string-array>
+
+    <string name="title_activity_main">MainActivity</string>
+    <string name="desc_done_update_button">Done/Update button</string>
+    <string name="desc_name_of_site">name of the Site</string>
+    <string name="desc_password_box">Password</string>
+    <string name="desc_user_name">user name</string>
+    <string name="desc_name_of_password">Password</string>
+    <string name="onlyDigits_plus">01234567890+</string>
+    <string name="hint_ct">&lt;small&gt; Select control panel type &lt;/small&gt;</string>
+    <string name="hint_name">&lt;small&gt; Name of the site &lt;/small&gt;</string>
+    <string name="hint_site">&lt;small&gt; Control panel SIM # &lt;/small&gt;</string>
+    <string name="hint_un">&lt;small&gt; your user name &lt;/small&gt;</string>
+    <string name="hint_pas">&lt;small&gt; your password &lt;/small&gt;</string>
+    <string name="username_cant_be_empty">username field can\'t be empty</string>
+    <string name="descCD">centerDial</string>
+    <string name="desc_sureButton">SureButton</string>
+    <string name="desc_Disarm">disarm Button</string>
+    <string name="desc_status_button">get Status</string>
+    <string name="desc_armStay">Arm Stay</string>
+    <string name="desc_arm_away">Arm Away</string>
+    <string name="desc_arm_stay_sil">arm stay silent</string>
+    <string name="desc_open_door">Open Door</string>
+    <string name="desc_arm_away_silent">arm away silent</string>
+    <string name="desc_open_gate">Open Gate</string>
+    <string name="desc_connectionStatus">Connection Status</string>
+    <string name="desc_help_page">Help Page</string>
+    <string name="menuFragment">menuFragment</string>
+    <string name="commandUpdate">**#update:</string>
+    <string name="update">update</string>
+    <string name="statusUpdateDisarmed">St=0</string>
+    <string name="statusUpdateArmedA">St=1</string>
+    <string name="statusUpdateArmedAS">St=2</string>
+    <string name="statusUpdateArmedS">St=3</string>
+    <string name="statusUpdateArmedSS">St=4</string>
+    <string name="statusUpdateDoorOpen">d1=o</string>
+    <string name="statusUpdateDoorClosed">d1=c</string>
+    <string name="statusUpdateDoor2Open">d2=o</string>
+    <string name="statusUpdateDoor2Closed">d2=c</string>
+    <string name="statusUpdateGateOpen">g=o</string>
+    <string name="statusUpdateGtaeClosed">g=c</string>
+    <string name="Armed_Away_Sr">Armed Away with siren!!</string>
+    <string name="Armed_Stay">Armed Stay with siren!!</string>
+    <string name="Armed_Stay_scl">Armed Stay Silent!!</string>
+    <string name="disarmed">Disarmed!!</string>
+    <string name="crouton">courton</string>
+    <string name="custom_title">Alert</string>
+    <string name="custom_message">message</string>
+    <string name="success">Success: Loc:</string>
+    <string name="deleted">Deleted</string>
+    <string name="mu_list">MU LIST</string>
+    <string name="Zone">Zone</string>
+    <string name="add_users">ADD A USER</string>
+    <string name="dele_a_user">DELETE A USER</string>
+    <string name="edit_success">Edit Success</string>
+    <string name="change_success">successfully</string>
+    <string name="AccesDeniedCheckPerms">Access denied. Check your permissions</string>
+    <string name="AcessDenied">Access Denied!!</string>
+    <string name="AccessDenied">Bad Authorisation</string>
+    <string name="BadAuth">Bad Auth!!</string>
+    <string name="LoginFailed">Login Failed!!</string>
+    <string name="TagRefresh">refreshed</string>
+    <string name="PressedButtonIsEqualTo">PressedButton = </string>
+    <string name="TagTest">TEST</string>
+    <string name="REC">REC </string><string name="ALERT">ALERT
+
+</string><string name="Armed">Armed</string>
+    <string name="isnotOnList">is not on List </string><string name="ConnectionFailed">Connection Failed
+Please make sure:
+-your account details are correct
+-you are connected to the network-your board is online and accessible
+Error 1231</string>
+    <string name="change_your_pass">CHANGE YOUR PASSWORD</string>
+    <string name="reconnected">re-connected</string>
+    <string name="add_new_user">ADD A NEW USER</string>
+    <string name="status_unknown">!!!</string>
+    <string name="on">ON</string>
+    <string name="force_on">FORCE ON</string>
+    <string name="force_off">FORCE OFF</string>
+    <string name="auto_mode_cur">cur mode: Auto</string>
+    <string name="cur_man_mode">cur mode: Manual</string>
+    <string name="Cur_sT">cur status: </string>
+    <string name="ONTTIMESTRING">ON TIME : </string>
+    <string name="OFFTIMESTR">OFF TIME : </string>
+    <string name="timerDisabled">timer disabled</string>
+    <string name="emptyString" />
+    <string name="off">OFF</string>
+    <string name="On">ON</string>
+    <string name="xx">xx</string>
+    <string name="timerEnabled">timer enabled</string>
+    <string name="timers">Timers</string>
+    <string name="zones">zones</string>
+    <string name="longPress2EditOrDelete">long press to edit or delete</string>
+    <string name="list_is_empty">Users list is empty</string>
+    <string name="plus">+</string>
+    <string name="notOnList">Number not on list</string>
+    <string name="ww">SET OFF TIME</string>
+    <string name="RESET">RESET</string>
+    <string name="demoAccount">ONLINE DEMO</string>
+    <string name="commandDoor3">**#door3:</string>
+    <string name="WDoor_Opened">Wooden Door Opened</string>
+    <string name="SELECT_A_TYPE">SELECT A TYPE</string>
+    <string name="areas">areas</string>
+
+    <string-array name="area_type_array">
+        <item>HALL</item>
+        <item>COMMON ROOM</item>
+        <item>KITCHEN</item>
+        <item>BED ROOM</item>
+        <item>GUEST ROOM</item>
+        <item>OFFICE</item>
+        <item>STUDY ROOM</item>
+        <item>BATH ROOM</item>
+        <item>STAIRS</item>
+        <item>STORE ROOM</item>
+        <item>GUARD ROOM</item>
+        <item>LAWN</item>
+        <item>OTHER</item>
+    </string-array>
+
+</resources>

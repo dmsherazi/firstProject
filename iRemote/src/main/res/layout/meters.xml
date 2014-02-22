@@ -1,0 +1,145 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:gauge="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:layout_marginTop="10dp">
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="4"
+        android:orientation="horizontal"
+        >
+       <com.astrolabe.iremote.GaugeView
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           android:id="@+id/gP1"
+           gauge:showNeedle="true"
+          gauge:showOuterShadow="false"
+           gauge:showScale="true"
+           gauge:textUnit="1"
+           />
+
+
+
+    </LinearLayout>
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        >
+        <TextView
+            android:text="POWER USAGE IN W FOR EACH PHASE"
+            android:textSize="14dp"
+            android:textStyle="bold"
+            android:typeface="monospace"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:layout_height="wrap_content" />
+
+    </TableRow>
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="4"
+        >
+        <com.astrolabe.iremote.GaugeView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/gP2"
+            gauge:showNeedle="true"
+            android:layout_weight="1"
+            gauge:showScale="true"
+            gauge:textUnit="2"
+            />
+        <com.astrolabe.iremote.GaugeView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:id="@+id/gP3"
+            android:layout_weight="1"
+        gauge:showNeedle="true"
+            gauge:textUnit="3"
+        gauge:showScale="true"
+        />
+
+
+
+       </TableRow>
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        >
+
+
+
+        </TableRow>
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3"
+        >
+        <com.astrolabe.iremote.GaugeView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:id="@+id/gW"
+            android:layout_weight="1"
+            gauge:showNeedle="false"
+            gauge:showRanges="false"
+            gauge:showText="true"
+            />
+        <com.astrolabe.iremote.GaugeView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:id="@+id/gG"
+            android:layout_weight="1"
+            gauge:showNeedle="false"
+            gauge:showRanges="false"
+            gauge:showText="true"
+            />
+        <com.astrolabe.iremote.GaugeView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:id="@+id/gT"
+            android:layout_weight="1"
+            gauge:showNeedle="false"
+            gauge:showRanges="false"
+            gauge:showText="true"
+            gauge:textUnit="'C"
+            />
+        </TableRow>
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        >
+        <TextView
+            android:text="WATER"
+            android:textSize="14dp"
+            android:typeface="monospace"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:text="GAS"
+            android:textSize="14dp"
+            android:layout_width="0dp"
+            android:typeface="monospace"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:text="TEMP"
+            android:textSize="14dp"
+            android:layout_width="0dp"
+            android:typeface="monospace"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:layout_height="wrap_content" />
+    </TableRow>
+
+
+</LinearLayout>

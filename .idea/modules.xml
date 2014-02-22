@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/crouton_lib/crouton_lib.iml" filepath="$PROJECT_DIR$/crouton_lib/crouton_lib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/iRemote/iRemote.iml" filepath="$PROJECT_DIR$/iRemote/iRemote.iml" />
+      <module fileurl="file://$PROJECT_DIR$/iRemoteP.iml" filepath="$PROJECT_DIR$/iRemoteP.iml" />
+    </modules>
+  </component>
+</project>
+

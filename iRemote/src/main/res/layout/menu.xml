@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/frameLayout">
+
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tableRowPM"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginRight="5dp">
+
+        <ImageButton
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:padding="10dip"
+            android:layout_weight="1"
+
+            android:id="@+id/ibRemote"
+            android:src="@drawable/remote"
+            android:background="@drawable/menu_bg_selector"
+            android:layout_marginLeft="4dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginRight="4dp"
+            android:layout_marginBottom="1dp" />
+
+        <ImageButton
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:padding="10dip"
+            android:layout_weight="1"
+
+            android:id="@+id/ibTimer"
+            android:src="@drawable/sh_camera"
+            android:background="@drawable/menu_bg_selector"
+            android:baselineAlignBottom="true"
+            android:layout_marginLeft="4dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginRight="4dp"
+            android:layout_marginBottom="1dp" />
+
+        <ImageButton
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:padding="10dip"
+            android:layout_weight="1"
+
+            android:id="@+id/ibArea"
+            android:src="@drawable/areas"
+            android:background="@drawable/menu_bg_selector"
+            android:layout_marginLeft="4dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginRight="4dp"
+            android:layout_marginBottom="1dp" />
+
+        <ImageButton
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:padding="10dip"
+            android:layout_weight="1"
+
+            android:id="@+id/ibUsers"
+            android:src="@drawable/settings_icon"
+            android:background="@drawable/menu_bg_selector"
+            android:layout_marginLeft="4dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginRight="4dp"
+            android:layout_marginBottom="1dp" />
+
+        <ImageButton
+            android:layout_width="0dip"
+            android:layout_height="52dp"
+            android:padding="10dip"
+            android:layout_weight="1"
+
+            android:id="@+id/ibSettings"
+
+            android:background="@drawable/menu_bg_selector"
+            android:layout_gravity="center"
+            android:src="@drawable/settings_button_image"
+            android:layout_marginLeft="4dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginRight="4dp"
+            android:layout_marginBottom="1dp" />
+    </TableRow>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tableRowPM"
+        android:id="@+id/linearLayout"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp" >
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvANameMenu"
+            android:textColor="#364652"
+            android:textAlignment="center"
+            android:gravity="center"
+            android:clickable="false"
+            android:textSize="20dp"
+            android:textIsSelectable="false"
+            android:layout_alignParentStart="true"
+            android:typeface="monospace"
+            android:textStyle="bold"
+            android:text="REMOTE" />
+
+        <ImageButton
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/lineDivider"
+            android:layout_alignParentEnd="false"
+            android:background="@drawable/line_divider"
+            android:layout_alignParentStart="false"
+            android:layout_marginTop="-3dp" />
+    </LinearLayout>
+
+</RelativeLayout>
+
+
+
+
+
+
+
+
+

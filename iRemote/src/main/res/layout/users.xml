@@ -1,0 +1,759 @@
+<RelativeLayout
+    android:layout_width="wrap_content"
+    android:layout_height="fill_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:clickable="false"
+    android:focusableInTouchMode="true"
+    android:id="@+id/main_users">
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/users_frag"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:visibility="visible">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:visibility="visible"
+            android:id="@+id/frame1">
+
+
+            <ImageButton
+                android:layout_width="288dp"
+                android:layout_height="288dp"
+                android:id="@+id/cdialUsers"
+
+                android:background="@drawable/u_main_inactive"
+                android:layout_centerInParent="true"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true" />
+
+            <ImageButton
+                android:layout_width="288dp"
+                android:layout_height="288dp"
+                android:id="@+id/usersCD"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:layout_centerInParent="true"
+
+                android:background="@drawable/u_cd_inactive"
+
+                />
+
+            <TextView
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                android:id="@+id/uCdtextv"
+                android:layout_alignParentEnd="false"
+                android:layout_alignParentStart="false"
+                android:textSize="15dp"
+                android:gravity="center"
+                android:textAlignment="center"
+                android:textColor="@drawable/color_remote_dial_text"
+                android:textStyle="normal"
+                android:autoText="false"
+                android:capitalize="characters"
+                android:clickable="true"
+                android:editable="false"
+                android:focusable="false"
+                android:textIsSelectable="false"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true" />
+
+            <ImageButton
+                android:layout_width="60dp"
+                android:layout_height="80dp"
+                android:id="@+id/addMu"
+                android:background="@android:color/transparent"
+                android:layout_marginTop="22dp"
+                android:layout_alignParentTop="true"
+                android:layout_toLeftOf="@+id/uCdtextv" />
+            <ImageButton
+                android:layout_width="60dp"
+                android:layout_height="80dp"
+                android:id="@+id/timerss"
+                android:background="@android:color/transparent"
+                android:layout_below="@+id/addNu"
+                android:layout_marginTop="120dp"
+                android:layout_toLeftOf="@+id/uCdtextv" />
+
+            <ImageButton
+                android:layout_width="40dp"
+                android:layout_height="80dp"
+                android:id="@+id/addNu"
+                android:background="@android:color/transparent"
+                android:layout_centerVertical="true"
+                android:layout_alignParentLeft="true" />
+
+            <ImageButton
+                android:layout_width="60dp"
+                android:layout_height="80dp"
+                android:id="@+id/delMu"
+                android:background="@android:color/transparent"
+                android:layout_alignTop="@+id/addMu"
+                android:layout_toRightOf="@+id/uCdtextv" />
+            <ImageButton
+                android:layout_width="60dp"
+                android:layout_height="80dp"
+                android:id="@+id/meters"
+                android:background="@android:color/transparent"
+                android:layout_alignTop="@id/timerss"
+                android:layout_toRightOf="@+id/uCdtextv" />
+
+            <ImageButton
+                android:layout_width="80dp"
+                android:layout_height="40dp"
+                android:id="@+id/listUser"
+                android:background="@android:color/transparent"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="8dp" />
+            <ImageButton
+                android:layout_width="80dp"
+                android:layout_height="40dp"
+                android:id="@+id/zones"
+                android:background="@android:color/transparent"
+                android:layout_alignBottom="@+id/cdialUsers"
+                android:layout_alignLeft="@+id/listUser"
+                android:layout_alignStart="@+id/listUser" />
+
+            <ImageButton
+                android:layout_width="40dp"
+                android:layout_height="80dp"
+                android:id="@+id/delNu"
+                android:background="@android:color/transparent"
+                android:focusableInTouchMode="true"
+                android:layout_centerVertical="true"
+                android:layout_alignRight="@+id/cdialUsers" />
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/RL_numAndPass"
+            android:visibility="gone"
+            android:layout_below="@+id/frame1"
+            android:layout_centerHorizontal="true">
+
+
+            <FrameLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+
+                android:layout_centerHorizontal="true"
+                android:id="@+id/FLUserNumber"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="3dp"
+                android:visibility="visible"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp">
+
+                <ImageButton
+                    android:layout_width="fill_parent"
+                    android:layout_height="50dp"
+                    android:id="@+id/u_user_number_ib"
+                    android:layout_alignParentEnd="true"
+                    android:background="@drawable/add_account_sitenumber"
+                    android:layout_alignParentStart="false"
+                    android:layout_centerHorizontal="true"
+                    android:visibility="visible"
+                    android:layout_gravity="center" />
+
+                <EditText
+                    android:layout_width="fill_parent"
+                    android:layout_height="37dp"
+                    android:id="@+id/u_et_number"
+                    android:hint="Users Mobile #"
+                    android:digits="01234567890+"
+                    android:phoneNumber="true"
+                    android:layout_gravity="center_horizontal|bottom"
+                    android:layout_centerHorizontal="true"
+                    android:background="@android:color/transparent"
+                    android:textSize="18dp"
+                    android:textColor="@drawable/color_input_box"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:layout_alignParentEnd="true"
+                    android:inputType="phone"
+                    android:imeOptions="actionNext"
+                    android:textCursorDrawable="@null"
+                    android:capitalize="none"
+                    android:visibility="visible" />
+
+                <Button
+                    android:layout_width="40dp"
+                    android:layout_height="30dp"
+                    android:layout_marginRight="3dp"
+                    android:layout_marginBottom="3dp"
+                    android:id="@+id/importContactsss"
+                    android:layout_gravity="right|bottom"
+                    android:background="@drawable/contacts_lookup_selector"
+                    android:visibility="visible" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/FLUserNumber"
+                android:layout_centerHorizontal="true"
+                android:id="@+id/u_pass"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="5dp"
+                android:visibility="visible"
+                android:layout_alignParentEnd="true"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp">
+
+                <ImageButton
+                    android:layout_width="fill_parent"
+                    android:layout_height="50dp"
+                    android:id="@+id/u_pass_ib"
+                    android:layout_alignParentEnd="true"
+                    android:background="@drawable/add_account_pass"
+                    android:layout_alignParentStart="false"
+                    android:layout_centerHorizontal="true"
+                    android:visibility="visible"
+                    android:layout_gravity="center" />
+
+                <EditText
+                    android:layout_width="fill_parent"
+                    android:layout_height="37dp"
+                    android:id="@+id/etPassass"
+                    android:hint="Desired password"
+                    android:digits="01234567890+"
+                    android:phoneNumber="true"
+                    android:layout_gravity="center_horizontal|bottom"
+                    android:layout_centerHorizontal="true"
+                    android:background="@android:color/transparent"
+                    android:textSize="18dp"
+                    android:textColor="@drawable/color_input_box"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:layout_alignParentEnd="true"
+                    android:inputType="phone"
+                    android:imeOptions="actionDone"
+                    android:textCursorDrawable="@null"
+                    android:capitalize="none"
+                    android:password="true"
+                    android:visibility="visible" />
+
+            </FrameLayout>
+
+            <ImageButton
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:id="@+id/u_done"
+                android:background="@drawable/done_button"
+
+                android:visibility="visible"
+                android:layout_gravity="center_horizontal|top"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true" />
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/scrollview"
+                android:visibility="visible"
+                android:layout_below="@id/u_pass"
+                android:layout_marginTop="5dp">
+
+                <ImageButton
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/whatsoever"
+                    android:layout_alignParentEnd="false"
+                    android:background="@drawable/select_permissions"
+                    android:layout_alignParentStart="false"
+
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp" />
+
+
+                <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/u_tr_VZ1"
+                    android:layout_below="@id/whatsoever"
+                    android:layout_marginTop="5dp"
+                    android:layout_centerHorizontal="true"
+                    android:baselineAligned="false">
+
+
+                    <CheckBox
+                        android:text="GATES"
+                        android:layout_height="40dp"
+                        android:layout_width="0dp"
+                        android:textColor="@color/abc_search_url_text_selected"
+                        android:button="@null"
+                        android:drawableBottom="@drawable/checkboxesss"
+                        android:gravity="center_horizontal"
+                        android:textSize="12dp"
+                        android:id="@+id/checkBoxVzGate"
+                        android:checked="false"
+                        android:layout_weight="1"
+                        android:textStyle="bold" />
+
+
+                    <CheckBox
+                        android:text="USERS"
+                        android:layout_height="40dp"
+                        android:layout_width="0dp"
+                        android:textColor="@color/abc_search_url_text_selected"
+                        android:button="@null"
+                        android:drawableBottom="@drawable/checkboxesss"
+                        android:gravity="center_horizontal"
+                        android:textSize="12dp"
+                        android:id="@+id/checkBoxVzUsers"
+                        android:checked="false"
+                        android:layout_weight="1"
+                        android:textStyle="bold" />
+
+
+                    <CheckBox
+                        android:text="TIMERS"
+                        android:layout_height="40dp"
+                        android:layout_width="0dp"
+                        android:textColor="@color/abc_search_url_text_selected"
+                        android:button="@null"
+                        android:drawableBottom="@drawable/checkboxesss"
+                        android:gravity="center_horizontal"
+                        android:textSize="12dp"
+                        android:id="@+id/checkBoxVzTimers"
+                        android:checked="false"
+                        android:layout_weight="1"
+                        android:textStyle="bold" />
+
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tableRow2"
+                    android:layout_below="@id/u_tr_VZ1"
+                    android:layout_marginTop="5dp"
+                    android:layout_centerHorizontal="true"
+                    android:baselineAligned="false">
+
+                    <CheckBox
+                        android:text="ZONES"
+                        android:layout_height="40dp"
+                        android:layout_width="0dp"
+                        android:textColor="@color/abc_search_url_text_selected"
+                        android:button="@null"
+                        android:drawableBottom="@drawable/checkboxesss"
+                        android:gravity="center_horizontal"
+                        android:textSize="12dp"
+                        android:id="@+id/checkBoxZones"
+                        android:checked="false"
+                        android:layout_weight="1"
+                        android:textStyle="bold" />
+
+                    <CheckBox
+                        android:text="ALARM"
+                        android:layout_height="40dp"
+                        android:layout_width="0dp"
+                        android:textColor="@color/abc_search_url_text_selected"
+                        android:button="@null"
+                        android:drawableBottom="@drawable/checkboxesss"
+                        android:gravity="center_horizontal"
+                        android:textSize="12dp"
+                        android:id="@+id/checkBoxAlarm"
+                        android:checked="false"
+                        android:layout_weight="1"
+                        android:textStyle="bold" />
+
+                    <CheckBox
+                        android:text="METER"
+                        android:layout_height="40dp"
+                        android:layout_width="0dp"
+                        android:textColor="@color/abc_search_url_text_selected"
+                        android:button="@null"
+                        android:drawableBottom="@drawable/checkboxesss"
+                        android:gravity="center_horizontal"
+                        android:textSize="12dp"
+                        android:layout_weight="1"
+                        android:id="@+id/checkBoxMeters"
+                        android:textStyle="bold" />
+                </TableRow>
+
+                <ImageButton
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/whatsoever3"
+                    android:layout_alignParentEnd="false"
+                    android:background="@drawable/u_perms_tit_alarm"
+                    android:layout_alignParentStart="false"
+                    android:layout_below="@+id/tableRow2"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="8dp" />
+
+                <com.astrolabe.iremote.DeselectableRadioGroup
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/whatsoever3"
+                    android:orientation="horizontal"
+                    android:id="@+id/Radgrouuup"
+                    android:layout_marginTop="10dp">
+
+                    <com.astrolabe.iremote.DeSelectableRadioButton
+                        android:text="AWAY"
+                        android:layout_height="40dp"
+                        android:layout_width="0dp"
+                        android:textColor="@color/abc_search_url_text_selected"
+                        android:button="@null"
+                        android:drawableBottom="@drawable/radiobuttons_users"
+                        android:gravity="center_horizontal"
+                        android:id="@+id/cAway"
+                        android:textSize="12dp"
+                        android:layout_weight="1"
+                        android:textStyle="bold" />
+
+                    <com.astrolabe.iremote.DeSelectableRadioButton
+                        android:text="STAY"
+                        android:layout_height="40dp"
+                        android:layout_width="0dp"
+                        android:textColor="@color/abc_search_url_text_selected"
+                        android:button="@null"
+                        android:drawableBottom="@drawable/radiobuttons_users"
+                        android:gravity="center_horizontal"
+                        android:id="@+id/cStay"
+                        android:textSize="12dp"
+
+                        android:layout_weight="1"
+
+                        android:checked="false"
+                        android:textStyle="bold" />
+
+                    <com.astrolabe.iremote.DeSelectableRadioButton
+                        android:text="BOTH"
+                        android:layout_height="40dp"
+                        android:layout_width="0dp"
+                        android:textColor="@color/abc_search_url_text_selected"
+                        android:button="@null"
+                        android:drawableBottom="@drawable/radiobuttons_users"
+                        android:gravity="center_horizontal"
+                        android:id="@+id/cBoth"
+                        android:textSize="12dp"
+
+                        android:layout_weight="1"
+                        android:textStyle="bold"
+                        android:checked="false" />
+
+                </com.astrolabe.iremote.DeselectableRadioGroup>
+
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/changePass"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="@dimen/marginLeftRight"
+                android:layout_marginLeft="@dimen/marginLeftRight"
+                android:visibility="gone">
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+
+                    >
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="number"
+                        android:ems="10"
+                        android:id="@+id/curPass"
+                        android:textColor="#000000"
+                        android:textStyle="bold|normal"
+                        android:textSize="19dp"
+
+                        android:gravity="center" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+
+                    android:layout_below="@+id/curPass"
+                    android:focusableInTouchMode="false"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textView2"
+                        android:textSize="19dp"
+                        android:textStyle="bold|normal" />
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="number"
+                        android:ems="10"
+
+                        android:textColor="#000000"
+                        android:textStyle="bold|normal"
+                        android:textSize="19dp"
+                        android:id="@+id/newPass"
+                        android:gravity="center" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+
+                    android:layout_below="@+id/newPass"
+                    android:focusableInTouchMode="false"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textView"
+                        android:textSize="19dp"
+                        android:textStyle="bold|normal" />
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="number"
+                        android:ems="10"
+
+                        android:textColor="#000000"
+                        android:textStyle="bold|normal"
+                        android:textSize="19dp"
+                        android:id="@+id/confirmPass"
+                        android:gravity="center" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+
+                android:layout_height="wrap_content"
+                android:layout_width="fill_parent"
+                android:id="@+id/zoneListCB"
+                android:layout_marginBottom="110dp"
+                android:visibility="gone">
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:orientation="vertical"
+                    android:layout_marginLeft="@dimen/marginLeftRight"
+                    android:layout_marginRight="@dimen/marginLeftRight">
+
+
+                    <CheckBox
+                        android:id="@+id/check1"
+                        android:text="ZONE 1"
+                        style="@style/Cbox" />
+
+                    <CheckBox
+                        android:id="@+id/check2"
+                        android:text="ZONE 2"
+                        style="@style/Cbox" />
+
+                    <CheckBox
+                        android:id="@+id/check3"
+                        android:text="ZONE 3"
+                        style="@style/Cbox" />
+
+                    <CheckBox
+                        android:id="@+id/check4"
+                        android:text="ZONE 4"
+                        style="@style/Cbox" />
+
+                    <CheckBox
+                        android:id="@+id/check5"
+                        android:text="ZONE 5"
+                        style="@style/Cbox" />
+
+                    <CheckBox
+                        android:id="@+id/check6"
+                        android:text="ZONE 6"
+                        style="@style/Cbox" />
+
+                    <CheckBox
+                        android:id="@+id/check7"
+                        android:text="ZONE 7"
+                        style="@style/Cbox" />
+
+                    <CheckBox
+                        android:id="@+id/check8"
+                        android:text="ZONE 8"
+                        style="@style/Cbox" />
+
+                    <CheckBox
+                        android:id="@+id/check9"
+                        android:text="ZONE 9"
+                        style="@style/Cbox" />
+
+                    <CheckBox
+                        android:id="@+id/checkA"
+                        android:text="ZONE A"
+                        style="@style/Cbox" />
+
+                    <CheckBox
+                        android:id="@+id/checkB"
+                        android:text="ZONE B"
+                        style="@style/Cbox" />
+
+                    <CheckBox
+                        android:id="@+id/checkC"
+                        android:text="ZONE C"
+                        style="@style/Cbox" />
+
+                    <CheckBox
+                        android:id="@+id/checkD"
+                        android:text="ZONE D"
+                        style="@style/Cbox" />
+
+                    <CheckBox
+                        android:id="@+id/checkE"
+                        android:text="ZONE E"
+                        style="@style/Cbox" />
+
+                    <CheckBox
+                        android:id="@+id/checkF"
+                        android:text="ZONE F"
+                        style="@style/Cbox" />
+
+                    <CheckBox
+                        android:id="@+id/checkG"
+                        android:text="ZONE G"
+                        style="@style/Cbox" />
+
+
+                </LinearLayout>
+            </ScrollView>
+
+        </RelativeLayout>
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/marginLeftRightLists"
+            android:layout_marginLeft="@dimen/marginLeftRightLists"
+            android:id="@+id/usersListLO"
+            android:focusableInTouchMode="true"
+            android:visibility="gone">
+
+            <Button
+                android:layout_marginTop="@dimen/margin_top_lists_first"
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/accounts_list_height"
+                android:background="@drawable/al_text_box"
+                android:id="@+id/acc_1"
+                android:textColor="@drawable/account_list_color"
+                android:typeface="monospace"
+                android:textStyle="bold"
+                android:visibility="visible" />
+
+            <Button
+                android:layout_marginTop="@dimen/margin_top_lists"
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/accounts_list_height"
+                android:background="@drawable/al_text_box"
+                android:id="@+id/acc_2"
+                android:textColor="@drawable/account_list_color"
+                android:typeface="monospace"
+                android:textStyle="bold"
+                android:visibility="visible" />
+
+            <Button
+                android:layout_marginTop="@dimen/margin_top_lists"
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/accounts_list_height"
+                android:background="@drawable/al_text_box"
+                android:id="@+id/acc_3"
+                android:textColor="@drawable/account_list_color"
+                android:typeface="monospace"
+                android:textStyle="bold"
+                android:visibility="visible" />
+
+            <Button
+                android:layout_marginTop="@dimen/margin_top_lists"
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/accounts_list_height"
+                android:background="@drawable/al_text_box"
+                android:id="@+id/acc_4"
+                android:textColor="@drawable/account_list_color"
+                android:typeface="monospace"
+                android:textStyle="bold"
+                android:visibility="visible" />
+
+            <Button
+                android:layout_marginTop="@dimen/margin_top_lists"
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/accounts_list_height"
+                android:background="@drawable/al_text_box"
+                android:id="@+id/acc_5"
+                android:textColor="@drawable/account_list_color"
+                android:typeface="monospace"
+                android:textStyle="bold"
+                android:visibility="visible" />
+
+            <Button
+                android:layout_marginTop="@dimen/margin_top_lists"
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/accounts_list_height"
+                android:background="@drawable/al_text_box"
+                android:id="@+id/acc_6"
+                android:textColor="@drawable/account_list_color"
+                android:typeface="monospace"
+                android:textStyle="bold" />
+
+            <Button
+                android:layout_marginTop="@dimen/margin_top_lists"
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/accounts_list_height"
+                android:background="@drawable/al_text_box"
+                android:id="@+id/acc_7"
+                android:textColor="@drawable/account_list_color"
+                android:typeface="monospace"
+                android:textStyle="bold" />
+
+            <Button
+                android:layout_marginTop="@dimen/margin_top_lists"
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/accounts_list_height"
+                android:background="@drawable/al_text_box"
+                android:id="@+id/acc_8"
+                android:textColor="@drawable/account_list_color"
+                android:typeface="monospace"
+                android:textStyle="bold"
+                android:visibility="visible" />
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <WebView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/wvL"
+        android:layout_centerInParent="true"
+        android:visibility="gone" />
+
+
+</RelativeLayout>

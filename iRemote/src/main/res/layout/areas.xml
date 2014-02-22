@@ -1,0 +1,362 @@
+<RelativeLayout
+    android:layout_width="wrap_content"
+    android:layout_height="fill_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:clickable="false"
+    android:focusableInTouchMode="true"
+    android:id="@+id/main_areas"
+    android:visibility="visible">
+
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/areas_frag"
+        android:layout_alignParentEnd="false"
+        android:visibility="visible">
+
+
+        <ImageButton
+            android:layout_width="288dp"
+            android:layout_height="288dp"
+            android:id="@+id/cd"
+            android:background="@drawable/u_cd"
+            android:layout_centerInParent="true"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:focusable="false"
+            android:visibility="visible" />
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/layout"
+            android:visibility="visible">
+
+            <ScrollView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:id="@+id/zoneDropListLF"
+                android:layout_alignParentEnd="false"
+                android:background="@drawable/as_list_open"
+                android:layout_alignParentStart="false"
+                android:visibility="gone"
+                android:layout_below="@+id/frameLayout34"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginBottom="30dp"
+                android:baselineAligned="false">
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <Button
+                        style="@style/ZoneDropList"
+                        android:text="ZONE  1"
+                        android:id="@+id/bz1" />
+                    <Button
+                        style="@style/ZoneDropList"
+                        android:text="ZONE  2"
+                        android:id="@+id/bz2" />
+                    <Button
+                        style="@style/ZoneDropList"
+                        android:text="ZONE  3"
+                        android:id="@+id/bz3" />
+                    <Button
+                        style="@style/ZoneDropList"
+                        android:text="ZONE  4"
+                        android:id="@+id/bz4" />
+                    <Button
+                        style="@style/ZoneDropList"
+                        android:text="ZONE  5"
+                        android:id="@+id/bz5" />
+                    <Button
+                        style="@style/ZoneDropList"
+                        android:text="ZONE  6"
+                        android:id="@+id/bz6" />
+                    <Button
+                        style="@style/ZoneDropList"
+                        android:text="ZONE  7"
+                        android:id="@+id/bz7" />
+                    <Button
+                        style="@style/ZoneDropList"
+                        android:text="ZONE  8"
+                        android:id="@+id/bz8" />
+                    <Button
+                        style="@style/ZoneDropList"
+                        android:text="ZONE  9"
+                        android:id="@+id/bz9" />
+                    <Button
+                        style="@style/ZoneDropList"
+                        android:text="ZONE  A"
+                        android:id="@+id/bzA" />
+                    <Button
+                        style="@style/ZoneDropList"
+                        android:text="ZONE  B"
+                        android:id="@+id/bzB" />
+                    <Button
+                        style="@style/ZoneDropList"
+                        android:text="ZONE  C"
+                        android:id="@+id/bzC" />
+                    <Button
+                        style="@style/ZoneDropList"
+                        android:text="ZONE  D"
+                        android:id="@+id/bzD" />
+                    <Button
+                        style="@style/ZoneDropList"
+                        android:text="ZONE  E"
+                        android:id="@+id/bzE" />
+                    <Button
+                        style="@style/ZoneDropList"
+                        android:text="ZONE  F"
+                        android:id="@+id/bzF" />
+                    <Button
+                    style="@style/ZoneDropList"
+                    android:text="ZONE  G"
+                    android:id="@+id/bzG" />
+
+                </LinearLayout>
+
+
+            </ScrollView>
+
+            <FrameLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:id="@+id/frameLayout34"
+                android:layout_gravity="center_horizontal"
+                android:visibility="visible"
+                android:layout_marginTop="10dp" >
+
+                <ImageButton
+                    android:layout_width="fill_parent"
+                    android:layout_height="50dp"
+                    android:id="@+id/addAccountCT"
+                    android:layout_alignParentEnd="true"
+                    android:background="@drawable/z_select_zone"
+                    android:layout_alignParentStart="false"
+                    android:layout_below="@id/addAccountCT"
+                    android:layout_centerHorizontal="true"
+                    android:visibility="visible"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="25dp"
+                    android:layout_marginLeft="25dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="37dp"
+                    android:id="@+id/tvZoneSelect"
+                    android:layout_gravity="center_horizontal|bottom"
+
+                    android:textSize="18dp"
+                    android:visibility="visible"
+                    android:hint="SELECT ZONE"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginRight="25dp"
+                    android:text="SELECT ZONE"
+                    android:singleLine="false"
+                    android:textColor="@drawable/account_list_color"
+                    android:textStyle="bold" />
+            </FrameLayout>
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/frameLayout34"
+                android:id="@+id/other"
+                android:visibility="visible">
+                <FrameLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/nameBoxFrame"
+                    >
+
+
+
+                    <ImageButton
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/imageButton2"
+                        android:layout_alignParentEnd="false"
+                        android:background="@drawable/z_tit_nameee"
+                        android:layout_alignParentStart="false"
+
+                        android:layout_marginLeft="25dp"
+                        android:layout_marginRight="25dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_centerHorizontal="true" />
+                    <EditText
+                        android:layout_width="fill_parent"
+                        android:layout_height="37dp"
+                        android:id="@+id/etZoneName"
+                        android:hint="Enter desired Name for the zone"
+
+                        android:layout_gravity="center_horizontal|bottom"
+                        android:layout_centerHorizontal="true"
+                        android:background="@android:color/transparent"
+                        android:textSize="18dp"
+                        android:textColor="#000000"
+                        android:imeOptions="actionDone"
+                        android:gravity="center_vertical|center_horizontal"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginLeft="25dp"
+                        android:layout_marginRight="25dp"
+                        android:layout_marginBottom="5dp"
+                        android:capitalize="characters"
+                        android:textStyle="bold"
+                        android:inputType="text"
+                        android:digits="ABCDEDFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvxyz 01234567890_-.,"
+                        android:singleLine="true"
+                        android:enabled="true"
+                        android:textAlignment="center" />
+
+
+                </FrameLayout>
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="25dp"
+                    android:layout_below="@id/nameBoxFrame"
+                    android:text="REPORT IN ALARM MODE"
+                    android:textSize="14dp"
+                    android:id="@+id/ButtonMode2Follow"
+                    android:drawableBottom="@drawable/line_divider"
+                    android:background="@android:color/transparent"
+                    android:gravity="bottom|center_horizontal"
+                    android:typeface="monospace"
+                    android:textStyle="bold"
+                    android:textColor="#373c3b"
+                    />
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/ButtonMode2Follow"
+                    android:layout_marginTop="5dp"
+                    android:id="@+id/grouppp"
+                    android:layout_marginLeft="@dimen/marginLeftRight"
+                    android:layout_marginRight="@dimen/marginLeftRight"
+                    android:layout_centerHorizontal="true">
+                    <RadioGroup
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        android:id="@+id/radGroup12">
+
+                        <RadioButton
+                            android:text="AWAY"
+                            android:layout_height="40dp"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:textColor="@color/abc_search_url_text_selected"
+                            android:button="@null"
+                            android:drawableBottom="@drawable/radiobuttons_users"
+                            android:gravity="center_horizontal"
+                            android:id="@+id/cZAway"
+                            android:textSize="12dp"
+
+                            android:textStyle="bold" />
+                        <RadioButton
+                            android:text="STAY"
+                            android:layout_height="40dp"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:textColor="@color/abc_search_url_text_selected"
+                            android:button="@null"
+                            android:drawableBottom="@drawable/radiobuttons_users"
+                            android:gravity="center_horizontal"
+                            android:id="@+id/cZStay"
+                            android:textSize="12dp"
+                            android:layout_marginLeft="-12dp"
+                            android:textStyle="bold" />
+                        <RadioButton
+                            android:text="BOTH"
+                            android:layout_height="40dp"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:textColor="@color/abc_search_url_text_selected"
+                            android:button="@null"
+                            android:drawableBottom="@drawable/radiobuttons_users"
+                            android:gravity="center_horizontal"
+                            android:id="@+id/cZBoth"
+                            android:textSize="12dp"
+                            android:layout_marginLeft="-10dp"
+                            android:checked="false"
+                            android:textStyle="bold" />
+
+
+
+
+
+                    </RadioGroup>
+
+
+
+
+
+                </FrameLayout>
+
+                    <Button
+                        android:layout_width="match_parent"
+
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/grouppp"
+                        android:text=" SELECT ZONE TYPE"
+                        android:textSize="14dp"
+
+                        android:id="@+id/ButtonTYPE2Follow"
+                        android:drawableBottom="@drawable/line_divider"
+                        android:background="@android:color/transparent"
+                        android:gravity="bottom|center_horizontal"
+                        android:typeface="monospace"
+                        android:textStyle="bold"
+                        android:textColor="#373c3b"
+                        android:layout_marginRight="@dimen/marginLeftRight"
+                        android:layout_marginLeft="@dimen/marginLeftRight"
+                        />
+
+                    <Spinner
+                        android:layout_width="match_parent"
+                        android:gravity="center"
+                        android:textAlignment="center"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/spinner"
+                        android:layout_below="@id/ButtonTYPE2Follow"
+                        android:entries="@array/area_type_array"
+                        android:prompt="@string/SELECT_A_TYPE"
+
+                        android:layout_marginRight="@dimen/marginLeftRight"
+                        android:layout_marginLeft="@dimen/marginLeftRight"/>
+
+
+
+                <ImageButton
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:id="@+id/imageButton3"
+                    android:background="@drawable/update_button"
+                    android:visibility="visible"
+                    android:layout_gravity="center_horizontal|top"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true" />
+
+            </RelativeLayout>
+        </RelativeLayout>
+    </RelativeLayout>
+
+
+    <WebView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/wvAreasLoading"
+        android:layout_centerInParent="true"
+        android:focusableInTouchMode="false"
+        android:visibility="gone" />
+
+
+</RelativeLayout>

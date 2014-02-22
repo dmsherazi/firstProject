@@ -1,0 +1,324 @@
+<RelativeLayout
+    android:layout_width="wrap_content"
+    android:layout_height="fill_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:clickable="false"
+    android:focusableInTouchMode="true"
+    android:id="@+id/main_timer"
+    android:visibility="visible">
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+
+
+        android:clickable="false"
+        android:focusableInTouchMode="true"
+        android:id="@+id/timer_frg"
+        android:layout_alignParentTop="false"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentStart="false"
+        android:layout_alignParentEnd="false"
+        android:visibility="visible">
+
+
+
+        <RelativeLayout
+            android:layout_height="288dp"
+            android:layout_width="288dp"
+            android:layout_alignParentLeft="false"
+            android:id="@+id/frameLayout"
+            android:layout_centerInParent="true"
+            android:visibility="gone">
+
+            <ImageButton
+                android:layout_width="288dp"
+                android:layout_height="288dp"
+                android:id="@+id/cdial"
+                android:layout_alignParentEnd="false"
+                android:background="@drawable/t_inactive"
+                android:layout_gravity="center"
+                android:visibility="visible" />
+
+
+            <ImageButton
+                android:layout_width="288dp"
+                android:layout_height="288dp"
+                android:id="@+id/cdSureButn"
+                android:layout_centerVertical="true"
+                android:background="@drawable/u_cd"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
+                android:visibility="visible"
+                android:textAlignment="center" />
+
+
+            <ImageButton
+                android:layout_width="85dp"
+                android:layout_height="40dp"
+                android:id="@+id/t1"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:background="@android:color/transparent"
+                android:layout_marginTop="5dp" />
+
+            <ImageButton
+                android:layout_width="85dp"
+                android:layout_height="40dp"
+                android:id="@+id/t5"
+                android:layout_alignParentBottom="true"
+                android:background="@android:color/transparent"
+                android:layout_alignLeft="@+id/t1"
+                android:layout_marginBottom="4dp" />
+
+            <ImageButton
+                android:layout_width="45dp"
+                android:layout_height="70dp"
+                android:id="@+id/t8"
+                android:background="@android:color/transparent"
+                android:cropToPadding="true"
+                android:layout_above="@+id/t7"
+                android:layout_toLeftOf="@+id/R_cd_Text"
+                android:layout_marginBottom="10dp" />
+
+            <ImageButton
+                android:layout_width="55dp"
+                android:layout_height="75dp"
+                android:id="@+id/t2"
+                android:background="@android:color/transparent"
+                android:layout_alignBottom="@+id/t8"
+                android:layout_toRightOf="@+id/R_cd_Text" />
+
+            <ImageButton
+                android:layout_width="55dp"
+                android:layout_height="75dp"
+                android:id="@+id/t6"
+                android:background="@android:color/transparent"
+                android:layout_alignTop="@+id/t4"
+                android:layout_toLeftOf="@+id/R_cd_Text" />
+
+            <ImageButton
+                android:layout_width="45dp"
+                android:layout_height="75dp"
+                android:id="@+id/t7"
+                android:background="@android:color/transparent"
+                android:layout_centerVertical="true"
+                android:layout_alignParentLeft="true" />
+
+            <ImageButton
+                android:layout_width="45dp"
+                android:layout_height="75dp"
+                android:id="@+id/t3"
+                android:background="@android:color/transparent"
+                android:layout_alignTop="@+id/t7"
+                android:layout_alignParentRight="true" />
+
+            <ImageButton
+                android:layout_width="55dp"
+                android:layout_height="75dp"
+                android:id="@+id/t4"
+                android:background="@android:color/transparent"
+                android:layout_below="@+id/t3"
+                android:layout_toRightOf="@+id/R_cd_Text"
+                android:layout_marginTop="10dp" />
+
+            <TextView
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                android:id="@+id/R_cd_Text"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"
+                android:layout_alignParentEnd="false"
+                android:layout_alignParentStart="false"
+                android:textSize="15dp"
+                android:textAlignment="inherit"
+                android:textColor="@drawable/color_remote_dial_text"
+                android:textStyle="normal"
+                android:autoText="false"
+                android:clickable="true"
+                android:editable="false"
+                android:gravity="center"
+                android:focusable="false"
+                android:textIsSelectable="false"
+                android:layout_gravity="center"
+                android:text=" "
+                android:singleLine="false"
+                android:enabled="false"
+                android:typeface="monospace" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/timerSettingsScreen"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+
+            android:visibility="visible">
+
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:id="@+id/timerSet"
+                android:layout_marginTop="5dp">
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent">
+                    <Button
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:id="@+id/statusIm"
+                        android:background="@drawable/orange_status"
+                        />
+
+                    <EditText
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/etTimerName"
+                        android:inputType="textCapCharacters"
+                        android:layout_marginLeft="15dp"
+                        android:layout_gravity="center_horizontal|bottom"
+                        android:textSize="18dp"
+                        android:textColor="#000000"
+                        android:imeOptions="actionDone"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginRight="25dp"
+                        android:capitalize="characters"
+                        android:textStyle="bold"
+                        android:digits="ABCDEDFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvxyz 01234567890_-.,"
+                        android:singleLine="true"
+                        android:enabled="true"
+                        android:textAlignment="center"
+                        android:text="TIMER"
+                        android:gravity="center_horizontal|bottom" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+
+                    android:id="@+id/linearLayout4">
+
+                    <Button
+                        style="?android:attr/buttonStyleSmall"
+
+                        android:layout_width="fill_parent"
+                        android:layout_height="40dp"
+                        android:text="@string/set_on_time"
+                        android:background="@drawable/al_text_box"
+                        android:id="@+id/bOnTime"
+                        android:singleLine="true"
+                        android:textColor="@drawable/account_list_color"
+                        android:textSize="16dp"
+                        android:layout_weight="1"
+                        android:textStyle="bold"
+                        android:layout_marginTop="5dp" />
+
+                    <Button
+                        style="?android:attr/buttonStyleSmall"
+                        android:layout_marginTop="@dimen/margin_top_lists"
+                        android:layout_width="fill_parent"
+                        android:layout_height="40dp"
+                        android:text="@string/set_off_time"
+                        android:background="@drawable/al_text_box"
+                        android:id="@+id/bOffTime"
+                        android:singleLine="true"
+                        android:textColor="@drawable/account_list_color"
+                        android:textStyle="bold"
+                        android:layout_weight="1"
+                        android:textSize="16dp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_weight="1">
+
+                        <ToggleButton
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:id="@+id/tbForceOnOff"
+                            android:layout_weight="1"
+                            android:background="@drawable/sel_force_on_off"
+                            android:textOff=""
+                            android:textOn=""
+                            android:layout_gravity="center_horizontal" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_weight="1">
+
+                        <Button
+
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:text="@string/RESET"
+                            android:background="@drawable/but_ma_sel"
+                            android:id="@+id/bAutoMan"
+                            android:singleLine="true"
+                            android:textColor="@drawable/account_list_color"
+                            android:textStyle="bold"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="3dp"
+                            android:textSize="13dp" />
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <ImageButton
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:id="@+id/imageButton2"
+                android:background="@drawable/update_button"
+                android:visibility="visible"
+                android:layout_gravity="center_horizontal|top"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true" />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_below="@id/timerSet"
+                android:layout_height="fill_parent">
+
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+
+    <WebView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/wvTimerLoading"
+        android:layout_centerInParent="true"
+        android:focusableInTouchMode="false" />
+
+
+</RelativeLayout>

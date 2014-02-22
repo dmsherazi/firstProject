@@ -1,0 +1,274 @@
+<RelativeLayout
+    android:layout_width="wrap_content"
+    android:layout_height="fill_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/RL_AS"
+    android:layout_marginLeft="@dimen/marginLeftRight"
+    android:layout_marginRight="@dimen/marginLeftRight"
+    android:visibility="visible">
+
+
+
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@+id/FLCTH"
+        android:id="@+id/visInviz"
+        android:visibility="visible">
+
+        <ImageButton
+            android:layout_width="@dimen/done_update_btn_width_height"
+            android:layout_height="@dimen/done_update_btn_width_height"
+            android:id="@+id/Done"
+            android:background="@drawable/done_button"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:contentDescription="@string/desc_done_update_button" />
+
+        <FrameLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/FLName"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/add_account_margin_top"
+            >
+
+            <ImageButton
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/input_box_height"
+                android:background="@drawable/add_account_name"
+                android:contentDescription="@string/desc_name_of_site" />
+
+            <EditText
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/edit_text_height"
+                android:id="@+id/etName"
+                android:layout_gravity="bottom"
+                android:background="@android:color/transparent"
+                android:textSize="@dimen/input_box_text_size"
+                android:textColor="@drawable/color_input_box"
+                android:textStyle="bold"
+                android:typeface="monospace"
+                android:textCursorDrawable="@null"
+                android:inputType="textNoSuggestions|textCapCharacters"
+                android:gravity="center" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/FLSiteNumber"
+            android:layout_below="@id/FLName"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/add_account_margin_top"
+            >
+
+            <ImageButton
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/input_box_height"
+                android:background="@drawable/add_account_sitenumber"
+                android:contentDescription="@string/desc_password_box" />
+
+            <EditText
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/edit_text_height"
+                android:id="@+id/etSite"
+                android:layout_gravity="bottom"
+                android:background="@android:color/transparent"
+                android:textSize="@dimen/input_box_text_size"
+                android:textColor="@drawable/color_input_box"
+                android:digits="@string/onlyDigits_plus"
+                android:textStyle="bold"
+                android:typeface="monospace"
+                android:inputType="phone"
+                android:gravity="center"
+                android:password="false"
+                android:textCursorDrawable="@null"/>
+
+            <Button
+                android:layout_width="@dimen/contacts_lookup_width"
+                android:layout_height="@dimen/contact_lookup_height"
+                android:layout_marginRight="@dimen/contacts_lookup_marginRightBottom"
+                android:layout_marginBottom="@dimen/contacts_lookup_marginRightBottom"
+                android:id="@+id/importContacts"
+                android:layout_gravity="right|bottom"
+                android:background="@drawable/contacts_lookup_selector" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/FLUsername"
+            android:layout_below="@id/FLSiteNumber"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/add_account_margin_top">
+
+            <ImageButton
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/input_box_height"
+                android:background="@drawable/add_account_username"
+                android:contentDescription="@string/desc_user_name"/>
+
+            <EditText
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/edit_text_height"
+                android:id="@+id/etUserName"
+                android:layout_gravity="bottom"
+                android:background="@android:color/transparent"
+                android:textSize="@dimen/input_box_text_size"
+                android:textColor="@drawable/color_input_box"
+                android:textStyle="bold"
+                android:typeface="monospace"
+                android:digits="@string/onlyDigits_plus"
+                android:inputType="phone"
+                android:gravity="center"
+                android:textCursorDrawable="@null"/>
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/FLPass"
+            android:layout_below="@id/FLUsername"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/add_account_margin_top">
+
+
+            <ImageButton
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/input_box_height"
+                android:background="@drawable/add_account_pass"
+                android:contentDescription="@string/desc_name_of_password"/>
+
+            <EditText
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/edit_text_height"
+                android:id="@+id/etPass"
+                android:layout_gravity="bottom"
+                android:background="@android:color/transparent"
+                android:textSize="@dimen/input_box_text_size"
+                android:textColor="@drawable/color_input_box"
+                android:textStyle="bold"
+                android:typeface="monospace"
+                android:digits="@string/onlyDigits_plus"
+                android:inputType="phone|numberPassword"
+                android:gravity="center"
+                android:password="true"
+                android:textCursorDrawable="@null"/>
+        </FrameLayout>
+    </RelativeLayout>
+
+
+
+        <RadioGroup
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/ControlTYpe"
+            android:background="@drawable/as_list_open"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
+            android:layout_marginLeft="@dimen/leftRightMarginDL"
+            android:layout_marginRight="@dimen/leftRightMarginDL"
+            android:visibility="gone"
+            android:layout_marginTop="@dimen/margin_to_dl"
+            android:layout_below="@id/FLCTH"
+
+            >
+
+            <RadioButton
+                android:layout_marginLeft="@dimen/margin_dl_left_right_content"
+                android:layout_marginRight="@dimen/margin_dl_left_right_content"
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/radiobutton_dl_height"
+                android:id="@+id/S710"
+                android:drawableRight="@drawable/checkboxchecked"
+                android:background="@drawable/as_dummy"
+                android:gravity="center_vertical"
+                android:button="@null"
+                android:text="@string/demoAccount"
+                android:textColor="@drawable/account_list_color"
+                android:textSize="@dimen/input_box_text_size"
+                android:layout_gravity="top"
+                android:textStyle="bold"
+                android:layout_marginTop="@dimen/add_account_margin_top"
+                android:typeface="monospace"
+                android:enabled="true" />
+            <RadioButton
+                android:layout_marginLeft="@dimen/margin_dl_left_right_content"
+                android:layout_marginRight="@dimen/margin_dl_left_right_content"
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/radiobutton_dl_height"
+                android:id="@+id/S720"
+                android:drawableRight="@drawable/checkboxchecked"
+                android:background="@drawable/as_dummy"
+                android:gravity="center_vertical"
+                android:button="@null"
+                android:text="@string/shaula720"
+                android:textColor="@drawable/account_list_color"
+                android:textSize="@dimen/input_box_text_size"
+                android:layout_gravity="top"
+                android:textStyle="bold"
+                android:typeface="monospace"
+                android:enabled="true" />
+            <RadioButton
+            android:layout_marginLeft="@dimen/margin_dl_left_right_content"
+            android:layout_marginRight="@dimen/margin_dl_left_right_content"
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/radiobutton_dl_height"
+            android:id="@+id/Sv9"
+            android:drawableRight="@drawable/checkboxchecked"
+            android:background="@drawable/as_dummy"
+            android:gravity="center_vertical"
+            android:button="@null"
+            android:text="@string/shaulaV9"
+            android:textColor="@drawable/account_list_color"
+            android:textSize="@dimen/input_box_text_size"
+            android:layout_gravity="top"
+            android:textStyle="bold"
+                android:typeface="monospace"
+            android:enabled="false"
+                android:visibility="gone"/>
+
+        </RadioGroup>
+
+
+    <FrameLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/FLCTH"
+        android:layout_gravity="center_horizontal"
+        android:visibility="visible"
+        android:layout_marginTop="15dp"
+
+        >
+
+        <ImageButton
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/input_box_height"
+            android:background="@drawable/add_account_controltype_head"
+            android:contentDescription="@string/desc_name_of_site" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/edit_text_height"
+            android:id="@+id/as_tv_ct"
+            android:layout_gravity="center|bottom"
+            android:layout_centerHorizontal="true"
+            android:textSize="@dimen/input_box_text_size"
+            android:visibility="visible"
+            android:gravity="center"
+            android:textColor="@drawable/account_list_color"
+            android:layout_alignParentEnd="true"
+            android:textStyle="bold" />
+
+    </FrameLayout>
+
+
+</RelativeLayout>

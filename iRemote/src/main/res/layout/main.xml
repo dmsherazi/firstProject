@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:id="@+id/main_act_LLO"
+    android:orientation="vertical"
+    android:background="@drawable/light">
+
+    <FrameLayout
+        android:id="@+id/menuFragment"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+
+        tools:layout="@layout/menu"
+        android:visibility="visible" />
+
+
+    <FrameLayout
+        android:layout_below="@id/menuFragment"
+        android:id="@+id/detailFragment"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        tools:layout="@layout/detail"
+        android:visibility="visible"
+        />
+
+    <LinearLayout
+        android:layout_marginLeft="@dimen/marginLeftRight"
+        android:layout_marginRight="@dimen/marginLeftRight"
+        android:id="@+id/alternate_view_group"
+        android:layout_below="@id/menuFragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:orientation="vertical"/>
+
+
+
+</RelativeLayout>
