@@ -17,10 +17,6 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import de.keyboardsurfer.android.widget.crouton.Configuration;
-import de.keyboardsurfer.android.widget.crouton.Crouton;
-import de.keyboardsurfer.android.widget.crouton.Style;
-
 
 /**
  * Created by Abu-Umar on 12/22/13.
@@ -28,10 +24,7 @@ import de.keyboardsurfer.android.widget.crouton.Style;
  */
 public class remote extends Fragment implements View.OnClickListener, View.OnTouchListener {
 
-    private Crouton infiniteCrouton;
-    Crouton crouton;
 
-    public boolean sending = false;
     int pressedButton = 0;
     public static long statusInterval = 200; // 5 seconds by default, can be changed later
     private long restInterval = 2000;
@@ -56,38 +49,18 @@ public class remote extends Fragment implements View.OnClickListener, View.OnTou
     static ImageButton gateStatusRing;
     static LinearLayout fl;
 
-    private TCPClient mTcpClient;
 
     TextView tvCD;
     // aLL ACTIVITIES
-    RelativeLayout mainRL, flout;// rlActivity;
-    Integer tries = 0;
+    RelativeLayout mainRL, flout;
     long Account;
     private int panelControl;
-    private String AccountName;
-    private String AccountTYpe;
     private String UserName;
-    private String SiteNumber;
     private String Pass;
-    // ImageButton cStatus;
-    boolean connection = false;
     main mActivity = null;
     public static WebView wvLoading;
     public Handler resetStatusHandler = new Handler();
     private long restStatusInterval = 15000;
-
-    private static final Style ALERT = new Style.Builder().
-            setBackgroundColorValue(Style.holoRedLight).build();
-
-    private static final Style INFO = new Style.Builder().
-            setBackgroundColorValue(Style.holoBlueLight).build();
-
-    private static final Style SUCC = new Style.Builder().
-            setBackgroundColorValue(Style.holoGreenLight).build();
-
-    private static final Configuration CONFIGURATION_INFINITE = new Configuration.Builder()
-            .setDuration(Configuration.DURATION_INFINITE)
-            .build();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -110,10 +83,10 @@ public class remote extends Fragment implements View.OnClickListener, View.OnTou
         ft1.commit();
 
 
-        mTcpClient = mActivity.executeConnectTask();
+        mActivity.executeConnectTask();
 
-        wvLoading=(WebView)view.findViewById(R.id.loadingWebView);
-        wvLoading .setBackgroundColor(0x00000000);
+        wvLoading = (WebView) view.findViewById(R.id.loadingWebView);
+        wvLoading.setBackgroundColor(0x00000000);
         wvLoading.loadUrl("file:///android_asset/index3.html");
         wvLoading.setVisibility(View.VISIBLE);
 
@@ -122,7 +95,6 @@ public class remote extends Fragment implements View.OnClickListener, View.OnTou
         mActivity.disableTouch();
         UserName = sc.getUser(Account);
         Pass = sc.getPass(Account);
-        SiteNumber = sc.getSite(Account);
 
         Typeface tf = Typeface.createFromAsset(getActivity().getAssets(), "Arial_Black.ttf");
 
@@ -197,18 +169,14 @@ public class remote extends Fragment implements View.OnClickListener, View.OnTou
     // boolean waiting4reply = false;
 
 
-
-
-
     @Override
     public void onClick(View v) {
         mActivity = (main) getActivity();
         mActivity.cancelAllCroutons();
-        SupportClass sc = new SupportClass(getActivity());
         if (v == disarmBtn) {
             //siteNameAndType.setText("Disarm pressed");
             if (pressedButton == Constants.pBs.DISARM)
-                reset_cd(sc);
+                reset_cd();
             else {
                 removeStatusAndItsCallable();
                 tvCD.setEnabled(true);
@@ -229,7 +197,7 @@ public class remote extends Fragment implements View.OnClickListener, View.OnTou
         if (v == armAwayBtn) {
             //siteNameAndType.setText("Disarm pressed");
             if (pressedButton == Constants.pBs.ARMA)
-                reset_cd(sc);
+                reset_cd();
             else {
                 tvCD.setEnabled(true);
                 removeStatusAndItsCallable();
@@ -253,7 +221,7 @@ public class remote extends Fragment implements View.OnClickListener, View.OnTou
         if (v == doorBtn) {
             //siteNameAndType.setText("Disarm pressed");
             if (pressedButton == Constants.pBs.DOOR)
-                reset_cd(sc);
+                reset_cd();
             else {
                 tvCD.setEnabled(true);
                 removeStatusAndItsCallable();
@@ -268,7 +236,7 @@ public class remote extends Fragment implements View.OnClickListener, View.OnTou
         }
         if (v == gateBtn) {
             if (pressedButton == Constants.pBs.GATE)
-                reset_cd(sc);
+                reset_cd();
             else {
                 tvCD.setEnabled(true);
                 removeStatusAndItsCallable();
@@ -284,7 +252,7 @@ public class remote extends Fragment implements View.OnClickListener, View.OnTou
         if (v == refBtn) {
             //siteNameAndType.setText("Disarm pressed");
             if (pressedButton == Constants.pBs.REFRESH)
-                reset_cd(sc);
+                reset_cd();
             else {
                 tvCD.setEnabled(true);
                 removeStatusAndItsCallable();
@@ -302,7 +270,7 @@ public class remote extends Fragment implements View.OnClickListener, View.OnTou
         if (v == armStayBtn) {
             //siteNameAndType.setText("Disarm pressed");
             if (pressedButton == Constants.pBs.ARMS)
-                reset_cd(sc);
+                reset_cd();
             else {
                 tvCD.setEnabled(true);
                 removeStatusAndItsCallable();
@@ -316,7 +284,7 @@ public class remote extends Fragment implements View.OnClickListener, View.OnTou
         }
         if (v == armStayScBtn) {
             if (pressedButton == Constants.pBs.ARMSS)
-                reset_cd(sc);
+                reset_cd();
             else {
                 tvCD.setEnabled(true);
                 removeStatusAndItsCallable();
@@ -330,7 +298,7 @@ public class remote extends Fragment implements View.OnClickListener, View.OnTou
         if (v == armAwayScBtn) {
             //siteNameAndType.setText("Disarm pressed");
             if (pressedButton == Constants.pBs.ARMAS)
-                reset_cd(sc);
+                reset_cd();
             else {
                 tvCD.setEnabled(true);
                 removeStatusAndItsCallable();
@@ -342,7 +310,6 @@ public class remote extends Fragment implements View.OnClickListener, View.OnTou
             }
         }
         if ((v == tvCD)) {
-            String smsText = null;
             switch (pressedButton) {
                 case Constants.pBs.DISARM:
 
@@ -415,7 +382,7 @@ public class remote extends Fragment implements View.OnClickListener, View.OnTou
 
                     break;
                 default:
-                    reset_cd(sc);
+                    reset_cd();
                     break;
             }
 
@@ -425,7 +392,7 @@ public class remote extends Fragment implements View.OnClickListener, View.OnTou
 
     }
 
-    public void sendingScreens(SupportClass sc) {
+    public void sendingScreens() {
 
         tvCD.setText("");
         tvCD.setVisibility(View.GONE);
@@ -438,7 +405,6 @@ public class remote extends Fragment implements View.OnClickListener, View.OnTou
 
         SureButton.setBackgroundResource(R.drawable.cd_sending);
     }
-
 
 
     public void sentSucc() {
@@ -496,7 +462,7 @@ public class remote extends Fragment implements View.OnClickListener, View.OnTou
         tvCD.setEnabled(false);
     }
 
-    public void reset_cd(SupportClass sc) {
+    public void reset_cd() {
         mActivity.enableTouch();
         tvCD.setVisibility(View.VISIBLE);
         tvCD.setText("");
@@ -518,7 +484,7 @@ public class remote extends Fragment implements View.OnClickListener, View.OnTou
 
         if (v == mainRL || v == fl || v == flout) {
             Log.e("Touch", "inside");
-            reset_cd(new SupportClass(getActivity()));
+            reset_cd();
             mActivity.cancelAllCroutons();
         }
         Log.e("Touch", "outside");
@@ -532,13 +498,11 @@ public class remote extends Fragment implements View.OnClickListener, View.OnTou
         @Override
         public void run() {
             Log.e("Status ", "Ready to Send update");
-            if (pressedButton == Constants.pBs.INACTVE || pressedButton == Constants.pBs.REFRESHPULL)
-            {
+            if (pressedButton == Constants.pBs.INACTVE || pressedButton == Constants.pBs.REFRESHPULL) {
                 Log.e("Status ", "Sending update");
                 mActivity.askUpdate();
 
-            }
-            else  Log.e("Status ", "Busy --- Sending update after 5 secs "+pressedButton);
+            } else Log.e("Status ", "Busy --- Sending update after 5 secs " + pressedButton);
 
             statusHandler.postDelayed(checkStatRun, statusInterval);
 
@@ -547,7 +511,7 @@ public class remote extends Fragment implements View.OnClickListener, View.OnTou
     Runnable restRunnable = new Runnable() {
         @Override
         public void run() {
-            reset_cd(new SupportClass(getActivity()));
+            reset_cd();
         }
     };
     Runnable restStatusRunnable = new Runnable() {
@@ -557,18 +521,10 @@ public class remote extends Fragment implements View.OnClickListener, View.OnTou
         }
     };
 
-    public void sentSuccPull(SupportClass sc) {
-
-        mainRL.setEnabled(false);
-        mActivity.handler.removeCallbacksAndMessages(null);
-        centerBtn.setBackgroundResource(R.drawable.r_720_inactive);
-        //SureButton.setBackgroundResource(R.drawable.cd_confirmed);
-        resetHandler.postDelayed(restStatusRunnable, restInterval);
-    }
     @Override
     public void onResume() {
         Log.e("DEBUG", "onResume of LoginFragment");
-        main.pressedButton=0;
+        main.pressedButton = 0;
         super.onResume();
 
 
@@ -579,6 +535,6 @@ public class remote extends Fragment implements View.OnClickListener, View.OnTou
         Log.e("DEBUG", "OnPause of loginFragment");
         super.onPause();
         statusHandler.removeCallbacks(checkStatRun);
-        main.pressedButton=0;
+        main.pressedButton = 0;
     }
 }

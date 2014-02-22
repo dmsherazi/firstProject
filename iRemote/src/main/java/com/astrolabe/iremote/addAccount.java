@@ -25,7 +25,7 @@ public class addAccount extends Fragment {
         assert view != null;
         final main mActivity = (main) getActivity();
         mActivity.setCurrFrag(Constants.Pages.ADDACCOUNT);
-       // TextView tv = (TextView) view.findViewById(R.id.tvInfo);
+        // TextView tv = (TextView) view.findViewById(R.id.tvInfo);
 
         // reload menu so that it updates Quick Action Menu
         FragmentTransaction ft1 = getFragmentManager().beginTransaction();
@@ -33,15 +33,14 @@ public class addAccount extends Fragment {
         ft1.replace(R.id.menuFragment, firstFragment1, mActivity.getString(R.string.menuFragment));
         ft1.commit();
 
-        ImageButton addAcc = (ImageButton)view.findViewById(R.id.addAccountButton);
+        ImageButton addAcc = (ImageButton) view.findViewById(R.id.addAccountButton);
         addAcc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 main.setAccount(25);
                 FragmentTransaction ft = getFragmentManager().beginTransaction();
-                FragmentManager fm = getActivity().getSupportFragmentManager();
                 ReplaceFragments rp = new ReplaceFragments();
-                rp.replaceWithAddEditAccount(ft,fm,true);
+                rp.replaceWithAddEditAccount(ft);
             }
         });
 

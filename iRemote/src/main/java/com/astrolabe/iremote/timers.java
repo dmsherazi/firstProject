@@ -49,13 +49,12 @@ public class timers extends Fragment implements View.OnClickListener, View.OnTou
     ImageButton SureButton;
     ImageButton done;
     public static Button statusImage;
-    public static String[][] timerNames =new String[8][15];
 
     RelativeLayout mainRL;
     static RelativeLayout rlActivity;
     RelativeLayout dial_layout;
     RelativeLayout settings_layout;
-    public static String[] TimerNames=new String[8];
+    public static String[] TimerNames = new String[8];
 
     //public static final String DATEPICKER_TAG = "datepicker";
     public static final String TIMEPICKER_TAG = "timepicker";
@@ -69,8 +68,6 @@ public class timers extends Fragment implements View.OnClickListener, View.OnTou
     static ImageButton doorStatusRing;
     static ImageButton gateStatusRing;*/
     static LinearLayout fl;
-
-    private boolean canReset = true;
 
     // aLL ACTIVITIES
     long Account;
@@ -128,7 +125,6 @@ public class timers extends Fragment implements View.OnClickListener, View.OnTou
         wvLoading.setBackgroundColor(0x00000000);
         wvLoading.loadUrl("file:///android_asset/index3.html");
         wvLoading.setVisibility(View.VISIBLE);
-
 
 
         Typeface tf = Typeface.createFromAsset(getActivity().getAssets(), "Arial_Black.ttf");
@@ -218,7 +214,6 @@ public class timers extends Fragment implements View.OnClickListener, View.OnTou
     }
 
     public void showTimerDial() {
-        canReset = true;
         pressedButton = Constants.pBs.INACTVE;
         dial_layout.setVisibility(View.VISIBLE);
         settings_layout.setVisibility(View.INVISIBLE);
@@ -231,7 +226,6 @@ public class timers extends Fragment implements View.OnClickListener, View.OnTou
     }
 
     private void showSettingsScreen() {
-        canReset = false;
         dial_layout.setVisibility(View.INVISIBLE);
         settings_layout.setVisibility(View.VISIBLE);
         bOFF.setText(getString(R.string.set_off_time));
@@ -242,9 +236,9 @@ public class timers extends Fragment implements View.OnClickListener, View.OnTou
 
         //bForce.setBackgroundResource(R.drawable.sw_2_def);
         //bAuto.setBackgroundResource(R.drawable.but_def);
-        mActivity.sendMessage("**#get timer:"+UserName+","+Pass+"-"+pressedButton+":!!",Constants.pBs.GETTIMER);
+        mActivity.sendMessage("**#get timer:" + UserName + "," + Pass + "-" + pressedButton + ":!!", Constants.pBs.GETTIMER);
 
-        mActivity.sendMessage("**#get timer:"+UserName+","+Pass+"-"+pressedButton+":!!",Constants.pBs.GETTIMER);
+        mActivity.sendMessage("**#get timer:" + UserName + "," + Pass + "-" + pressedButton + ":!!", Constants.pBs.GETTIMER);
 
     }
 
@@ -253,7 +247,6 @@ public class timers extends Fragment implements View.OnClickListener, View.OnTou
     public void onClick(View v) {
         mActivity = (main) getActivity();
         mActivity.cancelAllCroutons();
-        SupportClass sc = new SupportClass(getActivity());
         if (v == t1s) {
             //siteNameAndType.setText("Disarm pressed");
             commonFunction(1, R.drawable.t_t1);
@@ -287,7 +280,7 @@ public class timers extends Fragment implements View.OnClickListener, View.OnTou
 
             vPressed = (Button) v;
         }
-        if(v== bAuto){
+        if (v == bAuto) {
 
             bON.setText(getString(R.string.set_on_time));
             bOFF.setText(getString(R.string.set_off_time));
@@ -295,18 +288,17 @@ public class timers extends Fragment implements View.OnClickListener, View.OnTou
         }
         if (v == bForce) {
             statusImage.setBackgroundResource(R.drawable.orange_status);
-            if(!bForce.isChecked()){
+            if (!bForce.isChecked()) {
 
-                mActivity.sendMessage("**#force onoff:" + UserName +","+Pass+"-"+pressedButton +"forceOn/-:!!" ,Constants.pBs.GETTIMERUP);
+                mActivity.sendMessage("**#force onoff:" + UserName + "," + Pass + "-" + pressedButton + "forceOn/-:!!", Constants.pBs.GETTIMERUP);
 
-              //  mActivity.sendMessage("**#force onoff:" + UserName +","+Pass+"-"+pressedButton +"forceOn/-:!!" ,Constants.pBs.GETTIMERUP);
+                //  mActivity.sendMessage("**#force onoff:" + UserName +","+Pass+"-"+pressedButton +"forceOn/-:!!" ,Constants.pBs.GETTIMERUP);
 
-            }
-            else {
+            } else {
 
-                mActivity.sendMessage("**#force onoff:" + UserName +","+Pass+"-"+pressedButton +"forceOff/-:!!" ,Constants.pBs.GETTIMERUP);
+                mActivity.sendMessage("**#force onoff:" + UserName + "," + Pass + "-" + pressedButton + "forceOff/-:!!", Constants.pBs.GETTIMERUP);
 
-              //  mActivity.sendMessage("**#force onoff:" + UserName + "," + Pass + "-" + pressedButton + "forceOff/-:!!", Constants.pBs.GETTIMERUP);
+                //  mActivity.sendMessage("**#force onoff:" + UserName + "," + Pass + "-" + pressedButton + "forceOff/-:!!", Constants.pBs.GETTIMERUP);
 
 
             }
@@ -315,37 +307,32 @@ public class timers extends Fragment implements View.OnClickListener, View.OnTou
             bON.setText(getString(R.string.set_on_time));
             bOFF.setText(getString(R.string.set_off_time));
         }
-        if (v == done)
-        {
+        if (v == done) {
             //---------- if both times are not set send timer disabled message-----------------------
-            if( (bON.getText().equals(getString(R.string.set_on_time)) && bOFF.getText().equals(getString(R.string.set_off_time)))){
+            if ((bON.getText().equals(getString(R.string.set_on_time)) && bOFF.getText().equals(getString(R.string.set_off_time)))) {
 
-                mActivity.sendMessage("**#edit timer:" + UserName +","+Pass+"-"+pressedButton +"Name="+etName.getText()+"/AutoEn=0/-:!!" ,Constants.pBs.EDITTIMER);
+                mActivity.sendMessage("**#edit timer:" + UserName + "," + Pass + "-" + pressedButton + "Name=" + etName.getText() + "/AutoEn=0/-:!!", Constants.pBs.EDITTIMER);
                 //mActivity.showCroutonMessage(getString(R.string.set_on_and_off_time), Constants.crs.ALERT_C, Constants.crs.COUTION_MODE_DEFAULT);
-            }
-            else  if (  (bON.getText().equals(getString(R.string.set_on_time)) || bOFF.getText().equals(getString(R.string.set_off_time)))){
+            } else if ((bON.getText().equals(getString(R.string.set_on_time)) || bOFF.getText().equals(getString(R.string.set_off_time)))) {
                 mActivity.showCroutonMessage(getString(R.string.set_on_and_off_time), Constants.crs.ALERT_C, Constants.crs.COUTION_MODE_DEFAULT);
 
+            } else {
+                String message2send;
+
+                message2send = "Name=" + etName.getText();
+
+                message2send = message2send + "/AutoEn=1";
+                String tempTime = bON.getText().toString().replaceAll("[^\\d:]", "");
+                tempTime = tempTime.replace(":", ".");
+                tempTime = tempTime.substring(1);
+                message2send = message2send + tempTime;
+                tempTime = bOFF.getText().toString().replaceAll("[^\\d:]", "");
+                tempTime = tempTime.replace(":", ".");
+                tempTime = tempTime.substring(1);
+                message2send = message2send + "." + tempTime + "//-:!!";
+
+                mActivity.sendMessage("**#edit timer:" + UserName + "," + Pass + "-" + pressedButton + message2send, Constants.pBs.EDITTIMER);
             }
-            else
-            {
-               String message2send;
-
-               message2send="Name="+etName.getText();
-
-                   message2send=message2send+ "/AutoEn=1";
-                   String tempTime =bON.getText().toString().replaceAll("[^\\d:]", "");
-                   tempTime=tempTime.replace(":",".");
-                   tempTime= tempTime.substring(1);
-                   message2send=message2send+ tempTime;
-                   tempTime =bOFF.getText().toString().replaceAll("[^\\d:]", "");
-                   tempTime=tempTime.replace(":",".");
-                   tempTime= tempTime.substring(1);
-                   message2send=message2send+ "."+tempTime+"//-:!!";
-
-                mActivity.sendMessage("**#edit timer:" + UserName +","+Pass+"-"+pressedButton +message2send ,Constants.pBs.EDITTIMER);
-            }
-
 
 
         }
@@ -357,7 +344,7 @@ public class timers extends Fragment implements View.OnClickListener, View.OnTou
     }
 
 
-    public void sendingScreens(SupportClass sc) {
+    public void sendingScreens() {
 
         tvCD.setText("");
         inactiveScreen();
@@ -370,18 +357,11 @@ public class timers extends Fragment implements View.OnClickListener, View.OnTou
     }
 
 
-    public void sentSucc(SupportClass sc) {
+    public void sentSucc() {
         mainRL.setEnabled(false);
         mActivity.handler.removeCallbacksAndMessages(null);
         SureButton.setBackgroundResource(R.drawable.cd_confirmed);
         resetHandler.postDelayed(restRunnable, restInterval);
-    }
-
-    public void resetStatusRing() {
-        mainRL.setEnabled(true);
-        mainRL.setClickable(true);
-        long restStatusInterval = 15000;
-        resetStatusHandler.postDelayed(restStatusRunnable, restStatusInterval);
     }
 
     private void inactiveScreen() {
@@ -390,18 +370,8 @@ public class timers extends Fragment implements View.OnClickListener, View.OnTou
         SureButton.setBackgroundResource(R.drawable.u_cd_inactive);
         dial_layout.setVisibility(View.VISIBLE);
         settings_layout.setVisibility(View.INVISIBLE);
-        canReset = true;
         pressedButton = Constants.pBs.INACTVE;
         tvCD.setText("");
-
-    }
-
-    public void removeStatusAndItsCallable() {
-        resetStatusHandler.removeCallbacks(restStatusRunnable);
-       /* oStatusRing.setBackgroundResource(R.drawable.as_dummy);
-        armStatusRing.setBackgroundResource(R.drawable.as_dummy);
-        gateStatusRing.setBackgroundResource(R.drawable.as_dummy);
-        doorStatusRing.setBackgroundResource(R.drawable.as_dummy);*/
 
     }
 
@@ -429,7 +399,7 @@ public class timers extends Fragment implements View.OnClickListener, View.OnTou
             pressedButton = i;
             SureButton.setBackgroundResource(R.drawable.u_inner_active);
             tvCD.setEnabled(true);
-            tvCD.setText(getString(R.string.Tap_to_set_timer) + "\n" + TimerNames[i-1]);
+            tvCD.setText(getString(R.string.Tap_to_set_timer) + "\n" + TimerNames[i - 1]);
             SureButton.setEnabled(true);
         }
     }
@@ -459,7 +429,7 @@ public class timers extends Fragment implements View.OnClickListener, View.OnTou
             Log.e("Touch", "inside");
             //reset_cd(new SupportClass(getActivity()));
             mActivity.cancelAllCroutons();
-            if (dial_layout.isShown() && pressedButton==0)
+            if (dial_layout.isShown() && pressedButton == 0)
                 reset_cd(new SupportClass(getActivity()));
             etName.clearFocus();
         }
@@ -498,15 +468,12 @@ public class timers extends Fragment implements View.OnClickListener, View.OnTou
 
 
                 Log.e("Status ", "Sending update");
-                mActivity.sendMessage("**#timer names:"+UserName+","+Pass+"-:!!",Constants.pBs.TIMERNAMES);
+                mActivity.sendMessage("**#timer names:" + UserName + "," + Pass + "-:!!", Constants.pBs.TIMERNAMES);
 
-            }
-            else  if (settings_layout.isShown() && !etName.hasFocus() )
-            {
+            } else if (settings_layout.isShown() && !etName.hasFocus()) {
                 mActivity.askUpdate();
-            }
-            else
-            Log.e("Status ", "Busy --- Sending update after 5 secs " + pressedButton);
+            } else
+                Log.e("Status ", "Busy --- Sending update after 5 secs " + pressedButton);
 
 
             statusHandler.postDelayed(checkStatRun, statusInterval);
@@ -525,15 +492,6 @@ public class timers extends Fragment implements View.OnClickListener, View.OnTou
             reset_StatusRing();
         }
     };
-
-    public void sentSuccPull(SupportClass sc) {
-
-        mainRL.setEnabled(false);
-        mActivity.handler.removeCallbacksAndMessages(null);
-        centerBtn.setBackgroundResource(R.drawable.r_720_inactive);
-        //SureButton.setBackgroundResource(R.drawable.cd_confirmed);
-        resetHandler.postDelayed(restStatusRunnable, restInterval);
-    }
 
     @Override
     public void onResume() {

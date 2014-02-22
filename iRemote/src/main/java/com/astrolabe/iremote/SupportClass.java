@@ -14,8 +14,6 @@ import android.util.Log;
 
 public class SupportClass {
 
-    String loadNumber = "tobeloaded";
-
     private final Context ourContext;
     // private final EditText ourTextView;
     //private String SelNumber;
@@ -258,8 +256,6 @@ public class SupportClass {
         c.close();
 
     }
-
-
 
 
 }

@@ -72,11 +72,11 @@ public class GaugeView extends View {
 
     public static final float[] OUTER_SHADOW_POS = {0.90f, 0.95f, 0.99f};
 
-  //  public static float[] RANGE_VALUES = {16.0f, 25.0f, 40.0f, 100.0f};
-  public static final float[] RANGE_VALUES = {51.0f, 71.0f, 86.0f, 100.0f};
-   // public static int[] RANGE_COLORS = {Color.rgb(231, 32, 43), Color.rgb(232, 111, 33), Color.rgb(232, 231, 33),
-        //    Color.rgb(27, 202, 33)};
-    public static final int[] RANGE_COLORS =  { Color.rgb(27, 202, 33), Color.rgb(232, 231, 33), Color.rgb(232, 111, 33),Color.rgb(231, 32, 43)};
+    //  public static float[] RANGE_VALUES = {16.0f, 25.0f, 40.0f, 100.0f};
+    public static final float[] RANGE_VALUES = {51.0f, 71.0f, 86.0f, 100.0f};
+    // public static int[] RANGE_COLORS = {Color.rgb(231, 32, 43), Color.rgb(232, 111, 33), Color.rgb(232, 231, 33),
+    //    Color.rgb(27, 202, 33)};
+    public static final int[] RANGE_COLORS = {Color.rgb(27, 202, 33), Color.rgb(232, 231, 33), Color.rgb(232, 111, 33), Color.rgb(231, 32, 43)};
     public static final int TEXT_SHADOW_COLOR = Color.argb(100, 0, 0, 0);
     public static final int TEXT_VALUE_COLOR = Color.WHITE;
     public static final int TEXT_UNIT_COLOR = Color.WHITE;
@@ -359,22 +359,23 @@ public class GaugeView extends View {
     public Paint getDefaultOuterRimPaint() {
         // Use a linear gradient to create the 3D effect
 
-         LinearGradient verticalGradient = new LinearGradient(mOuterRimRect.left, mOuterRimRect.top, mOuterRimRect.left,
+        LinearGradient verticalGradient = new LinearGradient(mOuterRimRect.left, mOuterRimRect.top, mOuterRimRect.left,
                 mOuterRimRect.bottom, Color.rgb(255, 255, 255), Color.rgb(84, 90, 100), TileMode.REPEAT);
 
 
-        if(mTextUnit.equals("1")){
-         verticalGradient = new LinearGradient(mOuterRimRect.left, mOuterRimRect.top, mOuterRimRect.left,
-
-                mOuterRimRect.bottom, Color.rgb(0, 0, 204), Color.rgb(0, 102, 204), TileMode.REPEAT);}
-        else if(mTextUnit.equals("2")){
+        if (mTextUnit.equals("1")) {
             verticalGradient = new LinearGradient(mOuterRimRect.left, mOuterRimRect.top, mOuterRimRect.left,
 
-                    mOuterRimRect.bottom, Color.rgb(204, 0, 0), Color.rgb(255, 10, 10), TileMode.REPEAT);}
-        else if(mTextUnit.equals("3")){
+                    mOuterRimRect.bottom, Color.rgb(0, 0, 204), Color.rgb(0, 102, 204), TileMode.REPEAT);
+        } else if (mTextUnit.equals("2")) {
             verticalGradient = new LinearGradient(mOuterRimRect.left, mOuterRimRect.top, mOuterRimRect.left,
 
-                    mOuterRimRect.bottom, Color.rgb(255, 255, 10), Color.rgb(255, 255, 133), TileMode.REPEAT);}
+                    mOuterRimRect.bottom, Color.rgb(204, 0, 0), Color.rgb(255, 10, 10), TileMode.REPEAT);
+        } else if (mTextUnit.equals("3")) {
+            verticalGradient = new LinearGradient(mOuterRimRect.left, mOuterRimRect.top, mOuterRimRect.left,
+
+                    mOuterRimRect.bottom, Color.rgb(255, 255, 10), Color.rgb(255, 255, 133), TileMode.REPEAT);
+        }
         // Use a Bitmap shader for the metallic style
         final Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.light_alu);
         final BitmapShader aluminiumTile = new BitmapShader(bitmap, TileMode.REPEAT, TileMode.REPEAT);
@@ -677,8 +678,8 @@ public class GaugeView extends View {
         final float startX;
         final float startY;
 
-             startX = CENTER /*- textUnitWidth / 2*/;
-             startY = CENTER + 0.1f;
+        startX = CENTER /*- textUnitWidth / 2*/;
+        startY = CENTER + 0.1f;
 
         canvas.drawText(textValue, startX, startY, mTextValuePaint);
 

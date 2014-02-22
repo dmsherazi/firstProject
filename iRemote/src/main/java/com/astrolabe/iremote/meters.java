@@ -2,6 +2,7 @@ package com.astrolabe.iremote;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
@@ -11,14 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 
-
 import java.util.Random;
-
-import com.astrolabe.iremote.GaugeView;
-
-import android.app.Activity;
-import android.os.Bundle;
-import android.os.CountDownTimer;
 
 public class meters extends Fragment implements View.OnClickListener, View.OnTouchListener {
 
@@ -52,10 +46,6 @@ public class meters extends Fragment implements View.OnClickListener, View.OnTou
         ft1.replace(R.id.menuFragment, firstFragment1, mActivity.getString(R.string.menuFragment));
         ft1.commit();
 
-        int[] colorRange=  { Color.rgb(27, 202, 33), Color.rgb(232, 231, 33), Color.rgb(232, 111, 33),Color.rgb(231, 32, 43)};
-        float[] RANGE_VALUES1 = {40.0f, 60.0f, 70.0f, 100.0f};
-
-        SupportClass sc = new SupportClass(getActivity());
         gvP1 = (GaugeView) view.findViewById(R.id.gP1);
         gvP2 = (GaugeView) view.findViewById(R.id.gP2);
         gvP3 = (GaugeView) view.findViewById(R.id.gP3);
@@ -70,7 +60,7 @@ public class meters extends Fragment implements View.OnClickListener, View.OnTou
         gvT.setTargetValue(0);
 
 
-          mTimer.start();
+        mTimer.start();
 
 
         return view;
@@ -80,7 +70,7 @@ public class meters extends Fragment implements View.OnClickListener, View.OnTou
 
         @Override
         public void onTick(final long millisUntilFinished) {
-           gvP1.setTargetValue(RAND.nextInt(101));
+            gvP1.setTargetValue(RAND.nextInt(101));
             gvP2.setTargetValue(RAND.nextInt(59));
             gvP3.setTargetValue(RAND.nextInt(78));
             gvW.setTargetValue(RAND.nextInt(101));

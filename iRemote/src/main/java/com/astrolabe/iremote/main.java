@@ -20,11 +20,9 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.view.animation.AlphaAnimation;
-import android.view.animation.Animation;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import de.keyboardsurfer.android.widget.crouton.Configuration;
@@ -58,9 +56,7 @@ public class main extends FragmentActivity implements View.OnClickListener, View
     private static final Style ALERT_G_LEFT = new Style.Builder()
             .setGravity(Gravity.LEFT)
             .setBackgroundColorValue(Style.holoRedLight).build();
-    private static final Style NoPerms = new Style.Builder()
-            .setGravity(Gravity.LEFT)
-            .setBackgroundColorValue(Style.noPerms).build();
+
     private static final Style ALERT = new Style.Builder()
             .setBackgroundColorValue(Style.holoRedLight).build();
 
@@ -88,7 +84,6 @@ public class main extends FragmentActivity implements View.OnClickListener, View
         mainLO = (RelativeLayout) findViewById(R.id.main_act_LLO);
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
-        ReplaceFragments rp = new ReplaceFragments();
         ft.setCustomAnimations(R.anim.enter, R.anim.exit);
 
         addAccount aC = new addAccount();
@@ -114,24 +109,6 @@ public class main extends FragmentActivity implements View.OnClickListener, View
         // here you'll save the data previously retrieved from the fragments and
         // return it in a Bundle
         return curFrag;
-    }
-
-    public static boolean getTCPClientStat() {
-        // here you'll save the data previously retrieved from the fragments and
-        // return it in a Bundle
-        if (mTcpClient != null) {
-            Log.e("CLIENT ", "Running");
-            return true;
-        } else {
-            Log.e("CLIENT ", "already stopped");
-            return false;
-        }
-    }
-
-    public void stopClient() {
-        if (mTcpClient != null)
-            mTcpClient.stopClient();
-        Log.e("CLIENT ", "STOPPED");
     }
 
     public void sendMessage(String message, int pBtn) {
@@ -208,7 +185,7 @@ public class main extends FragmentActivity implements View.OnClickListener, View
                 timerFrag.showTimerDial();
                 return;
             }
-            if (timerFrag.dial_layout.isShown() && timerFrag.pressedButton != 0) {
+            if (timerFrag.dial_layout.isShown() && timers.pressedButton != 0) {
                 timerFrag.reset_cd(sc);
                 return;
             }
@@ -218,7 +195,7 @@ public class main extends FragmentActivity implements View.OnClickListener, View
             timerFrag = (remote) fm.findFragmentById(R.id.detailFragment);
 
             if (timerFrag.pressedButton != 0) {
-                timerFrag.reset_cd(sc);
+                timerFrag.reset_cd();
                 return;
             }
         } else if (curFrag == Constants.Pages.USERSPAGE) {
@@ -230,7 +207,7 @@ public class main extends FragmentActivity implements View.OnClickListener, View
                 return;
             }
             if (timerFrag.UsersDial.isShown() && users.pressedButton != 0) {
-                timerFrag.reset_cd(sc);
+                timerFrag.reset_cd();
                 return;
             }
         } else if (curFrag == Constants.Pages.HELPPAGE) {
@@ -363,9 +340,7 @@ public class main extends FragmentActivity implements View.OnClickListener, View
                 remote.fl.setVisibility(View.VISIBLE);
                 remote.statusInterval = 5000;
 
-            }
-
-            else if (curFrag == Constants.Pages.USERSPAGE) {
+            } else if (curFrag == Constants.Pages.USERSPAGE) {
                 users.wvUsersLoading.setVisibility(View.INVISIBLE);
                 users.UsersPage.setVisibility(View.VISIBLE);
                 users.statusInterval = 8000;
@@ -744,16 +719,17 @@ public class main extends FragmentActivity implements View.OnClickListener, View
             }
             //--------------------ZONENAMES
             else if (pressedButton == Constants.pBs.AREAS && waiting4reply) {
-                Log.w("Areas","inside areas");
-                 if (values[0].startsWith(getString(R.string.areas))) {
-                     Log.w("Areas","starts with areas");
+                Log.w("Areas", "inside areas");
+                if (values[0].startsWith(getString(R.string.areas))) {
+                    Log.w("Areas", "starts with areas");
                     handler.removeCallbacks(wait4TO);
-                     values[0] = values[0].replaceAll("!!", getString(R.string.emptyString));
+                    values[0] = values[0].replaceAll("!!", getString(R.string.emptyString));
                     if (curFrag == Constants.Pages.SMARTHOME) {
                         sh_areas.wvLoading.setVisibility(View.INVISIBLE);
                         sh_areas.statusInterval = 15000;
 
-                    }showCroutonMessage(values[0],Constants.crs.INFO_C,Constants.crs.COUTION_MODE_DEFAULT);
+                    }
+                    showCroutonMessage(values[0], Constants.crs.INFO_C, Constants.crs.COUTION_MODE_DEFAULT);
                     String[] parts = values[0].split("/");
                     if (parts.length > 1 && parts[1].length() > 1) {
                         String[] subParts = parts[1].split("\\.");
@@ -1153,11 +1129,7 @@ public class main extends FragmentActivity implements View.OnClickListener, View
 
         }
 
-        private void areas_func(String value) {
-
-
-        }
-        private void setArea(ImageButton icon, Button textButton, String Name, int position, String zone, String physicalType) {
+        private void setArea(ImageButton icon, TextView textButton, String Name, int position, String zone, String physicalType) {
             textButton.setText(Name);
             textButton.setVisibility(View.VISIBLE);
             icon.setVisibility(View.VISIBLE);
@@ -1201,8 +1173,8 @@ public class main extends FragmentActivity implements View.OnClickListener, View
                 icon.setImageResource(R.drawable.sh_common);
 
 
-
         }
+
         private void zoneNames_func(String value) {
             if (value.startsWith(getString(R.string.zones))) {
 
@@ -1391,6 +1363,7 @@ public class main extends FragmentActivity implements View.OnClickListener, View
             mainLO.setBackgroundResource(R.drawable.light);
             enableTouch();
         }
+
         @Override
         protected void onPostExecute(TCPClient tcpClient) {
             super.onPostExecute(tcpClient);
@@ -1400,12 +1373,6 @@ public class main extends FragmentActivity implements View.OnClickListener, View
         }
 
     }
-
-
-
-
-
-
 
 
     private void sentSucc() {
@@ -1424,21 +1391,21 @@ public class main extends FragmentActivity implements View.OnClickListener, View
             FragmentManager fm = getSupportFragmentManager();
             users userFrag;
             userFrag = (users) fm.findFragmentById(R.id.detailFragment);
-            userFrag.sentSucc(sc);
+            userFrag.sentSucc();
         } else if (curFrag == Constants.Pages.TIMERSPAGE) {
             mainLO.setBackgroundResource(R.drawable.light);
             // remote.mPullRefreshScrollView.onRefreshComplete();
             FragmentManager fm = getSupportFragmentManager();
             timers userFrag;
             userFrag = (timers) fm.findFragmentById(R.id.detailFragment);
-            userFrag.sentSucc(sc);
+            userFrag.sentSucc();
         } else if (curFrag == Constants.Pages.AREASPAGE) {
             mainLO.setBackgroundResource(R.drawable.light);
             // remote.mPullRefreshScrollView.onRefreshComplete();
             FragmentManager fm = getSupportFragmentManager();
             areas userFrag;
             userFrag = (areas) fm.findFragmentById(R.id.detailFragment);
-            userFrag.sentSucc(sc);
+            userFrag.sentSucc();
         }
         //Todo:::
 
@@ -1470,13 +1437,13 @@ public class main extends FragmentActivity implements View.OnClickListener, View
         if (!gettingContact) {
             if (sc.getAccountNumber() == 1) {
                 setAccount(0);
-                rp.replaceWithRemote(ft, fm, true);
+                rp.replaceWithRemote(ft);
             }
             if (sc.getAccountNumber() == 0) {
-                rp.replaceWithAddAccount(ft, fm, true);
+                rp.replaceWithAddAccount(ft);
             }
             if (sc.getAccountNumber() > 1) {
-                rp.replaceWithAL(ft, fm, true, false);
+                rp.replaceWithAL(ft, false);
             }
         }
     }
@@ -1539,7 +1506,7 @@ public class main extends FragmentActivity implements View.OnClickListener, View
 
         if ((pressedButton == Constants.pBs.REFRESHPULL || asked4update || pressedButton == Constants.pBs.ZoneINFO
                 || pressedButton == Constants.pBs.GETTIMER || pressedButton == Constants.pBs.GETTIMERUP || pressedButton == Constants.pBs.ZONENAMES
-                || pressedButton == Constants.pBs.TIMERNAMES  || pressedButton==Constants.pBs.AREAS ))
+                || pressedButton == Constants.pBs.TIMERNAMES || pressedButton == Constants.pBs.AREAS))
             ;
         else {
             mainLO.setBackgroundResource(R.drawable.medium_dark);
@@ -1547,25 +1514,25 @@ public class main extends FragmentActivity implements View.OnClickListener, View
                 FragmentManager fm = getSupportFragmentManager();
                 remote remoteFrag;
                 remoteFrag = (remote) fm.findFragmentById(R.id.detailFragment);
-                remoteFrag.sendingScreens(new SupportClass(this));
+                remoteFrag.sendingScreens();
             }
             if (curFrag == Constants.Pages.USERSPAGE) {
                 FragmentManager fm = getSupportFragmentManager();
                 users userFrag;
                 userFrag = (users) fm.findFragmentById(R.id.detailFragment);
-                userFrag.sendingScreens(new SupportClass(this));
+                userFrag.sendingScreens();
             }
             if (curFrag == Constants.Pages.TIMERSPAGE) {
                 FragmentManager fm = getSupportFragmentManager();
                 timers userFrag;
                 userFrag = (timers) fm.findFragmentById(R.id.detailFragment);
-                userFrag.sendingScreens(new SupportClass(this));
+                userFrag.sendingScreens();
             }
             if (curFrag == Constants.Pages.AREASPAGE) {
                 FragmentManager fm = getSupportFragmentManager();
                 areas userFrag;
                 userFrag = (areas) fm.findFragmentById(R.id.detailFragment);
-                userFrag.sendingScreens(new SupportClass(this));
+                userFrag.sendingScreens();
             }
             //todo
         }
@@ -1589,8 +1556,6 @@ public class main extends FragmentActivity implements View.OnClickListener, View
         else if (style == Constants.crs.INFO_GL)// 0 == alert
             croutonStyle = INFO_G_LEFT;//, R.id.alternate_view_group);
 
-        else if (style == Constants.crs.NOPERMS)// 0 == alert
-            croutonStyle = NoPerms;//, R.id.alternate_view_group);
 
         else if (style == Constants.crs.INFO_C)// 0 == alert
             croutonStyle = INFO;//, R.id.alternate_view_group);

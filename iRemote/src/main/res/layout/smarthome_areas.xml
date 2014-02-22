@@ -3,12 +3,6 @@
     android:layout_height="match_parent"
     android:layout_width="match_parent">
 
-    <WebView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/webView"
-        android:layout_centerInParent="true" />
-
     <ScrollView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
@@ -178,11 +172,11 @@
                     <ImageButton
                         android:src="@drawable/sh_kitchen"
                         style="@style/area_buttons"
-                        android:id="@+id/icon6" />
+                        android:id="@+id/icon10" />
 
                     <TextView
                         style="@style/area_buttons_desc"
-                        android:id="@+id/n6" />
+                        android:id="@+id/n10" />
                 </LinearLayout>
             </LinearLayout>
             <LinearLayout
@@ -197,11 +191,11 @@
                     <ImageButton
                         android:src="@drawable/sh_kitchen"
                         style="@style/area_buttons"
-                        android:id="@+id/icon5" />
+                        android:id="@+id/icon11" />
 
                     <TextView
                         style="@style/area_buttons_desc"
-                        android:id="@+id/n5" />
+                        android:id="@+id/n11" />
                 </LinearLayout>
 
                 <LinearLayout style="@style/area_LL"
@@ -210,11 +204,11 @@
                     <ImageButton
                         android:src="@drawable/sh_kitchen"
                         style="@style/area_buttons"
-                        android:id="@+id/icon6" />
+                        android:id="@+id/icon12" />
 
                     <TextView
                         style="@style/area_buttons_desc"
-                        android:id="@+id/n6" />
+                        android:id="@+id/n12" />
                 </LinearLayout>
             </LinearLayout>
             <LinearLayout
@@ -229,11 +223,11 @@
                     <ImageButton
                         android:src="@drawable/sh_kitchen"
                         style="@style/area_buttons"
-                        android:id="@+id/icon5" />
+                        android:id="@+id/icon13" />
 
                     <TextView
                         style="@style/area_buttons_desc"
-                        android:id="@+id/n5" />
+                        android:id="@+id/n13" />
                 </LinearLayout>
 
                 <LinearLayout style="@style/area_LL"
@@ -242,11 +236,11 @@
                     <ImageButton
                         android:src="@drawable/sh_kitchen"
                         style="@style/area_buttons"
-                        android:id="@+id/icon6" />
+                        android:id="@+id/icon14" />
 
                     <TextView
                         style="@style/area_buttons_desc"
-                        android:id="@+id/n6" />
+                        android:id="@+id/n14" />
                 </LinearLayout>
             </LinearLayout>
             <LinearLayout
@@ -261,11 +255,11 @@
                     <ImageButton
                         android:src="@drawable/sh_kitchen"
                         style="@style/area_buttons"
-                        android:id="@+id/icon5" />
+                        android:id="@+id/icon15" />
 
                     <TextView
                         style="@style/area_buttons_desc"
-                        android:id="@+id/n5" />
+                        android:id="@+id/n15" />
                 </LinearLayout>
 
                 <LinearLayout style="@style/area_LL"
@@ -274,11 +268,11 @@
                     <ImageButton
                         android:src="@drawable/sh_kitchen"
                         style="@style/area_buttons"
-                        android:id="@+id/icon6" />
+                        android:id="@+id/icon16" />
 
                     <TextView
                         style="@style/area_buttons_desc"
-                        android:id="@+id/n6" />
+                        android:id="@+id/n16" />
                 </LinearLayout>
             </LinearLayout>
             <LinearLayout
@@ -293,11 +287,11 @@
                     <ImageButton
                         android:src="@drawable/sh_kitchen"
                         style="@style/area_buttons"
-                        android:id="@+id/icon5" />
+                        android:id="@+id/icon17" />
 
                     <TextView
                         style="@style/area_buttons_desc"
-                        android:id="@+id/n5" />
+                        android:id="@+id/n17" />
                 </LinearLayout>
 
                 <LinearLayout style="@style/area_LL"
@@ -306,75 +300,11 @@
                     <ImageButton
                         android:src="@drawable/sh_kitchen"
                         style="@style/area_buttons"
-                        android:id="@+id/icon6" />
+                        android:id="@+id/icon18" />
 
                     <TextView
                         style="@style/area_buttons_desc"
-                        android:id="@+id/n6" />
-                </LinearLayout>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <LinearLayout style="@style/area_LL"
-                    android:layout_width="wrap_content"
-                    >
-
-                    <ImageButton
-                        android:src="@drawable/sh_kitchen"
-                        style="@style/area_buttons"
-                        android:id="@+id/icon5" />
-
-                    <TextView
-                        style="@style/area_buttons_desc"
-                        android:id="@+id/n5" />
-                </LinearLayout>
-
-                <LinearLayout style="@style/area_LL"
-                    android:layout_width="wrap_content">
-
-                    <ImageButton
-                        android:src="@drawable/sh_kitchen"
-                        style="@style/area_buttons"
-                        android:id="@+id/icon6" />
-
-                    <TextView
-                        style="@style/area_buttons_desc"
-                        android:id="@+id/n6" />
-                </LinearLayout>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <LinearLayout style="@style/area_LL"
-                    android:layout_width="wrap_content"
-                    >
-
-                    <ImageButton
-                        android:src="@drawable/sh_kitchen"
-                        style="@style/area_buttons"
-                        android:id="@+id/icon5" />
-
-                    <TextView
-                        style="@style/area_buttons_desc"
-                        android:id="@+id/n5" />
-                </LinearLayout>
-
-                <LinearLayout style="@style/area_LL"
-                    android:layout_width="wrap_content">
-
-                    <ImageButton
-                        android:src="@drawable/sh_kitchen"
-                        style="@style/area_buttons"
-                        android:id="@+id/icon6" />
-
-                    <TextView
-                        style="@style/area_buttons_desc"
-                        android:id="@+id/n6" />
+                        android:id="@+id/n18" />
                 </LinearLayout>
             </LinearLayout>
 

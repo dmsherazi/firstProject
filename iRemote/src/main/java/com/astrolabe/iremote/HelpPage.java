@@ -30,17 +30,16 @@ public class HelpPage extends Fragment implements View.OnClickListener {
 
 
         assert view != null;
-        SupportClass sc = new SupportClass(getActivity());
         main mActivity = (main) getActivity();
         mActivity.setCurrFrag(Constants.Pages.HELPPAGE);
 
-         wv = (WebView) view.findViewById(R.id.webHelp);
+        wv = (WebView) view.findViewById(R.id.webHelp);
         wv.setVisibility(View.INVISIBLE);
-        ButtonsLO = (RelativeLayout)view.findViewById(R.id.ButtonsLO);
+        ButtonsLO = (RelativeLayout) view.findViewById(R.id.ButtonsLO);
 
-        helpApp = (Button)view.findViewById(R.id.button);
-        helpV9 = (Button)view.findViewById(R.id.button2);
-        help720 = (Button)view.findViewById(R.id.button3);
+        helpApp = (Button) view.findViewById(R.id.button);
+        helpV9 = (Button) view.findViewById(R.id.button2);
+        help720 = (Button) view.findViewById(R.id.button3);
         help720.setOnClickListener(this);
         helpV9.setOnClickListener(this);
         helpApp.setOnClickListener(this);
@@ -53,12 +52,10 @@ public class HelpPage extends Fragment implements View.OnClickListener {
 
 
         wv.setBackgroundColor(Color.argb(1, 0, 0, 0));
-       // wv.setBackgroundColor(0x00000000);
+        // wv.setBackgroundColor(0x00000000);
         //wv.getSettings().setJavaScriptEnabled(true);
         wv.loadUrl("file:///android_asset/help12.html");
         //final WebView page = (WebView) findViewById(R.id.webview);
-
-
 
 
         return view;
@@ -66,7 +63,7 @@ public class HelpPage extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
-        if(view==help720){
+        if (view == help720) {
             ButtonsLO.setVisibility(View.INVISIBLE);
             wv.setVisibility(View.VISIBLE);
             wv.setBackgroundColor(Color.argb(1, 0, 0, 0));
@@ -75,7 +72,7 @@ public class HelpPage extends Fragment implements View.OnClickListener {
             wv.loadUrl("file:///android_asset/help12.html");
             //final WebView page = (WebView) findViewById(R.id.webview);
         }
-        if(view==helpApp){
+        if (view == helpApp) {
             ButtonsLO.setVisibility(View.INVISIBLE);
             wv.setVisibility(View.VISIBLE);
             wv.setBackgroundColor(Color.argb(1, 0, 0, 0));
@@ -84,7 +81,7 @@ public class HelpPage extends Fragment implements View.OnClickListener {
             wv.loadUrl("file:///android_asset/index3.html");
             //final WebView page = (WebView) findViewById(R.id.webview);
         }
-        if(view==helpV9){
+        if (view == helpV9) {
             ButtonsLO.setVisibility(View.INVISIBLE);
             wv.setVisibility(View.VISIBLE);
             wv.setBackgroundColor(Color.argb(1, 0, 0, 0));

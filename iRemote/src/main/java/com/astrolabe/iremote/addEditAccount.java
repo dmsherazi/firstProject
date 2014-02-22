@@ -142,13 +142,12 @@ public class addEditAccount extends Fragment implements View.OnClickListener, Ra
             tvSite.setText(db.getSite(Account));
             tvUN.setText(db.getUserName(Account));
             tvPass.setText(db.getPass(Account));
-            if(db.getName(Account).equals(getString(R.string.demoAccount)))
-            {
+            if (db.getName(Account).equals(getString(R.string.demoAccount))) {
                 SetCTypeDemo();
             }
             db.close();
 
-           // if (AcType == 2) SetCType720();
+            // if (AcType == 2) SetCType720();
             // else if (AcType == 1)   SetCType710();
             // else if (AcType == 9)   SetCTypeV9();
         }
@@ -185,6 +184,7 @@ public class addEditAccount extends Fragment implements View.OnClickListener, Ra
         tvPass.setEnabled(true);
         tvUN.setEnabled(true);
     }
+
     private void SetCTypeDemo() {
         tvCT.setText(getString(R.string.demoAccount));
         tvCT.setTextColor(0xFF8d7f99);
@@ -201,7 +201,6 @@ public class addEditAccount extends Fragment implements View.OnClickListener, Ra
         tvPass.setEnabled(false);
         tvUN.setEnabled(false);
     }
-
 
 
     @Override
@@ -235,7 +234,7 @@ public class addEditAccount extends Fragment implements View.OnClickListener, Ra
             String username = tvUN.getText().toString();
             String pass = tvPass.getText().toString();
 
-            String textError = null;
+            String textError;
             if ((tvName.getText().toString().length() < 1) && (tvSite.getText().toString().length() < 6)) {
                 textError = getString(R.string.site_name_and_number_cant_be);
                 tvName.requestFocus();
@@ -266,40 +265,34 @@ public class addEditAccount extends Fragment implements View.OnClickListener, Ra
                 acDb = new accountsDB(getActivity());
                 acDb.Open();
 
-                if (Account != 25)
-                {
-                   if(tvCT.getText().equals(getString(R.string.demoAccount)))
-                   {
+                if (Account != 25) {
+                    if (tvCT.getText().equals(getString(R.string.demoAccount))) {
 
-                       mActivity.showCroutonMessage("Demo Account can't be modified",Constants.crs.ALERT_C,Constants.crs.COUTION_MODE_DEFAULT);
-                   }
-                    else{
-                    Log.e("TEST", "Response: SET updatingggggg " + Account + "-" + cType + "-" + siteName + "-" + siteNum + "-" + username + "-" + pass);
-                    acDb.updateEntry(Account + 1, cType, siteName, siteNum, username, pass);}
+                        mActivity.showCroutonMessage("Demo Account can't be modified", Constants.crs.ALERT_C, Constants.crs.COUTION_MODE_DEFAULT);
+                    } else {
+                        Log.e("TEST", "Response: SET updatingggggg " + Account + "-" + cType + "-" + siteName + "-" + siteNum + "-" + username + "-" + pass);
+                        acDb.updateEntry(Account + 1, cType, siteName, siteNum, username, pass);
+                    }
 
                 } else {
-                    if(tvCT.getText().equals(getString(R.string.demoAccount)))
-                    {
+                    if (tvCT.getText().equals(getString(R.string.demoAccount))) {
                         acDb.createEntry(getString(R.string.shaula720), siteName, "95220407", "96897775603", "123456");
-                    }
-                    else{
-                    acDb.createEntry(cType, siteName, siteNum, username, pass);
-                    Log.e("TEST", "Response: created " + Account + "-" + cType + "-" + siteName + "-" + siteNum + "-" + username + "-" + pass);
+                    } else {
+                        acDb.createEntry(cType, siteName, siteNum, username, pass);
+                        Log.e("TEST", "Response: created " + Account + "-" + cType + "-" + siteName + "-" + siteNum + "-" + username + "-" + pass);
                     }
                 }
 
                 acDb.close();
 
 
-
                 FragmentTransaction ft = getFragmentManager().beginTransaction();
-                FragmentManager fm = getActivity().getSupportFragmentManager();
                 ReplaceFragments rp = new ReplaceFragments();
                 if (sc.getAccountNumber() > 1)
-                    rp.replaceWithAL(ft, fm, true,false);
+                    rp.replaceWithAL(ft, false);
                 else {
                     main.setAccount(0);
-                    rp.replaceWithRemote(ft, fm, true);
+                    rp.replaceWithRemote(ft);
                 }
 
             }

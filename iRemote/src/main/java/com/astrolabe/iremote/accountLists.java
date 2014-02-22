@@ -1,6 +1,5 @@
 package com.astrolabe.iremote;
 
-import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -49,14 +48,13 @@ public class accountLists extends Fragment implements View.OnClickListener {
         AccountNumbers = sc.getAccountNumber();
         if (AccountNumbers < 1) {
             FragmentTransaction ft = getFragmentManager().beginTransaction();
-            FragmentManager fm = getActivity().getSupportFragmentManager();
             ReplaceFragments rp = new ReplaceFragments();
-            rp.replaceWithAddEditAccount(ft, fm, true);
-            mActivity.showCroutonMessage(getString(R.string.no_record_in_accounts),Constants.crs.INFO_C,Constants.crs.COUTION_MODE_DEFAULT);
-           // sc.showDialog();
+            rp.replaceWithAddEditAccount(ft);
+            mActivity.showCroutonMessage(getString(R.string.no_record_in_accounts), Constants.crs.INFO_C, Constants.crs.COUTION_MODE_DEFAULT);
+            // sc.showDialog();
 
-        }
-        else showCroutonMessage("long press to edit or delete", Constants.crs.INFO_C, Constants.crs.COUTION_MODE_DEFAULT);
+        } else
+            mActivity.showCroutonMessage("long press to edit or delete", Constants.crs.INFO_C, Constants.crs.COUTION_MODE_DEFAULT);
         mActivity.cancelAllCroutons();
         list1 = (Button) view.findViewById(R.id.acc_1);
         list2 = (Button) view.findViewById(R.id.acc_2);
@@ -148,43 +146,9 @@ public class accountLists extends Fragment implements View.OnClickListener {
     private static final Configuration CONFIGURATION_INFINITE = new Configuration.Builder()
             .setDuration(Configuration.DURATION_INFINITE)
             .build();
-    Crouton crouton; private Crouton infiniteCrouton;
-    public void showCroutonMessage(String Text, int style, boolean mode) {
+    Crouton crouton;
 
 
-        Crouton.clearCroutonsForActivity(getActivity());
-        Log.e("Crouton", " called");
-        // Todo: Here i am forcing display on Top
-        // Follow it
-
-        Style croutonStyle = null;
-        if (style == Constants.crs.ALERT_GL)// 0 == alert
-            croutonStyle = ALERT_G_LEFT;//, R.id.alternate_view_group);
-
-        else if (style == Constants.crs.ALERT_C)// 0 == alert
-            croutonStyle = ALERT;//, R.id.alternate_view_group);
-
-        if (style == Constants.crs.INFO_GL)// 0 == alert
-            croutonStyle = INFO_G_LEFT;//, R.id.alternate_view_group);
-
-        else if (style == Constants.crs.INFO_C)// 0 == alert
-            croutonStyle = INFO;//, R.id.alternate_view_group);
-
-        else if (style == Constants.crs.SUCC_GL)// 0 == alert
-            croutonStyle = SUCC_G_LEFT;//, R.id.alternate_view_group);
-
-        else if (style == Constants.crs.SUCC_C)
-            croutonStyle = SUCC;//, R.id.alternate_view_group);
-
-
-        crouton = Crouton.makeText(getActivity(), Text, croutonStyle);
-
-        if (mode) infiniteCrouton = crouton;
-
-        crouton.setOnClickListener(this).setConfiguration(mode ? CONFIGURATION_INFINITE : Configuration.DEFAULT).show();
-
-
-    }
 
     public void makeAllInvisible() {
         list1.setVisibility(View.INVISIBLE);
@@ -225,7 +189,7 @@ public class accountLists extends Fragment implements View.OnClickListener {
     }
 
 
-    public void function1(View v)   {
+    public void function1(View v) {
         long account = 8;
         if (v == list1) account = 0;
         else if (v == list2) account = 1;
@@ -240,9 +204,8 @@ public class accountLists extends Fragment implements View.OnClickListener {
         main.setAccount(account);
 
         FragmentTransaction ft = getFragmentManager().beginTransaction();
-        FragmentManager fm = getActivity().getSupportFragmentManager();
         ReplaceFragments rp = new ReplaceFragments();
-        rp.replaceWithAddEditAccount(ft, fm, true);
+        rp.replaceWithAddEditAccount(ft);
 
     }
 
@@ -261,9 +224,8 @@ public class accountLists extends Fragment implements View.OnClickListener {
 
         db.close();
         FragmentTransaction ft = getFragmentManager().beginTransaction();
-        FragmentManager fm = getActivity().getSupportFragmentManager();
         ReplaceFragments rp = new ReplaceFragments();
-        rp.replaceWithAL(ft, fm, true,false);
+        rp.replaceWithAL(ft, false);
 
     }
 
@@ -286,9 +248,8 @@ public class accountLists extends Fragment implements View.OnClickListener {
         //main mActivity = (main) getActivity();
         main.setAccount(account);
         FragmentTransaction ft = getFragmentManager().beginTransaction();
-        FragmentManager fm = getActivity().getSupportFragmentManager();
         ReplaceFragments rp = new ReplaceFragments();
-        rp.replaceWithRemote(ft, fm, true);
+        rp.replaceWithRemote(ft);
     }
 
 }

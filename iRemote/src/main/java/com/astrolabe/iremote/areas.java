@@ -44,7 +44,6 @@ public class areas extends Fragment implements View.OnClickListener, View.OnTouc
     static RadioButton radioStay;
     static RadioButton radioBoth;
     static EditText etZoneName;
-    ImageButton ibZoneSelect;
     ImageButton ibUpdate;
     ImageButton cdiaaal;
     ScrollView zoneDropList;
@@ -82,29 +81,22 @@ public class areas extends Fragment implements View.OnClickListener, View.OnTouc
     SupportClass sc = new SupportClass(getActivity());
     RelativeLayout mainRL;
     static RelativeLayout rlActivity;
-    RelativeLayout dial_layout;
 
-
-
-    private boolean canReset = true;
 
     // aLL ACTIVITIES
     Integer tries = 0;
     long Account;
-    private int panelControl;
-    private String AccountName;
-    private String AccountTYpe;
     private String UserName;
-    private String SiteNumber;
     private String Pass;
-    // ImageButton cStatus;
-    boolean connection = false;
     main mActivity = null;
 
-public static  Spinner sp ;
+    public static Spinner sp;
     public static WebView wvLoading;
     public Handler resetStatusHandler = new Handler();
     private long restStatusInterval = 15000;
+
+    public areas() {
+    }
 
 
     @Override
@@ -135,11 +127,9 @@ public static  Spinner sp ;
         mActivity.disableTouch();
         UserName = sc.getUser(Account);
         Pass = sc.getPass(Account);
-        SiteNumber = sc.getSite(Account);
 
 
-        panelControl = sc.getControlPanelType(Account);
-        Typeface tf = Typeface.createFromAsset(getActivity().getAssets(), "Arial_Black.ttf");
+        int panelControl = sc.getControlPanelType(Account);
 
 
         mainRL = (RelativeLayout) view.findViewById(R.id.main_areas);
@@ -172,7 +162,7 @@ public static  Spinner sp ;
         bZoneG = (Button) view.findViewById(R.id.bzG);
         ibUpdate = (ImageButton) view.findViewById(R.id.imageButton3);
         etZoneName = (EditText) view.findViewById(R.id.etZoneName);
-        sp= (Spinner)view.findViewById(R.id.spinner);
+        sp = (Spinner) view.findViewById(R.id.spinner);
         zoneDropList = (ScrollView) view.findViewById(R.id.zoneDropListLF);
         tv = (TextView) view.findViewById(R.id.tvZoneSelect);
         radioAway = (RadioButton) view.findViewById(R.id.cZAway);
@@ -214,9 +204,6 @@ public static  Spinner sp ;
         ibUpdate.setOnClickListener(this);
 
 
-
-
-
         etZoneName.setText("");
         tv.setOnClickListener(this);
 
@@ -239,7 +226,6 @@ public static  Spinner sp ;
     public void onClick(View v) {
         mActivity = (main) getActivity();
         mActivity.cancelAllCroutons();
-        SupportClass sc = new SupportClass(getActivity());
         if ((v == fm) || (v == tv)) {
             if (!listOpen) {
                 listOpen = true;
@@ -255,11 +241,11 @@ public static  Spinner sp ;
 
         if (v == ibUpdate) {
             String[] TypeString = new String[]{
-                    ",P=H", ",P=C", ",P=K" , ",P=B" , ",P=G" , ",P=O" ,  ",P=S",",P=b" , ",P=s" , ",P=k"
-                            , ",P=h" , ",P=L" , ",P=o"};
+                    ",P=H", ",P=C", ",P=K", ",P=B", ",P=G", ",P=O", ",P=S", ",P=b", ",P=s", ",P=k"
+                    , ",P=h", ",P=L", ",P=o"};
 
             // etNumber.setText("");///////////////////////Todo: debug code
-            Log.w("values of spiiner=",""+String.valueOf(sp.getSelectedItem())+ "is at pos"+sp.getSelectedItemPosition());
+            Log.w("values of spiiner=", "" + String.valueOf(sp.getSelectedItem()) + "is at pos" + sp.getSelectedItemPosition());
             String ModeString = "", NameString = "";
             if (radioAway.isChecked())
                 ModeString = ",M=A";
@@ -268,19 +254,18 @@ public static  Spinner sp ;
             else if (radioBoth.isChecked())
                 ModeString = ",M=B";
 
-            String PhType=TypeString[sp.getSelectedItemPosition()];
+            String PhType = TypeString[sp.getSelectedItemPosition()];
 
             if (etZoneName.getText().toString().length() > 0) {
                 NameString = ",N=" + etZoneName.getText().toString();
             }
             if ((etZoneName.getText().toString().length() > 0) || (ModeString.length() > 0))
                 mActivity.sendMessage("**#zon up:" + UserName + "," + Pass + "-" + "n" + zoneLetters[pressedButton1]
-                        + ModeString+PhType + NameString
-                        + ",:!!",Constants.pBs.ZoneUPATE);
+                        + ModeString + PhType + NameString
+                        + ",:!!", Constants.pBs.ZoneUPATE);
             else {
                 mActivity.showCroutonMessage(getString(R.string.no_data_to_update), Constants.crs.ALERT_C, Constants.crs.COUTION_MODE_DEFAULT);
             }
-
 
 
         }
@@ -351,7 +336,7 @@ public static  Spinner sp ;
     }
 
     public void selectZoneDialog() {
-        Log.e("Areas ","selctZoneDialog");
+        Log.e("Areas ", "selctZoneDialog");
         mActivity.enableTouch();
         mainRL.setEnabled(true);
         mainRL.setClickable(true);
@@ -378,12 +363,12 @@ public static  Spinner sp ;
         etZoneName.setText("");
         alarmControl.clearCheck();
         listOpen = false;
-        Log.e("Areas ","ButtonPressed");
+        Log.e("Areas ", "ButtonPressed");
 
 
     }
 
-    public void sendingScreens(SupportClass sc) {
+    public void sendingScreens() {
 
         tv.setText("");
         mActivity.disableTouch();
@@ -398,28 +383,13 @@ public static  Spinner sp ;
     }
 
 
-    public void sentSucc(SupportClass sc) {
+    public void sentSucc() {
         mainRL.setEnabled(false);
         mActivity.handler.removeCallbacksAndMessages(null);
         cdiaaal.setBackgroundResource(R.drawable.cd_confirmed);
         resetHandler.postDelayed(restRunnable, restInterval);
     }
 
-    public void resetStatusRing() {
-        mainRL.setEnabled(true);
-        mainRL.setClickable(true);
-        resetStatusHandler.postDelayed(restStatusRunnable, restStatusInterval);
-    }
-
-
-    public void removeStatusAndItsCallable() {
-        resetStatusHandler.removeCallbacks(restStatusRunnable);
-       /* oStatusRing.setBackgroundResource(R.drawable.as_dummy);
-        armStatusRing.setBackgroundResource(R.drawable.as_dummy);
-        gateStatusRing.setBackgroundResource(R.drawable.as_dummy);
-        doorStatusRing.setBackgroundResource(R.drawable.as_dummy);*/
-
-    }
 
     public void sentFailed() {
         mainRL.setEnabled(false);
@@ -437,7 +407,7 @@ public static  Spinner sp ;
 
 
     public void reset_cd() {
-        Log.e("Areas ","RESET CD");
+        Log.e("Areas ", "RESET CD");
         mActivity.enableTouch();
         mainRL.setEnabled(true);
         mainRL.setClickable(true);
@@ -480,7 +450,7 @@ public static  Spinner sp ;
         public void run() {
             Log.e("Status ", "Ready to Send update");
 
-            if (ibUpdate.isShown() || listOpen == true) {
+            if (ibUpdate.isShown() || listOpen) {
                 Log.e("Status ", "Busy --- Sending update after 5 secs " + pressedButton1);
             } else {
                 Log.e("Status ", "Sending update");
@@ -501,7 +471,6 @@ public static  Spinner sp ;
             reset_StatusRing();
         }
     };
-
 
 
     @Override

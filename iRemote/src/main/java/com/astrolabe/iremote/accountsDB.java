@@ -2,6 +2,7 @@ package com.astrolabe.iremote;
 
 /**
  * Created by Abu-Umar on 12/22/13.
+ for $(COMPANY)
  */
 
 import android.content.ContentValues;
@@ -63,8 +64,8 @@ public class accountsDB {
     }
 
     public void deleteEntry(long i) {
-        if (i<0 || i>getProfilesCount()-1) main.setAccount(0);
-        String[] columns = new String[]{KEY_ROWID, KEY_CTYPE, KEY_SNAME, KEY_SNUMB, KEY_USRN, KEY_PASS};
+        if (i < 0 || i > getProfilesCount() - 1) main.setAccount(0);
+        //String[] columns = new String[]{KEY_ROWID, KEY_CTYPE, KEY_SNAME, KEY_SNUMB, KEY_USRN, KEY_PASS};
         Cursor cursor = ourDatabase.query(DATABASE_TABLE, null, null, null, null, null, null);
         if (cursor != null && cursor.moveToFirst()) {
             cursor.moveToFirst();
@@ -80,8 +81,8 @@ public class accountsDB {
 
 
     public String getName(long i) {
-        if (i<0 || i>getProfilesCount()-1) main.setAccount(0);
-        String[] columns = new String[]{KEY_ROWID, KEY_CTYPE, KEY_SNAME, KEY_SNUMB, KEY_USRN, KEY_PASS};
+        if (i < 0 || i > getProfilesCount() - 1) main.setAccount(0);
+        // String[] columns = new String[]{KEY_ROWID, KEY_CTYPE, KEY_SNAME, KEY_SNUMB, KEY_USRN, KEY_PASS};
         Cursor cursor = ourDatabase.query(DATABASE_TABLE, null, null, null, null, null, null);
         if (cursor != null && cursor.moveToFirst()) {
             cursor.moveToFirst();
@@ -92,12 +93,16 @@ public class accountsDB {
             cursor.close();
             return name;
         }
+        assert cursor != null;
         cursor.close();
         return null;
     }
 
     public String getSite(long i) {
-        if (i<0 || i>getProfilesCount()-1) {main.setAccount(0); return "";}
+        if (i < 0 || i > getProfilesCount() - 1) {
+            main.setAccount(0);
+            return "";
+        }
         String[] columns = new String[]{KEY_ROWID, KEY_CTYPE, KEY_SNAME, KEY_SNUMB, KEY_USRN, KEY_PASS};
         Cursor cursor = ourDatabase.query(DATABASE_TABLE, columns, null, null, null, null, null, null);
         if (cursor != null && cursor.moveToFirst()) {
@@ -109,12 +114,16 @@ public class accountsDB {
             cursor.close();
             return name;
         }
+        assert cursor != null;
         cursor.close();
         return null;
     }
 
     public String getUserName(long i) {
-        if (i<0 || i>getProfilesCount()-1) {main.setAccount(0); return "";}
+        if (i < 0 || i > getProfilesCount() - 1) {
+            main.setAccount(0);
+            return "";
+        }
         String[] columns = new String[]{KEY_ROWID, KEY_CTYPE, KEY_SNAME, KEY_SNUMB, KEY_USRN, KEY_PASS};
         Cursor cursor = ourDatabase.query(DATABASE_TABLE, columns, null, null, null, null, null, null);
         if (cursor != null && cursor.moveToFirst()) {
@@ -126,12 +135,16 @@ public class accountsDB {
             cursor.close();
             return name;
         }
+        assert cursor != null;
         cursor.close();
         return null;
     }
 
     public String getPass(long i) {
-        if (i<0 || i>getProfilesCount()-1) {main.setAccount(0); return "";}
+        if (i < 0 || i > getProfilesCount() - 1) {
+            main.setAccount(0);
+            return "";
+        }
         String[] columns = new String[]{KEY_ROWID, KEY_CTYPE, KEY_SNAME, KEY_SNUMB, KEY_USRN, KEY_PASS};
         Cursor cursor = ourDatabase.query(DATABASE_TABLE, columns, null, null, null, null, null, null);
         if (cursor != null && cursor.moveToFirst()) {
@@ -143,13 +156,16 @@ public class accountsDB {
             cursor.close();
             return name;
         }
+        assert cursor != null;
         cursor.close();
         return null;
     }
 
     public String getCType(long i) {
-        if (i<0 || i>getProfilesCount()-1) {main.setAccount(0); return "";}
-        String[] columns = new String[]{KEY_ROWID, KEY_CTYPE, KEY_SNAME, KEY_SNUMB, KEY_USRN, KEY_PASS};
+        if (i < 0 || i > getProfilesCount() - 1) {
+            main.setAccount(0);
+            return "";
+        }
         Cursor cursor = ourDatabase.query(DATABASE_TABLE, null, null, null, null, null, null);
         if (cursor != null && cursor.moveToFirst()) {
             cursor.moveToFirst();
@@ -160,6 +176,7 @@ public class accountsDB {
             cursor.close();
             return name;
         }
+        assert cursor != null;
         cursor.close();
         return null;
     }

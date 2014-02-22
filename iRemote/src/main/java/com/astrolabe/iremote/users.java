@@ -223,8 +223,6 @@ public class users extends Fragment implements View.OnClickListener, View.OnTouc
         radioStay = (DeSelectableRadioButton) view.findViewById(R.id.cStay);
 
 
-
-
         curPass.setFilters(new InputFilter[]{filter});
         newPass.setFilters(new InputFilter[]{filter});
         confirmPass.setFilters(new InputFilter[]{filter});
@@ -351,10 +349,6 @@ public class users extends Fragment implements View.OnClickListener, View.OnTouc
         }*/
     }
 
-    public static void tvSetText(String str) {
-        etNumber.setText(str);
-    }
-
     public void makeAllInvisible() {
         Log.e("List", "making Invisible");
         list1.setVisibility(View.INVISIBLE);
@@ -420,7 +414,7 @@ public class users extends Fragment implements View.OnClickListener, View.OnTouc
         }
         if (v == addMU) {
             if (pressedButton == Constants.pBs.ADDMU)
-                reset_cd(sc);
+                reset_cd();
             else {
 
                 uCDialInner.setBackgroundResource(R.drawable.u_inner_active);
@@ -440,11 +434,11 @@ public class users extends Fragment implements View.OnClickListener, View.OnTouc
         }
         if (v == bTimers) {
             if (pressedButton == Constants.pBs.U_TIMERS)
-                reset_cd(sc);
+                reset_cd();
             else {
                 uCDialInner.setBackgroundResource(R.drawable.u_inner_active);
                 ucDialOuter.setBackgroundResource(R.drawable.users_timers);
-                uCText.setText("TAP TO:\n" +  "SET TIMERS");
+                uCText.setText("TAP TO:\n" + "SET TIMERS");
                 pressedButton = Constants.pBs.U_TIMERS;
                 main.editing = false;
                 uCDialInner.setEnabled(true);
@@ -452,11 +446,11 @@ public class users extends Fragment implements View.OnClickListener, View.OnTouc
         }
         if (v == bZones) {
             if (pressedButton == Constants.pBs.U_ZONES)
-                reset_cd(sc);
+                reset_cd();
             else {
                 uCDialInner.setBackgroundResource(R.drawable.u_inner_active);
                 ucDialOuter.setBackgroundResource(R.drawable.users_zones);
-                uCText.setText("TAP TO:\n" +  "SET ZONES");
+                uCText.setText("TAP TO:\n" + "SET ZONES");
                 pressedButton = Constants.pBs.U_ZONES;
                 main.editing = false;
                 uCDialInner.setEnabled(true);
@@ -464,11 +458,11 @@ public class users extends Fragment implements View.OnClickListener, View.OnTouc
         }
         if (v == bMeters) {
             if (pressedButton == Constants.pBs.U_METERS)
-                reset_cd(sc);
+                reset_cd();
             else {
                 uCDialInner.setBackgroundResource(R.drawable.u_inner_active);
                 ucDialOuter.setBackgroundResource(R.drawable.users_meters);
-                uCText.setText("TAP TO:\n" +  "VIEW METERS");
+                uCText.setText("TAP TO:\n" + "VIEW METERS");
                 pressedButton = Constants.pBs.U_METERS;
                 main.editing = false;
                 uCDialInner.setEnabled(true);
@@ -477,7 +471,7 @@ public class users extends Fragment implements View.OnClickListener, View.OnTouc
 
         if (v == addNU) {
             if (pressedButton == Constants.pBs.ADDNU)
-                reset_cd(sc);
+                reset_cd();
             else {
 
                 ucDialOuter.setBackgroundResource(R.drawable.u_v9_add_nu);
@@ -547,7 +541,7 @@ public class users extends Fragment implements View.OnClickListener, View.OnTouc
         }
         if (v == delMU) {
             if (pressedButton == Constants.pBs.DELMU)
-                reset_cd(sc);
+                reset_cd();
             else {
 
                 uCDialInner.setBackgroundResource(R.drawable.u_inner_active);
@@ -566,7 +560,7 @@ public class users extends Fragment implements View.OnClickListener, View.OnTouc
         }
         if (v == delNU) {
             if (pressedButton == Constants.pBs.DELNU)
-                reset_cd(sc);
+                reset_cd();
             else {
                 ucDialOuter.setBackgroundResource(R.drawable.u_v9_del_nu);
                 uCDialInner.setBackgroundResource(R.drawable.u_inner_active);
@@ -578,7 +572,7 @@ public class users extends Fragment implements View.OnClickListener, View.OnTouc
         }
         if (v == lists) {
             if (pressedButton == Constants.pBs.LISTS)
-                reset_cd(sc);
+                reset_cd();
             else {
 
                 if (sc.getControlPanelType(Account) == 9)
@@ -611,13 +605,13 @@ public class users extends Fragment implements View.OnClickListener, View.OnTouc
                     delnuShowFunc();
                     break;
                 case Constants.pBs.U_ZONES:
-                    rp.replaceWithAreas(ft, fm, true);
+                    rp.replaceWithAreas(ft);
                     break;
                 case Constants.pBs.U_METERS:
-                    rp.replaceWithMeters(ft, fm, true);
+                    rp.replaceWithMeters(ft);
                     break;
                 case Constants.pBs.U_TIMERS:
-                    rp.replaceWithTimers(ft, fm, true);
+                    rp.replaceWithTimers(ft);
                     break;
                 case Constants.pBs.LISTS:
 
@@ -661,7 +655,7 @@ public class users extends Fragment implements View.OnClickListener, View.OnTouc
             } else {
                 pressedButton = Constants.pBs.ADDMU;
                 mActivity.sendMessage("**#add mu:" + UserName + "," + Pass + "-" + numb + ":!!", pressedButton);
-                Log.e("sending message","add mu ");
+                Log.e("sending message", "add mu ");
             }
         } else {
             numb = etNumber.getText().toString();
@@ -708,7 +702,7 @@ public class users extends Fragment implements View.OnClickListener, View.OnTouc
                         Log.e("zone perms", "show list");
                         if (pressedButton == Constants.pBs.EDITUSER)
                             main.editing = true;
-                            mActivity.sendMessage("**#zone names:" + UserName + "," + Pass + "-:!!", Constants.pBs.ZONENAMES);
+                        mActivity.sendMessage("**#zone names:" + UserName + "," + Pass + "-:!!", Constants.pBs.ZONENAMES);
                     } else {
                         passCantBeEmpty();
                         Log.e("zone perms", "pass cant be empty");
@@ -733,7 +727,7 @@ public class users extends Fragment implements View.OnClickListener, View.OnTouc
         UsersPermissions.setVisibility(View.VISIBLE);
     }
 
-    public void sendingScreens(SupportClass sc) {
+    public void sendingScreens() {
 
         uCText.setText("");
         mainRL.setEnabled(false);
@@ -801,8 +795,8 @@ public class users extends Fragment implements View.OnClickListener, View.OnTouc
 
     public void onCreateContextMenu(ContextMenu menu, View v,
                                     ContextMenu.ContextMenuInfo menuInfo) {
-        if (list4.isShown() && (list4.getText().toString().equals(getString(R.string.add_new_user))))
-            return;
+        if (list4.isShown() && (list4.getText().toString().equals(getString(R.string.add_new_user)))) {
+        }
         else {
             super.onCreateContextMenu(menu, v, menuInfo);
             menu.add(0, MENU_EDIT, 0, "Edit");
@@ -939,7 +933,7 @@ public class users extends Fragment implements View.OnClickListener, View.OnTouc
 
         etNumber.setText("");
         numb = "";
-        if (main.editing == true) {
+        if (main.editing) {
             Log.e("EDIT USER", "used functions");
             etNumber.setEnabled(false);
             etNumber.setEnabled(false);
@@ -1038,7 +1032,7 @@ public class users extends Fragment implements View.OnClickListener, View.OnTouc
         @Override
         public void run() {
             Log.e("Status ", "Ready to Send update");
-            if (pressedButton == Constants.pBs.INACTVE ) {
+            if (pressedButton == Constants.pBs.INACTVE) {
                 if (UsersDial.isShown()) {
                     Log.e("Status ", "Sending update");
                     // pressedButton = Constants.pBs.REFRESHPULL;
@@ -1055,22 +1049,9 @@ public class users extends Fragment implements View.OnClickListener, View.OnTouc
     Runnable restRunnable = new Runnable() {
         @Override
         public void run() {
-            reset_cd(new SupportClass(getActivity()));
+            reset_cd();
         }
     };
-
-    public void reset_cd(SupportClass supportClass) {
-        inactiveScreen();
-        uCText.setVisibility(View.VISIBLE);
-        mainRL.setEnabled(true);
-        mainRL.setClickable(true);
-        uCText.setText("");
-        pressedButton = Constants.pBs.INACTVE;
-        uCDialInner.setEnabled(false);
-        canReset = true;
-        mActivity.enableTouch();
-
-    }
 
     Runnable restStatusRunnable = new Runnable() {
         @Override
@@ -1111,7 +1092,7 @@ public class users extends Fragment implements View.OnClickListener, View.OnTouc
         etNumber.setText(meMyNumber);
     }
 
-    public void sentSucc(SupportClass sc) {
+    public void sentSucc() {
         mainRL.setEnabled(false);
         uCText.setVisibility(View.GONE);
         mActivity.handler.removeCallbacksAndMessages(null);

@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.text.InputFilter;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -13,20 +12,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.webkit.WebView;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.ToggleButton;
-
-import com.fourmob.datetimepicker.date.DatePickerDialog;
-import com.sleepbot.datetimepicker.time.RadialPickerLayout;
-import com.sleepbot.datetimepicker.time.TimePickerDialog;
-
-import java.text.DecimalFormat;
-import java.util.Calendar;
 
 public class sh_areas extends Fragment implements View.OnClickListener, View.OnTouchListener {
 
@@ -50,29 +37,29 @@ public class sh_areas extends Fragment implements View.OnClickListener, View.OnT
     public static ImageButton ib16;
     public static ImageButton ib17;
     public static ImageButton ib18;
-    public static Button bn1;
-    public static Button bn2;
-    public static Button bn3;
-    public static Button bn4;
-    public static Button bn5;
-    public static Button bn6;
-    public static Button bn7;
-    public static Button bn8;
-    public static Button bn9;
-    public static Button bn10;
-    public static Button bn11;
-    public static Button bn12;
-    public static Button bn13;
-    public static Button bn14;
-    public static Button bn15;
-    public static Button bn16;
-    public static Button bn17;
-    public static Button bn18;
-    public static int statusInterval=2000;
+    public static TextView bn1;
+    public static TextView bn2;
+    public static TextView bn3;
+    public static TextView bn4;
+    public static TextView bn5;
+    public static TextView bn6;
+    public static TextView bn7;
+    public static TextView bn8;
+    public static TextView bn9;
+    public static TextView bn10;
+    public static TextView bn11;
+    public static TextView bn12;
+    public static TextView bn13;
+    public static TextView bn14;
+    public static TextView bn15;
+    public static TextView bn16;
+    public static TextView bn17;
+    public static TextView bn18;
+    public static int statusInterval = 2000;
     main mActivity = null;
     private long Account;
     private String UserName;
-    private Handler statusHandler=new Handler();
+    private Handler statusHandler = new Handler();
     private String Pass;
     public static WebView wvLoading;
 
@@ -116,31 +103,31 @@ public class sh_areas extends Fragment implements View.OnClickListener, View.OnT
         ib17 = (ImageButton) view.findViewById(R.id.icon17);
         ib18 = (ImageButton) view.findViewById(R.id.icon18);
 
-        bn1 = (Button) view.findViewById(R.id.n1);
-        bn2 = (Button) view.findViewById(R.id.n2);
-        bn3 = (Button) view.findViewById(R.id.n3);
-        bn4 = (Button) view.findViewById(R.id.n4);
-        bn5 = (Button) view.findViewById(R.id.n5);
-        bn6 = (Button) view.findViewById(R.id.n6);
-        bn7 = (Button) view.findViewById(R.id.n7);
-        bn8 = (Button) view.findViewById(R.id.n8);
-        bn9 = (Button) view.findViewById(R.id.n9);
-        bn10 = (Button) view.findViewById(R.id.n10);
-        bn11 = (Button) view.findViewById(R.id.n11);
-        bn12 = (Button) view.findViewById(R.id.n12);
-        bn13 = (Button) view.findViewById(R.id.n13);
-        bn14 = (Button) view.findViewById(R.id.n14);
-        bn15 = (Button) view.findViewById(R.id.n15);
-        bn16 = (Button) view.findViewById(R.id.n16);
-        bn17 = (Button) view.findViewById(R.id.n17);
-        bn18 = (Button) view.findViewById(R.id.n18);
+        bn1 = (TextView) view.findViewById(R.id.n1);
+        bn2 = (TextView) view.findViewById(R.id.n2);
+        bn3 = (TextView) view.findViewById(R.id.n3);
+        bn4 = (TextView) view.findViewById(R.id.n4);
+        bn5 = (TextView) view.findViewById(R.id.n5);
+        bn6 = (TextView) view.findViewById(R.id.n6);
+        bn7 = (TextView) view.findViewById(R.id.n7);
+        bn8 = (TextView) view.findViewById(R.id.n8);
+        bn9 = (TextView) view.findViewById(R.id.n9);
+        bn10 = (TextView) view.findViewById(R.id.n10);
+        bn11 = (TextView) view.findViewById(R.id.n11);
+        bn12 = (TextView) view.findViewById(R.id.n12);
+        bn13 = (TextView) view.findViewById(R.id.n13);
+        bn14 = (TextView) view.findViewById(R.id.n14);
+        bn15 = (TextView) view.findViewById(R.id.n15);
+        bn16 = (TextView) view.findViewById(R.id.n16);
+        bn17 = (TextView) view.findViewById(R.id.n17);
+        bn18 = (TextView) view.findViewById(R.id.n18);
 
         Account = mActivity.getAccount();
         mActivity.disableTouch();
         UserName = sc.getUser(Account);
         Pass = sc.getPass(Account);
 
-       makeAllInvisible();
+        makeAllInvisible();
 
         mActivity.sendMessage("**#areas:" + UserName + "," + Pass + "-:!!", Constants.pBs.AREAS);
 
@@ -148,21 +135,11 @@ public class sh_areas extends Fragment implements View.OnClickListener, View.OnT
         statusHandler.postDelayed(checkStatRun, statusInterval);
 
 
-
-
-
-
-
         wvLoading = (WebView) view.findViewById(R.id.webView2);
         wvLoading.setBackgroundColor(0x00000000);
-        wvLoading .setBackgroundColor(0x00000000);
+        wvLoading.setBackgroundColor(0x00000000);
         wvLoading.loadUrl("file:///android_asset/index3.html");
         wvLoading.setVisibility(View.VISIBLE);
-
-
-
-        Typeface tf = Typeface.createFromAsset(getActivity().getAssets(), "Arial_Black.ttf");
-
 
 
         statusHandler.postDelayed(checkStatRun, statusInterval);
@@ -218,17 +195,17 @@ public class sh_areas extends Fragment implements View.OnClickListener, View.OnT
         @Override
         public void run() {
             Log.e("Status ", "Ready to Send update");
-            if(!ib1.isShown())
-            mActivity.sendMessage("**#areas:" + UserName + "," + Pass + "-:!!", Constants.pBs.AREAS);
+            if (!ib1.isShown())
+                mActivity.sendMessage("**#areas:" + UserName + "," + Pass + "-:!!", Constants.pBs.AREAS);
             statusHandler.postDelayed(checkStatRun, statusInterval);
 
         }
     };
+
     @Override
     public void onClick(View v) {
         mActivity = (main) getActivity();
         mActivity.cancelAllCroutons();
-        SupportClass sc = new SupportClass(getActivity());
 
     }
 
@@ -327,51 +304,51 @@ public class sh_areas extends Fragment implements View.OnClickListener, View.OnT
         return false;
     }
 
-  /*
+    /*
 
-    Runnable checkStatRun = new Runnable() {
-        @Override
-        public void run() {
-            Log.e("Status ", "Ready to Send update");
-            if (pressedButton == Constants.pBs.INACTVE || pressedButton == Constants.pBs.REFRESHPULL) {
-                Log.e("Status ", "Sending update");
-                mActivity.sendMessage("**#timer names:"+UserName+","+Pass+"-:!!",Constants.pBs.TIMERNAMES);
+      Runnable checkStatRun = new Runnable() {
+          @Override
+          public void run() {
+              Log.e("Status ", "Ready to Send update");
+              if (pressedButton == Constants.pBs.INACTVE || pressedButton == Constants.pBs.REFRESHPULL) {
+                  Log.e("Status ", "Sending update");
+                  mActivity.sendMessage("**#timer names:"+UserName+","+Pass+"-:!!",Constants.pBs.TIMERNAMES);
 
-            }
-            else  if (settings_layout.isShown() )
-            {
-                mActivity.askUpdate();
-            }
-            else
-            Log.e("Status ", "Busy --- Sending update after 5 secs " + pressedButton);
+              }
+              else  if (settings_layout.isShown() )
+              {
+                  mActivity.askUpdate();
+              }
+              else
+              Log.e("Status ", "Busy --- Sending update after 5 secs " + pressedButton);
 
-            long statusInterval = 7000;
-            statusHandler.postDelayed(checkStatRun, statusInterval);
+              long statusInterval = 7000;
+              statusHandler.postDelayed(checkStatRun, statusInterval);
 
-        }
-    };
-    Runnable restRunnable = new Runnable() {
-        @Override
-        public void run() {
-            reset_cd(new SupportClass(getActivity()));
-        }
-    };
-    Runnable restStatusRunnable = new Runnable() {
-        @Override
-        public void run() {
-            reset_StatusRing();
-        }
-    };
+          }
+      };
+      Runnable restRunnable = new Runnable() {
+          @Override
+          public void run() {
+              reset_cd(new SupportClass(getActivity()));
+          }
+      };
+      Runnable restStatusRunnable = new Runnable() {
+          @Override
+          public void run() {
+              reset_StatusRing();
+          }
+      };
 
-    public void sentSuccPull(SupportClass sc) {
+      public void sentSuccPull(SupportClass sc) {
 
-        mainRL.setEnabled(false);
-        mActivity.handler.removeCallbacksAndMessages(null);
-        centerBtn.setBackgroundResource(R.drawable.r_720_inactive);
-        //SureButton.setBackgroundResource(R.drawable.cd_confirmed);
-        resetHandler.postDelayed(restStatusRunnable, restInterval);
-    }
-*/
+          mainRL.setEnabled(false);
+          mActivity.handler.removeCallbacksAndMessages(null);
+          centerBtn.setBackgroundResource(R.drawable.r_720_inactive);
+          //SureButton.setBackgroundResource(R.drawable.cd_confirmed);
+          resetHandler.postDelayed(restStatusRunnable, restInterval);
+      }
+  */
     @Override
     public void onResume() {
         Log.e("DEBUG", "onResume of LoginFragment");
