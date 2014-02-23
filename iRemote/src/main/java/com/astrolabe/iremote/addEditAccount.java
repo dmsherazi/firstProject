@@ -234,7 +234,7 @@ public class addEditAccount extends Fragment implements View.OnClickListener, Ra
             String username = tvUN.getText().toString();
             String pass = tvPass.getText().toString();
 
-            String textError;
+            String textError = null;
             if ((tvName.getText().toString().length() < 1) && (tvSite.getText().toString().length() < 6)) {
                 textError = getString(R.string.site_name_and_number_cant_be);
                 tvName.requestFocus();
@@ -287,12 +287,13 @@ public class addEditAccount extends Fragment implements View.OnClickListener, Ra
 
 
                 FragmentTransaction ft = getFragmentManager().beginTransaction();
+                FragmentManager fm = getActivity().getSupportFragmentManager();
                 ReplaceFragments rp = new ReplaceFragments();
                 if (sc.getAccountNumber() > 1)
-                    rp.replaceWithAL(ft, false);
+                    rp.replaceWithAL(ft, fm, true, false);
                 else {
                     main.setAccount(0);
-                    rp.replaceWithRemote(ft);
+                    rp.replaceWithRemote(ft, fm, true);
                 }
 
             }

@@ -2,9 +2,11 @@ package com.astrolabe.iremote;
 
 /**
  * Created by SheraXiii on 12/24/13.
- * for $(COMPANY)
  */
 public class Constants {
+
+
+    public static final int C_DEFAULT = 0;
 
 
     public static int QUITAPP = 8;
@@ -41,6 +43,7 @@ public class Constants {
         public static final int DOOR = 6;
         public static final int ARMSS = 7;
         public static final int ARMS = 8;
+        public static final int CHECKCONNECTION = 9;
         public static final int REFRESHPULL = 10;
         public static final int INACTVE = 0;
         //=========================Croutons=====================
@@ -75,5 +78,6 @@ public class Constants {
         public static final int INFO_C = 3;
         public static final int SUCC_GL = 4;
         public static final int SUCC_C = 5;
+        public static final int NOPERMS = 6;
     }
 }

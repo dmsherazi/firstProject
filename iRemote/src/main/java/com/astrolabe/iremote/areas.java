@@ -44,6 +44,7 @@ public class areas extends Fragment implements View.OnClickListener, View.OnTouc
     static RadioButton radioStay;
     static RadioButton radioBoth;
     static EditText etZoneName;
+    ImageButton ibZoneSelect;
     ImageButton ibUpdate;
     ImageButton cdiaaal;
     ScrollView zoneDropList;
@@ -81,22 +82,28 @@ public class areas extends Fragment implements View.OnClickListener, View.OnTouc
     SupportClass sc = new SupportClass(getActivity());
     RelativeLayout mainRL;
     static RelativeLayout rlActivity;
+    RelativeLayout dial_layout;
 
+
+    private boolean canReset = true;
 
     // aLL ACTIVITIES
     Integer tries = 0;
     long Account;
+    private int panelControl;
+    private String AccountName;
+    private String AccountTYpe;
     private String UserName;
+    private String SiteNumber;
     private String Pass;
+    // ImageButton cStatus;
+    boolean connection = false;
     main mActivity = null;
 
     public static Spinner sp;
     public static WebView wvLoading;
     public Handler resetStatusHandler = new Handler();
     private long restStatusInterval = 15000;
-
-    public areas() {
-    }
 
 
     @Override
@@ -127,9 +134,11 @@ public class areas extends Fragment implements View.OnClickListener, View.OnTouc
         mActivity.disableTouch();
         UserName = sc.getUser(Account);
         Pass = sc.getPass(Account);
+        SiteNumber = sc.getSite(Account);
 
 
-        int panelControl = sc.getControlPanelType(Account);
+        panelControl = sc.getControlPanelType(Account);
+        Typeface tf = Typeface.createFromAsset(getActivity().getAssets(), "Arial_Black.ttf");
 
 
         mainRL = (RelativeLayout) view.findViewById(R.id.main_areas);
@@ -226,6 +235,7 @@ public class areas extends Fragment implements View.OnClickListener, View.OnTouc
     public void onClick(View v) {
         mActivity = (main) getActivity();
         mActivity.cancelAllCroutons();
+        SupportClass sc = new SupportClass(getActivity());
         if ((v == fm) || (v == tv)) {
             if (!listOpen) {
                 listOpen = true;
@@ -368,7 +378,7 @@ public class areas extends Fragment implements View.OnClickListener, View.OnTouc
 
     }
 
-    public void sendingScreens() {
+    public void sendingScreens(SupportClass sc) {
 
         tv.setText("");
         mActivity.disableTouch();
@@ -383,13 +393,28 @@ public class areas extends Fragment implements View.OnClickListener, View.OnTouc
     }
 
 
-    public void sentSucc() {
+    public void sentSucc(SupportClass sc) {
         mainRL.setEnabled(false);
         mActivity.handler.removeCallbacksAndMessages(null);
         cdiaaal.setBackgroundResource(R.drawable.cd_confirmed);
         resetHandler.postDelayed(restRunnable, restInterval);
     }
 
+    public void resetStatusRing() {
+        mainRL.setEnabled(true);
+        mainRL.setClickable(true);
+        resetStatusHandler.postDelayed(restStatusRunnable, restStatusInterval);
+    }
+
+
+    public void removeStatusAndItsCallable() {
+        resetStatusHandler.removeCallbacks(restStatusRunnable);
+       /* oStatusRing.setBackgroundResource(R.drawable.as_dummy);
+        armStatusRing.setBackgroundResource(R.drawable.as_dummy);
+        gateStatusRing.setBackgroundResource(R.drawable.as_dummy);
+        doorStatusRing.setBackgroundResource(R.drawable.as_dummy);*/
+
+    }
 
     public void sentFailed() {
         mainRL.setEnabled(false);
@@ -450,7 +475,7 @@ public class areas extends Fragment implements View.OnClickListener, View.OnTouc
         public void run() {
             Log.e("Status ", "Ready to Send update");
 
-            if (ibUpdate.isShown() || listOpen) {
+            if (ibUpdate.isShown() || listOpen == true) {
                 Log.e("Status ", "Busy --- Sending update after 5 secs " + pressedButton1);
             } else {
                 Log.e("Status ", "Sending update");

@@ -48,13 +48,14 @@ public class accountLists extends Fragment implements View.OnClickListener {
         AccountNumbers = sc.getAccountNumber();
         if (AccountNumbers < 1) {
             FragmentTransaction ft = getFragmentManager().beginTransaction();
+            FragmentManager fm = getActivity().getSupportFragmentManager();
             ReplaceFragments rp = new ReplaceFragments();
-            rp.replaceWithAddEditAccount(ft);
+            rp.replaceWithAddEditAccount(ft, fm, true);
             mActivity.showCroutonMessage(getString(R.string.no_record_in_accounts), Constants.crs.INFO_C, Constants.crs.COUTION_MODE_DEFAULT);
             // sc.showDialog();
 
         } else
-            mActivity.showCroutonMessage("long press to edit or delete", Constants.crs.INFO_C, Constants.crs.COUTION_MODE_DEFAULT);
+            showCroutonMessage("long press to edit or delete", Constants.crs.INFO_C, Constants.crs.COUTION_MODE_DEFAULT);
         mActivity.cancelAllCroutons();
         list1 = (Button) view.findViewById(R.id.acc_1);
         list2 = (Button) view.findViewById(R.id.acc_2);
@@ -147,8 +148,44 @@ public class accountLists extends Fragment implements View.OnClickListener {
             .setDuration(Configuration.DURATION_INFINITE)
             .build();
     Crouton crouton;
+    private Crouton infiniteCrouton;
+
+    public void showCroutonMessage(String Text, int style, boolean mode) {
 
 
+        Crouton.clearCroutonsForActivity(getActivity());
+        Log.e("Crouton", " called");
+        // Todo: Here i am forcing display on Top
+        // Follow it
+
+        Style croutonStyle = null;
+        if (style == Constants.crs.ALERT_GL)// 0 == alert
+            croutonStyle = ALERT_G_LEFT;//, R.id.alternate_view_group);
+
+        else if (style == Constants.crs.ALERT_C)// 0 == alert
+            croutonStyle = ALERT;//, R.id.alternate_view_group);
+
+        if (style == Constants.crs.INFO_GL)// 0 == alert
+            croutonStyle = INFO_G_LEFT;//, R.id.alternate_view_group);
+
+        else if (style == Constants.crs.INFO_C)// 0 == alert
+            croutonStyle = INFO;//, R.id.alternate_view_group);
+
+        else if (style == Constants.crs.SUCC_GL)// 0 == alert
+            croutonStyle = SUCC_G_LEFT;//, R.id.alternate_view_group);
+
+        else if (style == Constants.crs.SUCC_C)
+            croutonStyle = SUCC;//, R.id.alternate_view_group);
+
+
+        crouton = Crouton.makeText(getActivity(), Text, croutonStyle);
+
+        if (mode) infiniteCrouton = crouton;
+
+        crouton.setOnClickListener(this).setConfiguration(mode ? CONFIGURATION_INFINITE : Configuration.DEFAULT).show();
+
+
+    }
 
     public void makeAllInvisible() {
         list1.setVisibility(View.INVISIBLE);
@@ -204,8 +241,9 @@ public class accountLists extends Fragment implements View.OnClickListener {
         main.setAccount(account);
 
         FragmentTransaction ft = getFragmentManager().beginTransaction();
+        FragmentManager fm = getActivity().getSupportFragmentManager();
         ReplaceFragments rp = new ReplaceFragments();
-        rp.replaceWithAddEditAccount(ft);
+        rp.replaceWithAddEditAccount(ft, fm, true);
 
     }
 
@@ -224,8 +262,9 @@ public class accountLists extends Fragment implements View.OnClickListener {
 
         db.close();
         FragmentTransaction ft = getFragmentManager().beginTransaction();
+        FragmentManager fm = getActivity().getSupportFragmentManager();
         ReplaceFragments rp = new ReplaceFragments();
-        rp.replaceWithAL(ft, false);
+        rp.replaceWithAL(ft, fm, true, false);
 
     }
 
@@ -248,8 +287,9 @@ public class accountLists extends Fragment implements View.OnClickListener {
         //main mActivity = (main) getActivity();
         main.setAccount(account);
         FragmentTransaction ft = getFragmentManager().beginTransaction();
+        FragmentManager fm = getActivity().getSupportFragmentManager();
         ReplaceFragments rp = new ReplaceFragments();
-        rp.replaceWithRemote(ft);
+        rp.replaceWithRemote(ft, fm, true);
     }
 
 }

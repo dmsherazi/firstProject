@@ -142,6 +142,9 @@ public class sh_areas extends Fragment implements View.OnClickListener, View.OnT
         wvLoading.setVisibility(View.VISIBLE);
 
 
+        Typeface tf = Typeface.createFromAsset(getActivity().getAssets(), "Arial_Black.ttf");
+
+
         statusHandler.postDelayed(checkStatRun, statusInterval);
         mActivity.enableTouch();
 
@@ -149,45 +152,45 @@ public class sh_areas extends Fragment implements View.OnClickListener, View.OnT
     }
 
     public static void makeAllInvisible() {
-        ib1.setVisibility(View.INVISIBLE);
-        ib2.setVisibility(View.INVISIBLE);
-        ib3.setVisibility(View.INVISIBLE);
-        ib4.setVisibility(View.INVISIBLE);
-        ib5.setVisibility(View.INVISIBLE);
-        ib6.setVisibility(View.INVISIBLE);
-        ib7.setVisibility(View.INVISIBLE);
-        ib8.setVisibility(View.INVISIBLE);
-        ib9.setVisibility(View.INVISIBLE);
+        ib1.setVisibility(View.GONE);
+        ib2.setVisibility(View.GONE);
+        ib3.setVisibility(View.GONE);
+        ib4.setVisibility(View.GONE);
+        ib5.setVisibility(View.GONE);
+        ib6.setVisibility(View.GONE);
+        ib7.setVisibility(View.GONE);
+        ib8.setVisibility(View.GONE);
+        ib9.setVisibility(View.GONE);
 
-        ib10.setVisibility(View.INVISIBLE);
-        ib11.setVisibility(View.INVISIBLE);
-        ib12.setVisibility(View.INVISIBLE);
-        ib13.setVisibility(View.INVISIBLE);
-        ib14.setVisibility(View.INVISIBLE);
-        ib15.setVisibility(View.INVISIBLE);
-        ib16.setVisibility(View.INVISIBLE);
-        ib17.setVisibility(View.INVISIBLE);
-        ib18.setVisibility(View.INVISIBLE);
+        ib10.setVisibility(View.GONE);
+        ib11.setVisibility(View.GONE);
+        ib12.setVisibility(View.GONE);
+        ib13.setVisibility(View.GONE);
+        ib14.setVisibility(View.GONE);
+        ib15.setVisibility(View.GONE);
+        ib16.setVisibility(View.GONE);
+        ib17.setVisibility(View.GONE);
+        ib18.setVisibility(View.GONE);
 
-        bn1.setVisibility(View.INVISIBLE);
-        bn2.setVisibility(View.INVISIBLE);
-        bn3.setVisibility(View.INVISIBLE);
-        bn4.setVisibility(View.INVISIBLE);
-        bn5.setVisibility(View.INVISIBLE);
-        bn6.setVisibility(View.INVISIBLE);
-        bn7.setVisibility(View.INVISIBLE);
-        bn8.setVisibility(View.INVISIBLE);
-        bn9.setVisibility(View.INVISIBLE);
+        bn1.setVisibility(View.GONE);
+        bn2.setVisibility(View.GONE);
+        bn3.setVisibility(View.GONE);
+        bn4.setVisibility(View.GONE);
+        bn5.setVisibility(View.GONE);
+        bn6.setVisibility(View.GONE);
+        bn7.setVisibility(View.GONE);
+        bn8.setVisibility(View.GONE);
+        bn9.setVisibility(View.GONE);
 
-        bn10.setVisibility(View.INVISIBLE);
-        bn11.setVisibility(View.INVISIBLE);
-        bn12.setVisibility(View.INVISIBLE);
-        bn13.setVisibility(View.INVISIBLE);
-        bn14.setVisibility(View.INVISIBLE);
-        bn15.setVisibility(View.INVISIBLE);
-        bn16.setVisibility(View.INVISIBLE);
-        bn17.setVisibility(View.INVISIBLE);
-        bn18.setVisibility(View.INVISIBLE);
+        bn10.setVisibility(View.GONE);
+        bn11.setVisibility(View.GONE);
+        bn12.setVisibility(View.GONE);
+        bn13.setVisibility(View.GONE);
+        bn14.setVisibility(View.GONE);
+        bn15.setVisibility(View.GONE);
+        bn16.setVisibility(View.GONE);
+        bn17.setVisibility(View.GONE);
+        bn18.setVisibility(View.GONE);
     }
 
 
@@ -201,11 +204,11 @@ public class sh_areas extends Fragment implements View.OnClickListener, View.OnT
 
         }
     };
-
     @Override
     public void onClick(View v) {
         mActivity = (main) getActivity();
         mActivity.cancelAllCroutons();
+        SupportClass sc = new SupportClass(getActivity());
 
     }
 
@@ -351,7 +354,7 @@ public class sh_areas extends Fragment implements View.OnClickListener, View.OnT
   */
     @Override
     public void onResume() {
-        Log.e("DEBUG", "onResume of LoginFragment");
+        Log.e("DEBUG", "onResume of sh areas");
         main.pressedButton = 0;
         super.onResume();
 
@@ -360,7 +363,7 @@ public class sh_areas extends Fragment implements View.OnClickListener, View.OnT
 
     @Override
     public void onPause() {
-        Log.e("DEBUG", "OnPause of loginFragment");
+        Log.e("DEBUG", "OnPause of sh areas");
         super.onPause();
         statusHandler.removeCallbacks(checkStatRun);
     }

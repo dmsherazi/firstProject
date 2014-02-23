@@ -49,6 +49,7 @@ public class timers extends Fragment implements View.OnClickListener, View.OnTou
     ImageButton SureButton;
     ImageButton done;
     public static Button statusImage;
+    public static String[][] timerNames = new String[8][15];
 
     RelativeLayout mainRL;
     static RelativeLayout rlActivity;
@@ -68,6 +69,8 @@ public class timers extends Fragment implements View.OnClickListener, View.OnTou
     static ImageButton doorStatusRing;
     static ImageButton gateStatusRing;*/
     static LinearLayout fl;
+
+    private boolean canReset = true;
 
     // aLL ACTIVITIES
     long Account;
@@ -214,6 +217,7 @@ public class timers extends Fragment implements View.OnClickListener, View.OnTou
     }
 
     public void showTimerDial() {
+        canReset = true;
         pressedButton = Constants.pBs.INACTVE;
         dial_layout.setVisibility(View.VISIBLE);
         settings_layout.setVisibility(View.INVISIBLE);
@@ -226,6 +230,7 @@ public class timers extends Fragment implements View.OnClickListener, View.OnTou
     }
 
     private void showSettingsScreen() {
+        canReset = false;
         dial_layout.setVisibility(View.INVISIBLE);
         settings_layout.setVisibility(View.VISIBLE);
         bOFF.setText(getString(R.string.set_off_time));
@@ -247,6 +252,7 @@ public class timers extends Fragment implements View.OnClickListener, View.OnTou
     public void onClick(View v) {
         mActivity = (main) getActivity();
         mActivity.cancelAllCroutons();
+        SupportClass sc = new SupportClass(getActivity());
         if (v == t1s) {
             //siteNameAndType.setText("Disarm pressed");
             commonFunction(1, R.drawable.t_t1);
@@ -344,7 +350,7 @@ public class timers extends Fragment implements View.OnClickListener, View.OnTou
     }
 
 
-    public void sendingScreens() {
+    public void sendingScreens(SupportClass sc) {
 
         tvCD.setText("");
         inactiveScreen();
@@ -357,11 +363,18 @@ public class timers extends Fragment implements View.OnClickListener, View.OnTou
     }
 
 
-    public void sentSucc() {
+    public void sentSucc(SupportClass sc) {
         mainRL.setEnabled(false);
         mActivity.handler.removeCallbacksAndMessages(null);
         SureButton.setBackgroundResource(R.drawable.cd_confirmed);
         resetHandler.postDelayed(restRunnable, restInterval);
+    }
+
+    public void resetStatusRing() {
+        mainRL.setEnabled(true);
+        mainRL.setClickable(true);
+        long restStatusInterval = 15000;
+        resetStatusHandler.postDelayed(restStatusRunnable, restStatusInterval);
     }
 
     private void inactiveScreen() {
@@ -370,8 +383,18 @@ public class timers extends Fragment implements View.OnClickListener, View.OnTou
         SureButton.setBackgroundResource(R.drawable.u_cd_inactive);
         dial_layout.setVisibility(View.VISIBLE);
         settings_layout.setVisibility(View.INVISIBLE);
+        canReset = true;
         pressedButton = Constants.pBs.INACTVE;
         tvCD.setText("");
+
+    }
+
+    public void removeStatusAndItsCallable() {
+        resetStatusHandler.removeCallbacks(restStatusRunnable);
+       /* oStatusRing.setBackgroundResource(R.drawable.as_dummy);
+        armStatusRing.setBackgroundResource(R.drawable.as_dummy);
+        gateStatusRing.setBackgroundResource(R.drawable.as_dummy);
+        doorStatusRing.setBackgroundResource(R.drawable.as_dummy);*/
 
     }
 
@@ -492,6 +515,15 @@ public class timers extends Fragment implements View.OnClickListener, View.OnTou
             reset_StatusRing();
         }
     };
+
+    public void sentSuccPull(SupportClass sc) {
+
+        mainRL.setEnabled(false);
+        mActivity.handler.removeCallbacksAndMessages(null);
+        centerBtn.setBackgroundResource(R.drawable.r_720_inactive);
+        //SureButton.setBackgroundResource(R.drawable.cd_confirmed);
+        resetHandler.postDelayed(restStatusRunnable, restInterval);
+    }
 
     @Override
     public void onResume() {

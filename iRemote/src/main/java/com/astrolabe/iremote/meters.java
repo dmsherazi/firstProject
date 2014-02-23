@@ -46,6 +46,10 @@ public class meters extends Fragment implements View.OnClickListener, View.OnTou
         ft1.replace(R.id.menuFragment, firstFragment1, mActivity.getString(R.string.menuFragment));
         ft1.commit();
 
+        int[] colorRange = {Color.rgb(27, 202, 33), Color.rgb(232, 231, 33), Color.rgb(232, 111, 33), Color.rgb(231, 32, 43)};
+        float[] RANGE_VALUES1 = {40.0f, 60.0f, 70.0f, 100.0f};
+
+        SupportClass sc = new SupportClass(getActivity());
         gvP1 = (GaugeView) view.findViewById(R.id.gP1);
         gvP2 = (GaugeView) view.findViewById(R.id.gP2);
         gvP3 = (GaugeView) view.findViewById(R.id.gP3);

@@ -349,6 +349,10 @@ public class users extends Fragment implements View.OnClickListener, View.OnTouc
         }*/
     }
 
+    public static void tvSetText(String str) {
+        etNumber.setText(str);
+    }
+
     public void makeAllInvisible() {
         Log.e("List", "making Invisible");
         list1.setVisibility(View.INVISIBLE);
@@ -414,7 +418,7 @@ public class users extends Fragment implements View.OnClickListener, View.OnTouc
         }
         if (v == addMU) {
             if (pressedButton == Constants.pBs.ADDMU)
-                reset_cd();
+                reset_cd(sc);
             else {
 
                 uCDialInner.setBackgroundResource(R.drawable.u_inner_active);
@@ -434,7 +438,7 @@ public class users extends Fragment implements View.OnClickListener, View.OnTouc
         }
         if (v == bTimers) {
             if (pressedButton == Constants.pBs.U_TIMERS)
-                reset_cd();
+                reset_cd(sc);
             else {
                 uCDialInner.setBackgroundResource(R.drawable.u_inner_active);
                 ucDialOuter.setBackgroundResource(R.drawable.users_timers);
@@ -446,7 +450,7 @@ public class users extends Fragment implements View.OnClickListener, View.OnTouc
         }
         if (v == bZones) {
             if (pressedButton == Constants.pBs.U_ZONES)
-                reset_cd();
+                reset_cd(sc);
             else {
                 uCDialInner.setBackgroundResource(R.drawable.u_inner_active);
                 ucDialOuter.setBackgroundResource(R.drawable.users_zones);
@@ -458,7 +462,7 @@ public class users extends Fragment implements View.OnClickListener, View.OnTouc
         }
         if (v == bMeters) {
             if (pressedButton == Constants.pBs.U_METERS)
-                reset_cd();
+                reset_cd(sc);
             else {
                 uCDialInner.setBackgroundResource(R.drawable.u_inner_active);
                 ucDialOuter.setBackgroundResource(R.drawable.users_meters);
@@ -471,7 +475,7 @@ public class users extends Fragment implements View.OnClickListener, View.OnTouc
 
         if (v == addNU) {
             if (pressedButton == Constants.pBs.ADDNU)
-                reset_cd();
+                reset_cd(sc);
             else {
 
                 ucDialOuter.setBackgroundResource(R.drawable.u_v9_add_nu);
@@ -541,7 +545,7 @@ public class users extends Fragment implements View.OnClickListener, View.OnTouc
         }
         if (v == delMU) {
             if (pressedButton == Constants.pBs.DELMU)
-                reset_cd();
+                reset_cd(sc);
             else {
 
                 uCDialInner.setBackgroundResource(R.drawable.u_inner_active);
@@ -560,7 +564,7 @@ public class users extends Fragment implements View.OnClickListener, View.OnTouc
         }
         if (v == delNU) {
             if (pressedButton == Constants.pBs.DELNU)
-                reset_cd();
+                reset_cd(sc);
             else {
                 ucDialOuter.setBackgroundResource(R.drawable.u_v9_del_nu);
                 uCDialInner.setBackgroundResource(R.drawable.u_inner_active);
@@ -572,7 +576,7 @@ public class users extends Fragment implements View.OnClickListener, View.OnTouc
         }
         if (v == lists) {
             if (pressedButton == Constants.pBs.LISTS)
-                reset_cd();
+                reset_cd(sc);
             else {
 
                 if (sc.getControlPanelType(Account) == 9)
@@ -605,13 +609,13 @@ public class users extends Fragment implements View.OnClickListener, View.OnTouc
                     delnuShowFunc();
                     break;
                 case Constants.pBs.U_ZONES:
-                    rp.replaceWithAreas(ft);
+                    rp.replaceWithAreas(ft, fm, true);
                     break;
                 case Constants.pBs.U_METERS:
-                    rp.replaceWithMeters(ft);
+                    rp.replaceWithMeters(ft, fm, true);
                     break;
                 case Constants.pBs.U_TIMERS:
-                    rp.replaceWithTimers(ft);
+                    rp.replaceWithTimers(ft, fm, true);
                     break;
                 case Constants.pBs.LISTS:
 
@@ -727,7 +731,7 @@ public class users extends Fragment implements View.OnClickListener, View.OnTouc
         UsersPermissions.setVisibility(View.VISIBLE);
     }
 
-    public void sendingScreens() {
+    public void sendingScreens(SupportClass sc) {
 
         uCText.setText("");
         mainRL.setEnabled(false);
@@ -795,8 +799,8 @@ public class users extends Fragment implements View.OnClickListener, View.OnTouc
 
     public void onCreateContextMenu(ContextMenu menu, View v,
                                     ContextMenu.ContextMenuInfo menuInfo) {
-        if (list4.isShown() && (list4.getText().toString().equals(getString(R.string.add_new_user)))) {
-        }
+        if (list4.isShown() && (list4.getText().toString().equals(getString(R.string.add_new_user))))
+            return;
         else {
             super.onCreateContextMenu(menu, v, menuInfo);
             menu.add(0, MENU_EDIT, 0, "Edit");
@@ -933,7 +937,7 @@ public class users extends Fragment implements View.OnClickListener, View.OnTouc
 
         etNumber.setText("");
         numb = "";
-        if (main.editing) {
+        if (main.editing == true) {
             Log.e("EDIT USER", "used functions");
             etNumber.setEnabled(false);
             etNumber.setEnabled(false);
@@ -1049,9 +1053,22 @@ public class users extends Fragment implements View.OnClickListener, View.OnTouc
     Runnable restRunnable = new Runnable() {
         @Override
         public void run() {
-            reset_cd();
+            reset_cd(new SupportClass(getActivity()));
         }
     };
+
+    public void reset_cd(SupportClass supportClass) {
+        inactiveScreen();
+        uCText.setVisibility(View.VISIBLE);
+        mainRL.setEnabled(true);
+        mainRL.setClickable(true);
+        uCText.setText("");
+        pressedButton = Constants.pBs.INACTVE;
+        uCDialInner.setEnabled(false);
+        canReset = true;
+        mActivity.enableTouch();
+
+    }
 
     Runnable restStatusRunnable = new Runnable() {
         @Override
@@ -1092,7 +1109,7 @@ public class users extends Fragment implements View.OnClickListener, View.OnTouc
         etNumber.setText(meMyNumber);
     }
 
-    public void sentSucc() {
+    public void sentSucc(SupportClass sc) {
         mainRL.setEnabled(false);
         uCText.setVisibility(View.GONE);
         mActivity.handler.removeCallbacksAndMessages(null);

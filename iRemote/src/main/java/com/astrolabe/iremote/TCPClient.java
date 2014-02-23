@@ -2,10 +2,8 @@ package com.astrolabe.iremote;
 
 /**
  * Created by Abu-Umar on 12/17/13.
- for $(COMPANY)
  */
 
-import android.os.Handler;
 import android.util.Log;
 
 import java.io.BufferedReader;
@@ -26,13 +24,21 @@ public class TCPClient {
     public static int SERVERPORT = 20108;
     private OnMessageReceived mMessageListener = null;
     private boolean mRun = false;
+    private boolean mKill = false;
+    int testGit;
     PrintWriter out;
     public boolean isConnected = false;
     public BufferedReader in;
     public Socket socket;
-    private String mSite="123";
-
     // Context ourContext;
+
+    /**
+     * Constructor of the class. OnMessagedReceived listens for the messages received from server
+     */
+    public void killTask(boolean bKill) {
+        if (mKill) bKill = true;
+        else bKill = false;
+    }
 
     public TCPClient(OnMessageReceived listener) {
         mMessageListener = listener;
@@ -63,12 +69,8 @@ public class TCPClient {
         }
         mRun = false;
     }
-    Handler reconnectConnHandler = new Handler();
 
-
-    public int run_tcp(String siteNumber) {
-
-        mSite=siteNumber;
+    public int run(String siteNumber) {
 
         mRun = true;
         int returnVal = 0;
@@ -100,8 +102,11 @@ public class TCPClient {
 
                     String total = "";
                     //BufferedReader in = new BufferedReader(new InputStreamReader(s.getInputStream()));;
-                    while (total.length() < 360 && (!total.endsWith("!!"))) {
-                         // if the string is less then 460 chars long and not ending with !!
+                    while (total.length() < 360 && (total.endsWith("!!") == false)) {
+                        //Todo:  correct it after corrections KAS.cpp
+
+
+                        // if the string is less then 160 chars long and not ending with !!
                         int c = in.read(); // read next char in buffer
                         if (c == -1)
                             break; // in.read() return -1 if the end of the buffer was reached
@@ -124,7 +129,7 @@ public class TCPClient {
 
             } catch (Exception e) {
 
-                e.printStackTrace();
+
             } finally {
                 //the socket must be closed. It is not possible to reconnect to this socket
                 // after it is closed, which means a new socket instance has to be created.

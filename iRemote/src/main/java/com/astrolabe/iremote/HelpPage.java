@@ -30,6 +30,7 @@ public class HelpPage extends Fragment implements View.OnClickListener {
 
 
         assert view != null;
+        SupportClass sc = new SupportClass(getActivity());
         main mActivity = (main) getActivity();
         mActivity.setCurrFrag(Constants.Pages.HELPPAGE);
 

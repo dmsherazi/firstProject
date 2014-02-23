@@ -1,5 +1,6 @@
 package com.astrolabe.iremote;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -9,10 +10,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ListView;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.londatiga.android.ActionItem;
 import com.londatiga.android.QuickAction;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Abu-Umar on 12/22/13.
@@ -23,6 +29,10 @@ public class menuFrag extends Fragment implements View.OnClickListener {
     QuickAction quickActionPopup1;
     ImageButton ibSettings, users, timers, remote, areas;
     static TextView title;
+    List<Map<String, String>> moreList;
+    private PopupWindow pwMyPopWindow;// popupwindow
+    private ListView lvPopupList;// popupwindowä¸­çš„ListView
+    private int NUM_OF_VISIBLE_LIST_ROWS = 4;//
 
     main mActivity;
 
@@ -55,7 +65,7 @@ public class menuFrag extends Fragment implements View.OnClickListener {
         if (frag == Constants.Pages.ACCLISTS) {
             option1 = new ActionItem(Constants.Pages.ADDEDITSCREEN, "add acc", getResources().getDrawable(R.drawable.add_account_pu));
             title.setText("ACCOUNTS LIST");
-            main.setAccount(25);
+            mActivity.setAccount(25);
         } else {
             option1 = new ActionItem(Constants.Pages.ACCLISTS, "acc list", getResources().getDrawable(R.drawable.list_pu));
         }
@@ -135,19 +145,20 @@ public class menuFrag extends Fragment implements View.OnClickListener {
             @Override
             public void onItemClick(QuickAction source, int pos, int actionId) {
 
+                SupportClass sc = new SupportClass(getActivity());
                 FragmentTransaction ft = getFragmentManager().beginTransaction();
                 FragmentManager fm = getActivity().getSupportFragmentManager();
                 ReplaceFragments rp = new ReplaceFragments();
                 if (actionId == Constants.Pages.ADDEDITSCREEN) {
-                    main.setAccount(25);
-                    rp.replaceWithAddEditAccount(ft);
+                    mActivity.setAccount(25);
+                    rp.replaceWithAddEditAccount(ft, fm, true);
                 } else if (actionId == Constants.Pages.ACCLISTS) {
-                    rp.replaceWithAL(ft, true);
+                    rp.replaceWithAL(ft, fm, true, true);
 
                 } else if (actionId == Constants.Pages.ABOUTPAGE) {
-                    rp.replaceWithAboutApp(ft);
+                    rp.replaceWithAboutApp(ft, fm, true);
                 } else if (actionId == Constants.Pages.HELPPAGE) {
-                    rp.replaceWithHelp(ft);
+                    rp.replaceWithHelp(ft, fm, true);
                 } else if (actionId == Constants.QUITAPP) {
                     quitApp2();
 
@@ -170,6 +181,14 @@ public class menuFrag extends Fragment implements View.OnClickListener {
     public static void setTitle(String Text) {
         title.setText(Text); //Todo :Check for null pointer exception Errors
 
+    }
+
+    public void quitApp() {
+        Intent intent = new Intent(Intent.ACTION_MAIN);
+        intent.addCategory(Intent.CATEGORY_HOME);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);//***Change Here***
+        getActivity().startActivity(intent);
+        System.exit(0);
     }
 
     public void quitApp2() {
@@ -199,13 +218,21 @@ public class menuFrag extends Fragment implements View.OnClickListener {
                         timerFrag = (areas) fm.findFragmentById(R.id.detailFragment);
                         timerFrag.selectZoneDialog();
                     }*/
-                    rp.replaceWithSHAreas(ft);
+                    rp.replaceWithSHAreas(ft, fm, true);
                 } else showChooseAccount();
                 break;
 
             case R.id.ibTimer:
-                if (mActivity.getAccount()== 25) {
-                 showChooseAccount();}
+                if (mActivity.getAccount() != 25) {
+                    /*if (mActivity.getCurrFrag() == Constants.Pages.TIMERSPAGE) {
+                        timers timerFrag;
+                        timerFrag = (timers) fm.findFragmentById(R.id.detailFragment);
+                        timerFrag.showTimerDial();
+                    }
+                    else*/
+                    //rp.replaceWithMeters(ft, fm, true);
+                } else
+                    showChooseAccount();
                 break;
             case R.id.ibUsers:
                 //mActivity.showCroutonMessage("Users clicked", Constants.SUCC_C, Constants.crs.COUTION_MODE_DEFAULT, true);
@@ -215,7 +242,7 @@ public class menuFrag extends Fragment implements View.OnClickListener {
                         timerFrag = (users) fm.findFragmentById(R.id.detailFragment);
                         timerFrag.reset_cd();
                     } else
-                        rp.replaceWithUsers(ft);
+                        rp.replaceWithUsers(ft, fm, true);
                 } else showChooseAccount();
                 break;
             case R.id.ibRemote:
@@ -223,9 +250,9 @@ public class menuFrag extends Fragment implements View.OnClickListener {
                     if (mActivity.getCurrFrag() == Constants.Pages.REMOTEPAGE) {
                         remote timerFrag;
                         timerFrag = (remote) fm.findFragmentById(R.id.detailFragment);
-                        timerFrag.reset_cd();
+                        timerFrag.reset_cd(new SupportClass(getActivity()));
                     } else
-                        rp.replaceWithRemote(ft);
+                        rp.replaceWithRemote(ft, fm, true);
                 } else showChooseAccount();
                 break;
 
@@ -235,10 +262,11 @@ public class menuFrag extends Fragment implements View.OnClickListener {
 
     private void showChooseAccount() {
         FragmentTransaction ft = getFragmentManager().beginTransaction();
+        FragmentManager fm = getActivity().getSupportFragmentManager();
         ReplaceFragments rp = new ReplaceFragments();
         mActivity.showCroutonMessage("Choose an account from List", Constants.crs.ALERT_C, Constants.crs.COUTION_MODE_DEFAULT);
         if (mActivity.getCurrFrag() != Constants.Pages.ACCLISTS)
-            rp.replaceWithAL(ft, true);
+            rp.replaceWithAL(ft, fm, true, true);
     }
 
 

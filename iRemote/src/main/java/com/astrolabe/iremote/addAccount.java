@@ -39,8 +39,9 @@ public class addAccount extends Fragment {
             public void onClick(View view) {
                 main.setAccount(25);
                 FragmentTransaction ft = getFragmentManager().beginTransaction();
+                FragmentManager fm = getActivity().getSupportFragmentManager();
                 ReplaceFragments rp = new ReplaceFragments();
-                rp.replaceWithAddEditAccount(ft);
+                rp.replaceWithAddEditAccount(ft, fm, true);
             }
         });
 
