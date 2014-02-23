@@ -799,9 +799,8 @@ public class users extends Fragment implements View.OnClickListener, View.OnTouc
 
     public void onCreateContextMenu(ContextMenu menu, View v,
                                     ContextMenu.ContextMenuInfo menuInfo) {
-        if (list4.isShown() && (list4.getText().toString().equals(getString(R.string.add_new_user))))
-            return;
-        else {
+        if (list4.isShown() && (list4.getText().toString().equals(getString(R.string.add_new_user)))) {
+        } else {
             super.onCreateContextMenu(menu, v, menuInfo);
             menu.add(0, MENU_EDIT, 0, "Edit");
             menu.add(0, MENU_DELETE, 0, "Delete");
@@ -937,7 +936,7 @@ public class users extends Fragment implements View.OnClickListener, View.OnTouc
 
         etNumber.setText("");
         numb = "";
-        if (main.editing == true) {
+        if (main.editing) {
             Log.e("EDIT USER", "used functions");
             etNumber.setEnabled(false);
             etNumber.setEnabled(false);

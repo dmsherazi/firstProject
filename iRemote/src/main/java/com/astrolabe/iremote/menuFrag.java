@@ -250,7 +250,7 @@ public class menuFrag extends Fragment implements View.OnClickListener {
                     if (mActivity.getCurrFrag() == Constants.Pages.REMOTEPAGE) {
                         remote timerFrag;
                         timerFrag = (remote) fm.findFragmentById(R.id.detailFragment);
-                        timerFrag.reset_cd(new SupportClass(getActivity()));
+                        timerFrag.reset_cd();
                     } else
                         rp.replaceWithRemote(ft, fm, true);
                 } else showChooseAccount();

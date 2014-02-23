@@ -32,14 +32,6 @@ public class TCPClient {
     public Socket socket;
     // Context ourContext;
 
-    /**
-     * Constructor of the class. OnMessagedReceived listens for the messages received from server
-     */
-    public void killTask(boolean bKill) {
-        if (mKill) bKill = true;
-        else bKill = false;
-    }
-
     public TCPClient(OnMessageReceived listener) {
         mMessageListener = listener;
         //ourContext=context;
@@ -102,7 +94,7 @@ public class TCPClient {
 
                     String total = "";
                     //BufferedReader in = new BufferedReader(new InputStreamReader(s.getInputStream()));;
-                    while (total.length() < 360 && (total.endsWith("!!") == false)) {
+                    while (total.length() < 360 && (!total.endsWith("!!"))) {
                         //Todo:  correct it after corrections KAS.cpp
 
 

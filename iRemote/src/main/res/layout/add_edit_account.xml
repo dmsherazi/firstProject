@@ -8,8 +8,6 @@
     android:visibility="visible">
 
 
-
-
     <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
@@ -32,8 +30,7 @@
             android:layout_centerHorizontal="true"
             android:id="@+id/FLName"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="@dimen/add_account_margin_top"
-            >
+            android:layout_marginTop="@dimen/add_account_margin_top">
 
             <ImageButton
                 android:layout_width="fill_parent"
@@ -63,8 +60,7 @@
             android:id="@+id/FLSiteNumber"
             android:layout_below="@id/FLName"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="@dimen/add_account_margin_top"
-            >
+            android:layout_marginTop="@dimen/add_account_margin_top">
 
             <ImageButton
                 android:layout_width="fill_parent"
@@ -86,7 +82,7 @@
                 android:inputType="phone"
                 android:gravity="center"
                 android:password="false"
-                android:textCursorDrawable="@null"/>
+                android:textCursorDrawable="@null" />
 
             <Button
                 android:layout_width="@dimen/contacts_lookup_width"
@@ -111,7 +107,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="@dimen/input_box_height"
                 android:background="@drawable/add_account_username"
-                android:contentDescription="@string/desc_user_name"/>
+                android:contentDescription="@string/desc_user_name" />
 
             <EditText
                 android:layout_width="fill_parent"
@@ -126,7 +122,7 @@
                 android:digits="@string/onlyDigits_plus"
                 android:inputType="phone"
                 android:gravity="center"
-                android:textCursorDrawable="@null"/>
+                android:textCursorDrawable="@null" />
 
         </FrameLayout>
 
@@ -144,7 +140,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="@dimen/input_box_height"
                 android:background="@drawable/add_account_pass"
-                android:contentDescription="@string/desc_name_of_password"/>
+                android:contentDescription="@string/desc_name_of_password" />
 
             <EditText
                 android:layout_width="fill_parent"
@@ -160,63 +156,64 @@
                 android:inputType="phone|numberPassword"
                 android:gravity="center"
                 android:password="true"
-                android:textCursorDrawable="@null"/>
+                android:textCursorDrawable="@null" />
         </FrameLayout>
     </RelativeLayout>
 
 
+    <RadioGroup
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/ControlTYpe"
+        android:background="@drawable/as_list_open"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:layout_marginLeft="@dimen/leftRightMarginDL"
+        android:layout_marginRight="@dimen/leftRightMarginDL"
+        android:visibility="gone"
+        android:layout_marginTop="@dimen/margin_to_dl"
+        android:layout_below="@id/FLCTH"
 
-        <RadioGroup
+        >
+
+        <RadioButton
+            android:layout_marginLeft="@dimen/margin_dl_left_right_content"
+            android:layout_marginRight="@dimen/margin_dl_left_right_content"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/ControlTYpe"
-            android:background="@drawable/as_list_open"
-            android:layout_centerHorizontal="true"
-            android:layout_gravity="center"
-            android:layout_marginLeft="@dimen/leftRightMarginDL"
-            android:layout_marginRight="@dimen/leftRightMarginDL"
-            android:visibility="gone"
-            android:layout_marginTop="@dimen/margin_to_dl"
-            android:layout_below="@id/FLCTH"
+            android:layout_height="@dimen/radiobutton_dl_height"
+            android:id="@+id/S710"
+            android:drawableRight="@drawable/checkboxchecked"
+            android:background="@drawable/as_dummy"
+            android:gravity="center_vertical"
+            android:button="@null"
+            android:text="@string/demoAccount"
+            android:textColor="@drawable/account_list_color"
+            android:textSize="@dimen/input_box_text_size"
+            android:layout_gravity="top"
+            android:textStyle="bold"
+            android:layout_marginTop="@dimen/add_account_margin_top"
+            android:typeface="monospace"
+            android:enabled="true" />
 
-            >
+        <RadioButton
+            android:layout_marginLeft="@dimen/margin_dl_left_right_content"
+            android:layout_marginRight="@dimen/margin_dl_left_right_content"
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/radiobutton_dl_height"
+            android:id="@+id/S720"
+            android:drawableRight="@drawable/checkboxchecked"
+            android:background="@drawable/as_dummy"
+            android:gravity="center_vertical"
+            android:button="@null"
+            android:text="@string/shaula720"
+            android:textColor="@drawable/account_list_color"
+            android:textSize="@dimen/input_box_text_size"
+            android:layout_gravity="top"
+            android:textStyle="bold"
+            android:typeface="monospace"
+            android:enabled="true" />
 
-            <RadioButton
-                android:layout_marginLeft="@dimen/margin_dl_left_right_content"
-                android:layout_marginRight="@dimen/margin_dl_left_right_content"
-                android:layout_width="fill_parent"
-                android:layout_height="@dimen/radiobutton_dl_height"
-                android:id="@+id/S710"
-                android:drawableRight="@drawable/checkboxchecked"
-                android:background="@drawable/as_dummy"
-                android:gravity="center_vertical"
-                android:button="@null"
-                android:text="@string/demoAccount"
-                android:textColor="@drawable/account_list_color"
-                android:textSize="@dimen/input_box_text_size"
-                android:layout_gravity="top"
-                android:textStyle="bold"
-                android:layout_marginTop="@dimen/add_account_margin_top"
-                android:typeface="monospace"
-                android:enabled="true" />
-            <RadioButton
-                android:layout_marginLeft="@dimen/margin_dl_left_right_content"
-                android:layout_marginRight="@dimen/margin_dl_left_right_content"
-                android:layout_width="fill_parent"
-                android:layout_height="@dimen/radiobutton_dl_height"
-                android:id="@+id/S720"
-                android:drawableRight="@drawable/checkboxchecked"
-                android:background="@drawable/as_dummy"
-                android:gravity="center_vertical"
-                android:button="@null"
-                android:text="@string/shaula720"
-                android:textColor="@drawable/account_list_color"
-                android:textSize="@dimen/input_box_text_size"
-                android:layout_gravity="top"
-                android:textStyle="bold"
-                android:typeface="monospace"
-                android:enabled="true" />
-            <RadioButton
+        <RadioButton
             android:layout_marginLeft="@dimen/margin_dl_left_right_content"
             android:layout_marginRight="@dimen/margin_dl_left_right_content"
             android:layout_width="fill_parent"
@@ -231,11 +228,11 @@
             android:textSize="@dimen/input_box_text_size"
             android:layout_gravity="top"
             android:textStyle="bold"
-                android:typeface="monospace"
+            android:typeface="monospace"
             android:enabled="false"
-                android:visibility="gone"/>
+            android:visibility="gone" />
 
-        </RadioGroup>
+    </RadioGroup>
 
 
     <FrameLayout
@@ -260,12 +257,10 @@
             android:layout_height="@dimen/edit_text_height"
             android:id="@+id/as_tv_ct"
             android:layout_gravity="center|bottom"
-            android:layout_centerHorizontal="true"
             android:textSize="@dimen/input_box_text_size"
             android:visibility="visible"
             android:gravity="center"
             android:textColor="@drawable/account_list_color"
-            android:layout_alignParentEnd="true"
             android:textStyle="bold" />
 
     </FrameLayout>

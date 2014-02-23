@@ -1,6 +1,5 @@
 package com.astrolabe.iremote;
 
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
@@ -44,7 +43,6 @@ public class areas extends Fragment implements View.OnClickListener, View.OnTouc
     static RadioButton radioStay;
     static RadioButton radioBoth;
     static EditText etZoneName;
-    ImageButton ibZoneSelect;
     ImageButton ibUpdate;
     ImageButton cdiaaal;
     ScrollView zoneDropList;
@@ -68,7 +66,7 @@ public class areas extends Fragment implements View.OnClickListener, View.OnTouc
 
     RelativeLayout layout_areas;
     volatile int pressedButton1 = 0;
-    volatile int pressedButton = 0;
+    volatile int pressedButton;
     RelativeLayout otherThanDropList;
     FrameLayout fm;
     TextView tv;
@@ -82,28 +80,17 @@ public class areas extends Fragment implements View.OnClickListener, View.OnTouc
     SupportClass sc = new SupportClass(getActivity());
     RelativeLayout mainRL;
     static RelativeLayout rlActivity;
-    RelativeLayout dial_layout;
 
 
-    private boolean canReset = true;
-
-    // aLL ACTIVITIES
-    Integer tries = 0;
     long Account;
-    private int panelControl;
-    private String AccountName;
-    private String AccountTYpe;
+
     private String UserName;
-    private String SiteNumber;
     private String Pass;
-    // ImageButton cStatus;
-    boolean connection = false;
+
     main mActivity = null;
 
     public static Spinner sp;
     public static WebView wvLoading;
-    public Handler resetStatusHandler = new Handler();
-    private long restStatusInterval = 15000;
 
 
     @Override
@@ -134,13 +121,6 @@ public class areas extends Fragment implements View.OnClickListener, View.OnTouc
         mActivity.disableTouch();
         UserName = sc.getUser(Account);
         Pass = sc.getPass(Account);
-        SiteNumber = sc.getSite(Account);
-
-
-        panelControl = sc.getControlPanelType(Account);
-        Typeface tf = Typeface.createFromAsset(getActivity().getAssets(), "Arial_Black.ttf");
-
-
         mainRL = (RelativeLayout) view.findViewById(R.id.main_areas);
         rlActivity = (RelativeLayout) view.findViewById(R.id.areas_frag);
         rlActivity.setVisibility(View.GONE);
@@ -188,10 +168,6 @@ public class areas extends Fragment implements View.OnClickListener, View.OnTouc
         rlActivity.setVisibility(View.INVISIBLE);
 
         mActivity.disableTouch();
-        panelControl = 2;
-
-
-        // cStatus.setBackgroundResource(R.drawable.cross2);
 
         // remote buttons click listeners
         bZone1.setOnClickListener(this);
@@ -235,7 +211,7 @@ public class areas extends Fragment implements View.OnClickListener, View.OnTouc
     public void onClick(View v) {
         mActivity = (main) getActivity();
         mActivity.cancelAllCroutons();
-        SupportClass sc = new SupportClass(getActivity());
+
         if ((v == fm) || (v == tv)) {
             if (!listOpen) {
                 listOpen = true;
@@ -269,11 +245,12 @@ public class areas extends Fragment implements View.OnClickListener, View.OnTouc
             if (etZoneName.getText().toString().length() > 0) {
                 NameString = ",N=" + etZoneName.getText().toString();
             }
-            if ((etZoneName.getText().toString().length() > 0) || (ModeString.length() > 0))
+            if ((etZoneName.getText().toString().length() > 0) || (ModeString.length() > 0)) {
                 mActivity.sendMessage("**#zon up:" + UserName + "," + Pass + "-" + "n" + zoneLetters[pressedButton1]
                         + ModeString + PhType + NameString
                         + ",:!!", Constants.pBs.ZoneUPATE);
-            else {
+                mActivity.asked4update = false;
+            } else {
                 mActivity.showCroutonMessage(getString(R.string.no_data_to_update), Constants.crs.ALERT_C, Constants.crs.COUTION_MODE_DEFAULT);
             }
 
@@ -378,7 +355,7 @@ public class areas extends Fragment implements View.OnClickListener, View.OnTouc
 
     }
 
-    public void sendingScreens(SupportClass sc) {
+    public void sendingScreens() {
 
         tv.setText("");
         mActivity.disableTouch();
@@ -400,34 +377,11 @@ public class areas extends Fragment implements View.OnClickListener, View.OnTouc
         resetHandler.postDelayed(restRunnable, restInterval);
     }
 
-    public void resetStatusRing() {
-        mainRL.setEnabled(true);
-        mainRL.setClickable(true);
-        resetStatusHandler.postDelayed(restStatusRunnable, restStatusInterval);
-    }
-
-
-    public void removeStatusAndItsCallable() {
-        resetStatusHandler.removeCallbacks(restStatusRunnable);
-       /* oStatusRing.setBackgroundResource(R.drawable.as_dummy);
-        armStatusRing.setBackgroundResource(R.drawable.as_dummy);
-        gateStatusRing.setBackgroundResource(R.drawable.as_dummy);
-        doorStatusRing.setBackgroundResource(R.drawable.as_dummy);*/
-
-    }
 
     public void sentFailed() {
         mainRL.setEnabled(false);
         cdiaaal.setBackgroundResource(R.drawable.cd_failed);
         resetHandler.postDelayed(restRunnable, restInterval);
-    }
-
-    public void reset_StatusRing() {
-        mActivity.enableTouch();
-        mainRL.setEnabled(true);
-        mainRL.setClickable(true);
-
-
     }
 
 
@@ -460,7 +414,7 @@ public class areas extends Fragment implements View.OnClickListener, View.OnTouc
                 selectZoneDialog();
             } else {
                 rlActivity.setVisibility(View.VISIBLE);
-                tries = 0;
+
             }
             mActivity.cancelAllCroutons();
 
@@ -475,7 +429,7 @@ public class areas extends Fragment implements View.OnClickListener, View.OnTouc
         public void run() {
             Log.e("Status ", "Ready to Send update");
 
-            if (ibUpdate.isShown() || listOpen == true) {
+            if (ibUpdate.isShown() || listOpen) {
                 Log.e("Status ", "Busy --- Sending update after 5 secs " + pressedButton1);
             } else {
                 Log.e("Status ", "Sending update");
@@ -490,18 +444,12 @@ public class areas extends Fragment implements View.OnClickListener, View.OnTouc
             reset_cd();
         }
     };
-    Runnable restStatusRunnable = new Runnable() {
-        @Override
-        public void run() {
-            reset_StatusRing();
-        }
-    };
 
 
     @Override
     public void onResume() {
         Log.e("DEBUG", "onResume of LoginFragment");
-        tries = 0;
+
         selectZoneDialog();
         main.pressedButton = 0;
         super.onResume();

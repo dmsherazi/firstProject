@@ -57,8 +57,6 @@
                 android:textAlignment="center"
                 android:textColor="@drawable/color_remote_dial_text"
                 android:textStyle="normal"
-                android:autoText="false"
-                android:capitalize="characters"
                 android:clickable="true"
                 android:editable="false"
                 android:focusable="false"
@@ -74,6 +72,7 @@
                 android:layout_marginTop="22dp"
                 android:layout_alignParentTop="true"
                 android:layout_toLeftOf="@+id/uCdtextv" />
+
             <ImageButton
                 android:layout_width="60dp"
                 android:layout_height="80dp"
@@ -98,6 +97,7 @@
                 android:background="@android:color/transparent"
                 android:layout_alignTop="@+id/addMu"
                 android:layout_toRightOf="@+id/uCdtextv" />
+
             <ImageButton
                 android:layout_width="60dp"
                 android:layout_height="80dp"
@@ -114,6 +114,7 @@
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="8dp" />
+
             <ImageButton
                 android:layout_width="80dp"
                 android:layout_height="40dp"
@@ -160,10 +161,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="50dp"
                     android:id="@+id/u_user_number_ib"
-                    android:layout_alignParentEnd="true"
                     android:background="@drawable/add_account_sitenumber"
-                    android:layout_alignParentStart="false"
-                    android:layout_centerHorizontal="true"
                     android:visibility="visible"
                     android:layout_gravity="center" />
 
@@ -175,12 +173,10 @@
                     android:digits="01234567890+"
                     android:phoneNumber="true"
                     android:layout_gravity="center_horizontal|bottom"
-                    android:layout_centerHorizontal="true"
                     android:background="@android:color/transparent"
                     android:textSize="18dp"
                     android:textColor="@drawable/color_input_box"
                     android:gravity="center_vertical|center_horizontal"
-                    android:layout_alignParentEnd="true"
                     android:inputType="phone"
                     android:imeOptions="actionNext"
                     android:textCursorDrawable="@null"
@@ -215,10 +211,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="50dp"
                     android:id="@+id/u_pass_ib"
-                    android:layout_alignParentEnd="true"
                     android:background="@drawable/add_account_pass"
-                    android:layout_alignParentStart="false"
-                    android:layout_centerHorizontal="true"
                     android:visibility="visible"
                     android:layout_gravity="center" />
 
@@ -230,12 +223,10 @@
                     android:digits="01234567890+"
                     android:phoneNumber="true"
                     android:layout_gravity="center_horizontal|bottom"
-                    android:layout_centerHorizontal="true"
                     android:background="@android:color/transparent"
                     android:textSize="18dp"
                     android:textColor="@drawable/color_input_box"
                     android:gravity="center_vertical|center_horizontal"
-                    android:layout_alignParentEnd="true"
                     android:inputType="phone"
                     android:imeOptions="actionDone"
                     android:textCursorDrawable="@null"
@@ -492,7 +483,6 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
 
-                    android:layout_below="@+id/curPass"
                     android:focusableInTouchMode="false"
                     android:layout_marginTop="10dp">
 
@@ -521,7 +511,6 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
 
-                    android:layout_below="@+id/newPass"
                     android:focusableInTouchMode="false"
                     android:layout_marginTop="10dp">
 

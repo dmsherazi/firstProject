@@ -177,7 +177,7 @@ public class RadialPickerLayout extends FrameLayout implements OnTouchListener {
             return;
         }
         mIs24HourMode = is24HourMode;
-        mHideAmPm = Utils.isTouchExplorationEnabled(mAccessibilityManager) ? true : mIs24HourMode;
+        mHideAmPm = Utils.isTouchExplorationEnabled(mAccessibilityManager) || mIs24HourMode;
 
         mVibrate = vibrate;
 
@@ -529,9 +529,9 @@ public class RadialPickerLayout extends FrameLayout implements OnTouchListener {
             Log.e(TAG, "TimePicker does not support view at index " + index);
             return;
         }
-        
+
         //NineOldDroids does not work in this case due to denepency recursion. 
-        animate = animate && Build.VERSION.SDK_INT >= 14; 
+        animate = animate && Build.VERSION.SDK_INT >= 14;
 
         int lastIndex = getCurrentItemShowing();
         mCurrentItemShowing = index;

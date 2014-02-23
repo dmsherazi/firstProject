@@ -1,6 +1,5 @@
 package com.astrolabe.iremote;
 
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
@@ -55,7 +54,7 @@ public class sh_areas extends Fragment implements View.OnClickListener, View.OnT
     public static TextView bn16;
     public static TextView bn17;
     public static TextView bn18;
-    public static int statusInterval = 2000;
+    public static int statusInterval = 5000;
     main mActivity = null;
     private long Account;
     private String UserName;
@@ -129,11 +128,6 @@ public class sh_areas extends Fragment implements View.OnClickListener, View.OnT
 
         makeAllInvisible();
 
-        mActivity.sendMessage("**#areas:" + UserName + "," + Pass + "-:!!", Constants.pBs.AREAS);
-
-
-        statusHandler.postDelayed(checkStatRun, statusInterval);
-
 
         wvLoading = (WebView) view.findViewById(R.id.webView2);
         wvLoading.setBackgroundColor(0x00000000);
@@ -142,10 +136,6 @@ public class sh_areas extends Fragment implements View.OnClickListener, View.OnT
         wvLoading.setVisibility(View.VISIBLE);
 
 
-        Typeface tf = Typeface.createFromAsset(getActivity().getAssets(), "Arial_Black.ttf");
-
-
-        statusHandler.postDelayed(checkStatRun, statusInterval);
         mActivity.enableTouch();
 
         return view;
@@ -204,6 +194,7 @@ public class sh_areas extends Fragment implements View.OnClickListener, View.OnT
 
         }
     };
+
     @Override
     public void onClick(View v) {
         mActivity = (main) getActivity();
@@ -355,9 +346,8 @@ public class sh_areas extends Fragment implements View.OnClickListener, View.OnT
     @Override
     public void onResume() {
         Log.e("DEBUG", "onResume of sh areas");
-        main.pressedButton = 0;
         super.onResume();
-
+        checkStatRun.run();
 
     }
 

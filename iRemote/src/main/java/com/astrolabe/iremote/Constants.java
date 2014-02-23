@@ -6,12 +6,12 @@ package com.astrolabe.iremote;
 public class Constants {
 
 
-    public static final int C_DEFAULT = 0;
-
-
     public static int QUITAPP = 8;
 
     public static class Pages {
+        public static final int METERSPAGE = 9;
+        public static final int SMARTHOME = 10;
+        public static final int ADDACCOUNT = 9;
         //=========================Pages=====================
         public static int ADDEDITSCREEN = 0;
         public static int ACCLISTS = 1;
@@ -21,9 +21,6 @@ public class Constants {
         public static int USERSPAGE = 5;
         public static int HELPPAGE = 6;
         public static int ABOUTPAGE = 7;
-        public static final int METERSPAGE = 9;
-        public static final int SMARTHOME = 10;
-        public static final int ADDACCOUNT = 9;
     }
 
     public static class pBs {
@@ -43,7 +40,6 @@ public class Constants {
         public static final int DOOR = 6;
         public static final int ARMSS = 7;
         public static final int ARMS = 8;
-        public static final int CHECKCONNECTION = 9;
         public static final int REFRESHPULL = 10;
         public static final int INACTVE = 0;
         //=========================Croutons=====================
@@ -57,14 +53,14 @@ public class Constants {
         public static final int EDITUSER = 16;
         public static final int USERINFO = 17;
         public static final int CHPASS = 18;
-        public static int ADDMU2 = 19;
         public static final int U_TIMERS = 110;
         public static final int U_ZONES = 101;
         public static final int U_METERS = 102;
         //=========================Zones=====================
-        public static final int ZoneUPATE = 31;
-        public static int ZoneINFO = 32;
+        public static final int ZoneUPATE = 35;
         public static final int ZONENAMES = 33;
+        public static int ADDMU2 = 19;
+        public static int ZoneINFO = 32;
         public static int AREAS = 50;
     }
 
@@ -78,6 +74,5 @@ public class Constants {
         public static final int INFO_C = 3;
         public static final int SUCC_GL = 4;
         public static final int SUCC_C = 5;
-        public static final int NOPERMS = 6;
     }
 }

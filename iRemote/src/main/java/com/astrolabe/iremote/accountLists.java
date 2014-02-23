@@ -4,18 +4,12 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
 import android.view.ContextMenu;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-
-import de.keyboardsurfer.android.widget.crouton.Configuration;
-import de.keyboardsurfer.android.widget.crouton.Crouton;
-import de.keyboardsurfer.android.widget.crouton.Style;
 
 /**
  * Created by Abu-Umar on 12/22/13.
@@ -55,7 +49,7 @@ public class accountLists extends Fragment implements View.OnClickListener {
             // sc.showDialog();
 
         } else
-            showCroutonMessage("long press to edit or delete", Constants.crs.INFO_C, Constants.crs.COUTION_MODE_DEFAULT);
+            mActivity.showCroutonMessage("long press to edit or delete", Constants.crs.INFO_C, Constants.crs.COUTION_MODE_DEFAULT);
         mActivity.cancelAllCroutons();
         list1 = (Button) view.findViewById(R.id.acc_1);
         list2 = (Button) view.findViewById(R.id.acc_2);
@@ -126,66 +120,6 @@ public class accountLists extends Fragment implements View.OnClickListener {
         return view;
     }
 
-    private static final Style ALERT_G_LEFT = new Style.Builder()
-            .setGravity(Gravity.LEFT)
-            .setBackgroundColorValue(Style.holoRedLight).build();
-    private static final Style ALERT = new Style.Builder()
-            .setBackgroundColorValue(Style.holoRedLight).build();
-
-    private static final Style INFO_G_LEFT = new Style.Builder()
-            .setGravity(Gravity.LEFT)
-            .setBackgroundColorValue(Style.holoBlueLight).build();
-    private static final Style INFO = new Style.Builder().
-            setBackgroundColorValue(Style.holoBlueLight).build();
-
-    private static final Style SUCC_G_LEFT = new Style.Builder()
-            .setGravity(Gravity.LEFT)
-            .setBackgroundColorValue(Style.holoGreenLight).build();
-    private static final Style SUCC = new Style.Builder().
-            setBackgroundColorValue(Style.holoGreenLight).build();
-
-    private static final Configuration CONFIGURATION_INFINITE = new Configuration.Builder()
-            .setDuration(Configuration.DURATION_INFINITE)
-            .build();
-    Crouton crouton;
-    private Crouton infiniteCrouton;
-
-    public void showCroutonMessage(String Text, int style, boolean mode) {
-
-
-        Crouton.clearCroutonsForActivity(getActivity());
-        Log.e("Crouton", " called");
-        // Todo: Here i am forcing display on Top
-        // Follow it
-
-        Style croutonStyle = null;
-        if (style == Constants.crs.ALERT_GL)// 0 == alert
-            croutonStyle = ALERT_G_LEFT;//, R.id.alternate_view_group);
-
-        else if (style == Constants.crs.ALERT_C)// 0 == alert
-            croutonStyle = ALERT;//, R.id.alternate_view_group);
-
-        if (style == Constants.crs.INFO_GL)// 0 == alert
-            croutonStyle = INFO_G_LEFT;//, R.id.alternate_view_group);
-
-        else if (style == Constants.crs.INFO_C)// 0 == alert
-            croutonStyle = INFO;//, R.id.alternate_view_group);
-
-        else if (style == Constants.crs.SUCC_GL)// 0 == alert
-            croutonStyle = SUCC_G_LEFT;//, R.id.alternate_view_group);
-
-        else if (style == Constants.crs.SUCC_C)
-            croutonStyle = SUCC;//, R.id.alternate_view_group);
-
-
-        crouton = Crouton.makeText(getActivity(), Text, croutonStyle);
-
-        if (mode) infiniteCrouton = crouton;
-
-        crouton.setOnClickListener(this).setConfiguration(mode ? CONFIGURATION_INFINITE : Configuration.DEFAULT).show();
-
-
-    }
 
     public void makeAllInvisible() {
         list1.setVisibility(View.INVISIBLE);

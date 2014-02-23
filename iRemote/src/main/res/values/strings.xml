@@ -4,7 +4,6 @@
     <string name="app_name">iRemote</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
-    <string name="title_activity_remote">Remote</string>
     <string name="title_activity_account_settings">Add Account</string>
     <string name="func_not_supported">Function not supported by selected control panel</string>
     <string name="select_contact_phone_number_and_type">Select number</string>
@@ -91,8 +90,8 @@
     <string name="zone_E">ZONE E</string>
     <string name="zone_F">ZONE F</string>
     <string name="zone_G">ZONE G</string>
-    <string name="enter_desired_name_for_zone">Enter desired Name for the zone</string>
-    <string name="commandSvi">**#svi:</string>
+
+
     <string name="commandTail">:!!</string>
     <string name="commandDoor">**#door:</string>
     <string name="Door_Opened">Door Opened!!</string>
@@ -397,7 +396,7 @@ Error 1231</string>
     <string name="force_off">FORCE OFF</string>
     <string name="auto_mode_cur">cur mode: Auto</string>
     <string name="cur_man_mode">cur mode: Manual</string>
-    <string name="Cur_sT">cur status: </string>
+
     <string name="ONTTIMESTRING">ON TIME : </string>
     <string name="OFFTIMESTR">OFF TIME : </string>
     <string name="timerDisabled">timer disabled</string>
@@ -412,13 +411,15 @@ Error 1231</string>
     <string name="list_is_empty">Users list is empty</string>
     <string name="plus">+</string>
     <string name="notOnList">Number not on list</string>
-    <string name="ww">SET OFF TIME</string>
+
     <string name="RESET">RESET</string>
     <string name="demoAccount">ONLINE DEMO</string>
     <string name="commandDoor3">**#door3:</string>
     <string name="WDoor_Opened">Wooden Door Opened</string>
     <string name="SELECT_A_TYPE">SELECT A TYPE</string>
-    <string name="areas">areas</string>
+
+    <string name="areas_slash">areas/</string>
+    <string name="Power_usage">POWER USAGE IN W FOR EACH PHASE</string>
 
     <string-array name="area_type_array">
         <item>HALL</item>

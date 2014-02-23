@@ -38,43 +38,99 @@ import static android.provider.ContactsContract.PhoneLookup.DISPLAY_NAME;
  * for Kindows Tech Solutions
  */
 public class main extends FragmentActivity implements View.OnClickListener, View.OnTouchListener {
-    private Crouton infiniteCrouton;
-    public static int pressedButton = 0;
-    SupportClass sc = new SupportClass(this);
     private static final int REQUEST_CODE_PICK_CONTACTS = 11;
-    static long account = 25;
-    private int curFrag = 0;
-    Crouton crouton;
-    private boolean _doubleBackToExitPressedOnce = false;
-    static TCPClient mTcpClient;
-    public boolean waiting4reply;
-    public boolean gettingContact = false;
-    RelativeLayout mainLO;
-    public boolean asked4update = false;
-    public static boolean editing = false;
-
     private static final Style ALERT_G_LEFT = new Style.Builder()
             .setGravity(Gravity.LEFT)
             .setBackgroundColorValue(Style.holoRedLight).build();
-
     private static final Style ALERT = new Style.Builder()
             .setBackgroundColorValue(Style.holoRedLight).build();
-
     private static final Style INFO_G_LEFT = new Style.Builder()
             .setGravity(Gravity.LEFT)
             .setBackgroundColorValue(Style.holoBlueLight).build();
     private static final Style INFO = new Style.Builder().
             setBackgroundColorValue(Style.holoBlueLight).build();
-
     private static final Style SUCC_G_LEFT = new Style.Builder()
             .setGravity(Gravity.LEFT)
             .setBackgroundColorValue(Style.holoGreenLight).build();
     private static final Style SUCC = new Style.Builder().
             setBackgroundColorValue(Style.holoGreenLight).build();
-
     private static final Configuration CONFIGURATION_INFINITE = new Configuration.Builder()
             .setDuration(Configuration.DURATION_INFINITE)
             .build();
+    public static int pressedButton = 0;
+    public static boolean editing = false;
+    static long account = 25;
+    static TCPClient mTcpClient;
+    public boolean waiting4reply;
+    public boolean gettingContact = false;
+    public boolean asked4update = false;
+    SupportClass sc = new SupportClass(this);
+    Crouton crouton;
+    RelativeLayout mainLO;
+    addEditAccount fragment;
+    int returnedVal;
+    Handler handler = new Handler();
+    private Crouton infiniteCrouton;
+    private int curFrag = 0;
+    private boolean _doubleBackToExitPressedOnce = false;
+
+    public static boolean getTCPClientStat() {
+        // here you'll save the data previously retrieved from the fragments and
+        // return it in a Bundle
+        if (mTcpClient != null) {
+            Log.e("CLIENT ", "Running");
+            return true;
+        } else {
+            Log.e("CLIENT ", "already stopped");
+            return false;
+        }
+    }
+
+    public static String getContactName(Context context, String phoneNumber) {
+        ContentResolver cr = context.getContentResolver();
+        assert CONTENT_FILTER_URI != null;
+        Uri uri = Uri.withAppendedPath(CONTENT_FILTER_URI, Uri.encode(phoneNumber));
+        assert uri != null;
+        Cursor cursor = cr.query(uri, new String[]{DISPLAY_NAME}, null, null, null);
+        if (cursor == null) {
+            return null;
+        }
+        String contactName = null;
+        if (cursor.moveToFirst()) {
+            contactName = cursor.getString(cursor.getColumnIndex(DISPLAY_NAME));
+        }
+
+        if (!cursor.isClosed()) {
+            cursor.close();
+        }
+
+        return contactName;
+    }
+
+    static void unbindDrawables(View view) {
+        try {
+            System.out.println("UNBINDING" + view);
+            if (view.getBackground() != null) {
+
+                ((BitmapDrawable) view.getBackground()).getBitmap().recycle();
+
+
+                view.getBackground().setCallback(null);
+                view = null;
+            }
+
+            if (view instanceof ViewGroup) {
+                for (int i = 0; i < ((ViewGroup) view).getChildCount(); i++) {
+                    unbindDrawables(((ViewGroup) view).getChildAt(i));
+                }
+                ((ViewGroup) view).removeAllViews();
+            }
+
+        } catch (Exception e) {
+            // TODO: handle exception
+            e.printStackTrace();
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,28 +156,16 @@ public class main extends FragmentActivity implements View.OnClickListener, View
             mTcpClient.stopClient();
     }
 
-    public void setCurrFrag(int acc) {
-        // based on the id you'll know which fragment is trying to save data(see below)
-        // the Bundle will hold the data
-        curFrag = acc;
-    }
-
     public int getCurrFrag() {
         // here you'll save the data previously retrieved from the fragments and
         // return it in a Bundle
         return curFrag;
     }
 
-    public static boolean getTCPClientStat() {
-        // here you'll save the data previously retrieved from the fragments and
-        // return it in a Bundle
-        if (mTcpClient != null) {
-            Log.e("CLIENT ", "Running");
-            return true;
-        } else {
-            Log.e("CLIENT ", "already stopped");
-            return false;
-        }
+    public void setCurrFrag(int acc) {
+        // based on the id you'll know which fragment is trying to save data(see below)
+        // the Bundle will hold the data
+        curFrag = acc;
     }
 
     public void stopClient() {
@@ -132,15 +176,14 @@ public class main extends FragmentActivity implements View.OnClickListener, View
 
     public void sendMessage(String message, int pBtn) {
         if (mTcpClient != null) {
-           /* Log.e("SENDING MESSAGE", "address " + mTcpClient.socket.getInetAddress().toString());
-            Log.e("SENDING MESSAGE", "is bound " + mTcpClient.socket.isBound());
-            Log.e("SENDING MESSAGE", "is connected " + mTcpClient.isConnected);*/
-
             mTcpClient.sendMessage(message);
             pressedButton = pBtn;
             sendingScreens();
             handler.removeCallbacks(wait4TO);
             wait4Timeout();
+        } else {
+            showCroutonMessage("Connection Error, Reconnecting ...", Constants.crs.ALERT_C, Constants.crs.COUTION_MODE_DEFAULT);
+            mTcpClient = executeConnectTask();
         }
 
 
@@ -159,25 +202,23 @@ public class main extends FragmentActivity implements View.OnClickListener, View
         //dimOutScreen.setVisibility(View.GONE);
     }
 
-    public static void setAccount(long acc) {
-        // based on the id you'll know which fragment is trying to save data(see below)
-        // the Bundle will hold the data
-        account = acc;
-    }
-
     public long getAccount() {
         // here you'll save the data previously retrieved from the fragments and
         // return it in a Bundle
         return account;
     }
 
-    addEditAccount fragment;
+    public static void setAccount(long acc) {
+        // based on the id you'll know which fragment is trying to save data(see below)
+        // the Bundle will hold the data
+        account = acc;
+    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         SupportClass scc = new SupportClass(this);
-        Log.e("TEST", "Response: ONactivity called " + REQUEST_CODE_PICK_CONTACTS + " RqC " + requestCode + " qC " + resultCode + "tobe " + RESULT_OK);
+        Log.e("TEST", "Response: ON activity called " + REQUEST_CODE_PICK_CONTACTS + " RqC " + requestCode + " qC " + resultCode + "tobe " + RESULT_OK);
         if (requestCode == REQUEST_CODE_PICK_CONTACTS && resultCode == RESULT_OK) {
             Log.e("TEST", "Response: " + data.toString());
             Uri uriContact = data.getData();
@@ -189,7 +230,6 @@ public class main extends FragmentActivity implements View.OnClickListener, View
             gettingContact = true;
         }
     }
-
 
     @Override
     public void onBackPressed() {
@@ -214,7 +254,7 @@ public class main extends FragmentActivity implements View.OnClickListener, View
             timerFrag = (remote) fm.findFragmentById(R.id.detailFragment);
 
             if (timerFrag.pressedButton != 0) {
-                timerFrag.reset_cd(sc);
+                timerFrag.reset_cd();
                 return;
             }
         } else if (curFrag == Constants.Pages.USERSPAGE) {
@@ -256,29 +296,6 @@ public class main extends FragmentActivity implements View.OnClickListener, View
         }
     }
 
-    int returnedVal;
-
-    public static String getContactName(Context context, String phoneNumber) {
-        ContentResolver cr = context.getContentResolver();
-        assert CONTENT_FILTER_URI != null;
-        Uri uri = Uri.withAppendedPath(CONTENT_FILTER_URI, Uri.encode(phoneNumber));
-        assert uri != null;
-        Cursor cursor = cr.query(uri, new String[]{DISPLAY_NAME}, null, null, null);
-        if (cursor == null) {
-            return null;
-        }
-        String contactName = null;
-        if (cursor.moveToFirst()) {
-            contactName = cursor.getString(cursor.getColumnIndex(DISPLAY_NAME));
-        }
-
-        if (!cursor.isClosed()) {
-            cursor.close();
-        }
-
-        return contactName;
-    }
-
     @Override
     public void onClick(View view) {
         if (infiniteCrouton != null) {
@@ -303,7 +320,6 @@ public class main extends FragmentActivity implements View.OnClickListener, View
 
     }
 
-
     public void askUpdate() {
         // Log.e("Status ", "asking an  update");
         asked4update = true;
@@ -313,12 +329,10 @@ public class main extends FragmentActivity implements View.OnClickListener, View
             if (curFrag == Constants.Pages.TIMERSPAGE) {
                 sendMessage("**#get timer:" + sc.getUser(account) + "," + sc.getPass(account)
                         + "-" + timers.pressedButton + getString(R.string.commandTail), pressedButton);
-            }
-            if (curFrag == Constants.Pages.USERSPAGE) {
+            } else if (curFrag == Constants.Pages.USERSPAGE) {
                 sendMessage("**#list:" + sc.getUser(account) + "," + sc.getPass(account)
                         + "-" + getString(R.string.commandTail), pressedButton);
-            }
-            if (curFrag == Constants.Pages.AREASPAGE) {
+            } else if (curFrag == Constants.Pages.AREASPAGE) {
                 sendMessage("**#zone names:" + sc.getUser(account) + "," + sc.getPass(account) + "-:!!", Constants.pBs.ZONENAMES);
             } else {
                 sendMessage(getString(R.string.commandUpdate) + sc.getUser(account) + "," + sc.getPass(account)
@@ -327,6 +341,208 @@ public class main extends FragmentActivity implements View.OnClickListener, View
             //else Log.e("Asking update ", "account out of range");
             //
         }
+    }
+
+    private void sentSucc() {
+        Log.e("Areas ", "SENT SUCCES");
+        handler.removeCallbacks(wait4TO);
+        if (curFrag == Constants.Pages.REMOTEPAGE) {
+            mainLO.setBackgroundResource(R.drawable.light);
+            // remote.mPullRefreshScrollView.onRefreshComplete();
+            FragmentManager fm = getSupportFragmentManager();
+            remote remoteFrag;
+            remoteFrag = (remote) fm.findFragmentById(R.id.detailFragment);
+            remoteFrag.sentSucc();
+        } else if (curFrag == Constants.Pages.USERSPAGE) {
+            mainLO.setBackgroundResource(R.drawable.light);
+            // remote.mPullRefreshScrollView.onRefreshComplete();
+            FragmentManager fm = getSupportFragmentManager();
+            users userFrag;
+            userFrag = (users) fm.findFragmentById(R.id.detailFragment);
+            userFrag.sentSucc(sc);
+        } else if (curFrag == Constants.Pages.TIMERSPAGE) {
+            mainLO.setBackgroundResource(R.drawable.light);
+            // remote.mPullRefreshScrollView.onRefreshComplete();
+            FragmentManager fm = getSupportFragmentManager();
+            timers userFrag;
+            userFrag = (timers) fm.findFragmentById(R.id.detailFragment);
+            userFrag.sentSucc(sc);
+        } else if (curFrag == Constants.Pages.AREASPAGE) {
+            mainLO.setBackgroundResource(R.drawable.light);
+            // remote.mPullRefreshScrollView.onRefreshComplete();
+            FragmentManager fm = getSupportFragmentManager();
+            areas userFrag;
+            userFrag = (areas) fm.findFragmentById(R.id.detailFragment);
+            userFrag.sentSucc(sc);
+            Log.w("Areas", "sent succcc");
+        }
+        //Todo:::
+
+    }
+
+    public TCPClient executeConnectTask() {
+        new connectTask().execute(getString(R.string.emptyString));
+        return mTcpClient;
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (mTcpClient != null) {
+            mTcpClient.stopClient();
+        }
+        Log.e("Connection", " Stopped client if running");
+        Crouton.clearCroutonsForActivity(this);
+    }
+
+    protected void onResume() {
+        super.onResume();
+
+        mainLO.setBackgroundResource(R.drawable.light);
+        enableTouch();
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        ReplaceFragments rp = new ReplaceFragments();
+        if (!gettingContact) {
+            if (sc.getAccountNumber() == 1) {
+                setAccount(0);
+                rp.replaceWithRemote(ft, fm, true);
+            } else if (sc.getAccountNumber() == 0) {
+                rp.replaceWithAddAccount(ft, fm, true);
+            } else if (sc.getAccountNumber() > 1) {
+                rp.replaceWithAL(ft, fm, true, false);
+            }
+        }
+    }
+
+    public void wait4Timeout() {
+        waiting4reply = true;
+        handler.removeCallbacks(wait4TO);
+        handler.postDelayed(wait4TO, 5000);
+    }
+
+    private void sentFailed() {
+        // mainLO.setBackgroundResource(R.drawable.light);
+        Log.e("Areas ", "SENT Failed");
+        //Log.e("SENT FAILED", "Strated run" + curFrag);
+        handler.removeCallbacks(wait4TO);
+        FragmentManager fm = getSupportFragmentManager();
+        if (curFrag == Constants.Pages.REMOTEPAGE) {
+            remote remoteFrag;
+            remoteFrag = (remote) fm.findFragmentById(R.id.detailFragment);
+            remoteFrag.sentFailed();
+        } else if (curFrag == Constants.Pages.USERSPAGE) {
+            users userFrag;
+            userFrag = (users) fm.findFragmentById(R.id.detailFragment);
+            userFrag.sentFailed();
+        } else if (curFrag == Constants.Pages.TIMERSPAGE) {
+            timers userFrag;
+            userFrag = (timers) fm.findFragmentById(R.id.detailFragment);
+            userFrag.sentFailed();
+        } else if (curFrag == Constants.Pages.AREASPAGE) {
+            areas userFrag;
+            userFrag = (areas) fm.findFragmentById(R.id.detailFragment);
+            userFrag.sentFailed();
+        }
+        //todo
+
+    }
+
+    Runnable wait4TO = new Runnable() {
+        @Override
+        public void run() {
+            if (pressedButton == Constants.pBs.INACTVE || pressedButton == Constants.pBs.REFRESHPULL || pressedButton == Constants.pBs.ASKUPDATE
+                    || pressedButton == Constants.pBs.TIMERNAMES || pressedButton == Constants.pBs.ZONENAMES
+                    || pressedButton == Constants.pBs.GETTIMER) {//Todo asked for update
+                handler.removeCallbacks(wait4TO);
+            } else {
+                if (!asked4update)
+                    sentFailed();
+                waiting4reply = false;
+            }
+        }
+    };
+
+    private void sendingScreens() {
+        Log.w("sending screens", "Sending Screens start");
+
+        if ((asked4update || pressedButton == Constants.pBs.ZoneINFO
+                || pressedButton == Constants.pBs.GETTIMER || pressedButton == Constants.pBs.GETTIMERUP || pressedButton == Constants.pBs.ZONENAMES
+                || pressedButton == Constants.pBs.TIMERNAMES || pressedButton == Constants.pBs.AREAS) & pressedButton != 35) {
+            Log.w("sending screens", "Sending Screens invisble " + pressedButton);
+        } else {
+            Log.w("sending screens", "Sending Screens");
+            mainLO.setBackgroundResource(R.drawable.medium_dark);
+            if (curFrag == Constants.Pages.REMOTEPAGE) {
+                FragmentManager fm = getSupportFragmentManager();
+                remote remoteFrag;
+                remoteFrag = (remote) fm.findFragmentById(R.id.detailFragment);
+                remoteFrag.sendingScreens(sc);
+            } else if (curFrag == Constants.Pages.USERSPAGE) {
+                FragmentManager fm = getSupportFragmentManager();
+                users userFrag;
+                userFrag = (users) fm.findFragmentById(R.id.detailFragment);
+                userFrag.sendingScreens(new SupportClass(this));
+            } else if (curFrag == Constants.Pages.TIMERSPAGE) {
+                FragmentManager fm = getSupportFragmentManager();
+                timers userFrag;
+                userFrag = (timers) fm.findFragmentById(R.id.detailFragment);
+                userFrag.sendingScreens(new SupportClass(this));
+            } else if (curFrag == Constants.Pages.AREASPAGE) {
+                FragmentManager fm = getSupportFragmentManager();
+                areas userFrag;
+                userFrag = (areas) fm.findFragmentById(R.id.detailFragment);
+                userFrag.sendingScreens();
+                Log.w("Areas", "Sending Screens");
+            }
+            //todo
+        }
+    }
+
+    public void showCroutonMessage(String Text, int style, boolean mode) {
+
+
+        Crouton.clearCroutonsForActivity(this);
+        Log.e("Crouton", " called");
+        // Todo: Here i am forcing display on Top
+        // Follow it
+
+        Style croutonStyle = null;
+        if (style == Constants.crs.ALERT_GL)// 0 == alert
+            croutonStyle = ALERT_G_LEFT;//, R.id.alternate_view_group);
+
+        else if (style == Constants.crs.ALERT_C)// 0 == alert
+            croutonStyle = ALERT;//, R.id.alternate_view_group);
+
+        else if (style == Constants.crs.INFO_GL)// 0 == alert
+            croutonStyle = INFO_G_LEFT;//, R.id.alternate_view_group);
+
+
+        else if (style == Constants.crs.INFO_C)// 0 == alert
+            croutonStyle = INFO;//, R.id.alternate_view_group);
+
+        else if (style == Constants.crs.SUCC_GL)// 0 == alert
+            croutonStyle = SUCC_G_LEFT;//, R.id.alternate_view_group);
+
+        else if (style == Constants.crs.SUCC_C)
+            croutonStyle = SUCC;//, R.id.alternate_view_group);
+
+
+        crouton = Crouton.makeText(this, Text, croutonStyle);
+
+        if (mode) infiniteCrouton = crouton;
+
+        crouton.setOnClickListener(this).setConfiguration(mode ? CONFIGURATION_INFINITE : Configuration.DEFAULT).show();
+
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        Crouton.clearCroutonsForActivity(this);
+        super.onDestroy();
+        unbindDrawables(findViewById(R.id.main_act_LLO));
+        System.gc();
     }
 
     public class connectTask extends AsyncTask<String, String, TCPClient> {
@@ -385,7 +601,7 @@ public class main extends FragmentActivity implements View.OnClickListener, View
                 }
             }
             //-------------- on Bad Auth-------------------------------------
-            if (values[0].equals(getString(R.string.BadAuth))) {
+            else if (values[0].equals(getString(R.string.BadAuth))) {
                 if (asked4update) asked4update = false;
                 else
                     sentFailed();
@@ -395,7 +611,7 @@ public class main extends FragmentActivity implements View.OnClickListener, View
                 }
             }
             //-------------- on Bad Auth-------------------------------------
-            if (values[0].equals(getString(R.string.AcessDenied))) {
+            else if (values[0].equals(getString(R.string.AcessDenied))) {
                 if (asked4update) asked4update = false;
                 else
                     sentFailed();
@@ -405,7 +621,7 @@ public class main extends FragmentActivity implements View.OnClickListener, View
                 }
             }
             //-------------- Door-------------------------------------
-            if (pressedButton == Constants.pBs.DOOR && waiting4reply) {
+            else if (pressedButton == Constants.pBs.DOOR && waiting4reply) {
                 if (values[0].equals(getString(R.string.Door_Opened))) {
                     askUpdate();
                     sentSucc();
@@ -738,130 +954,8 @@ public class main extends FragmentActivity implements View.OnClickListener, View
             }
             //--------------------ZONENAMES
             else if (pressedButton == Constants.pBs.AREAS && waiting4reply) {
-                showCroutonMessage(values[0], Constants.crs.INFO_C, Constants.crs.COUTION_MODE_DEFAULT);
-                Log.w("Areas", "inside areas");
-                if (values[0].startsWith(getString(R.string.areas))) {
-                    Log.w("Areas", "starts with areas");
-                    handler.removeCallbacks(wait4TO);
-                    values[0] = values[0].replaceAll("!!", getString(R.string.emptyString));
-                    if (curFrag == Constants.Pages.SMARTHOME) {
-                        sh_areas.wvLoading.setVisibility(View.INVISIBLE);
-                        sh_areas.statusInterval = 15000;
 
-                    }
-                    String[] parts = values[0].split("/");
-                    if (parts.length > 1 && parts[1].length() > 1) {
-                        String[] subParts = parts[1].split("\\.");
-                        if (subParts.length > 2) {
-                            setArea(sh_areas.ib1, sh_areas.bn1, subParts[0], 1, subParts[1], subParts[2]);
-                        }
-                    }
-                    if (parts.length > 2 && parts[2].length() > 1) {
-                        String[] subParts = parts[2].split("\\.");
-                        if (subParts.length > 2) {
-                            setArea(sh_areas.ib2, sh_areas.bn2, subParts[0], 2, subParts[1], subParts[2]);
-                        }
-                    }
-                    if (parts.length > 3 && parts[3].length() > 1) {
-                        String[] subParts = parts[3].split("\\.");
-                        if (subParts.length > 2) {
-                            setArea(sh_areas.ib3, sh_areas.bn3, subParts[0], 3, subParts[1], subParts[2]);
-                        }
-                    }
-                    if (parts.length > 4 && parts[4].length() > 1) {
-                        String[] subParts = parts[4].split("\\.");
-                        if (subParts.length > 2) {
-                            setArea(sh_areas.ib4, sh_areas.bn4, subParts[0], 4, subParts[1], subParts[2]);
-                        }
-                    }
-                    if (parts.length > 5 && parts[5].length() > 1) {
-                        String[] subParts = parts[5].split("\\.");
-                        if (subParts.length > 2) {
-                            setArea(sh_areas.ib5, sh_areas.bn5, subParts[0], 5, subParts[1], subParts[2]);
-                        }
-                    }
-                    if (parts.length > 6 && parts[6].length() > 1) {
-                        String[] subParts = parts[6].split("\\.");
-                        if (subParts.length > 2) {
-                            setArea(sh_areas.ib6, sh_areas.bn6, subParts[0], 6, subParts[1], subParts[2]);
-                        }
-                    }
-                    if (parts.length > 7 && parts[7].length() > 1) {
-                        String[] subParts = parts[7].split("\\.");
-                        if (subParts.length > 2) {
-                            setArea(sh_areas.ib7, sh_areas.bn7, subParts[0], 7, subParts[1], subParts[2]);
-                        }
-                    }
-                    if (parts.length > 8 && parts[8].length() > 1) {
-                        String[] subParts = parts[8].split("\\.");
-                        if (subParts.length > 2) {
-                            setArea(sh_areas.ib8, sh_areas.bn8, subParts[0], 8, subParts[1], subParts[2]);
-                        }
-                    }
-                    if (parts.length > 9 && parts[9].length() > 1) {
-                        String[] subParts = parts[9].split("\\.");
-                        if (subParts.length > 2) {
-                            setArea(sh_areas.ib9, sh_areas.bn9, subParts[0], 9, subParts[1], subParts[2]);
-                        }
-                    }
-                    if (parts.length > 10 && parts[10].length() > 1) {
-                        String[] subParts = parts[10].split("\\.");
-                        if (subParts.length > 2) {
-                            setArea(sh_areas.ib10, sh_areas.bn10, subParts[0], 10, subParts[1], subParts[2]);
-                        }
-                    }
-                    if (parts.length > 11 && parts[11].length() > 1) {
-                        String[] subParts = parts[11].split("\\.");
-                        if (subParts.length > 2) {
-                            setArea(sh_areas.ib11, sh_areas.bn11, subParts[0], 11, subParts[1], subParts[2]);
-                        }
-                    }
-                    if (parts.length > 12 && parts[12].length() > 1) {
-                        String[] subParts = parts[12].split("\\.");
-                        if (subParts.length > 2) {
-                            setArea(sh_areas.ib12, sh_areas.bn12, subParts[0], 12, subParts[1], subParts[2]);
-                        }
-                    }
-                    if (parts.length > 13 && parts[13].length() > 1) {
-                        String[] subParts = parts[13].split("\\.");
-                        if (subParts.length > 2) {
-                            setArea(sh_areas.ib13, sh_areas.bn13, subParts[0], 13, subParts[1], subParts[2]);
-                        }
-                    }
-                    if (parts.length > 14 && parts[14].length() > 1) {
-                        String[] subParts = parts[14].split("\\.");
-                        if (subParts.length > 2) {
-                            setArea(sh_areas.ib14, sh_areas.bn14, subParts[0], 14, subParts[1], subParts[2]);
-                        }
-                    }
-                    if (parts.length > 15 && parts[15].length() > 1) {
-                        String[] subParts = parts[15].split("\\.");
-                        if (subParts.length > 2) {
-                            setArea(sh_areas.ib15, sh_areas.bn15, subParts[0], 15, subParts[1], subParts[2]);
-                        }
-                    }
-                    if (parts.length > 16 && parts[16].length() > 1) {
-                        String[] subParts = parts[16].split("\\.");
-                        if (subParts.length > 2) {
-                            setArea(sh_areas.ib16, sh_areas.bn16, subParts[0], 16, subParts[1], subParts[2]);
-                        }
-                    }
-                    if (parts.length > 17 && parts[17].length() > 1) {
-                        String[] subParts = parts[17].split("\\.");
-                        if (subParts.length > 2) {
-                            setArea(sh_areas.ib17, sh_areas.bn17, subParts[0], 17, subParts[1], subParts[2]);
-                        }
-                    }
-                    if (parts.length > 18 && parts[18].length() > 1) {
-                        String[] subParts = parts[18].split("\\.");
-                        if (subParts.length > 2) {
-                            setArea(sh_areas.ib18, sh_areas.bn18, subParts[0], 18, subParts[1], subParts[2]);
-                        }
-                    }
-                    mainLO.setBackgroundResource(R.drawable.light);
-                    enableTouch();
-                    Log.e("areas ", "drawings completed");
-                }
+                areas_func(values[0]);
             }
             //------------------------LIST USERS-----------------------------
             else if (pressedButton == Constants.pBs.LISTS && waiting4reply) {
@@ -1038,33 +1132,24 @@ public class main extends FragmentActivity implements View.OnClickListener, View
             }
             //-------------- Update/Pull2Refresh-------------------------------------
             else if (asked4update) {
-
+                Log.w("asked for", " update");
                 if (values[0].startsWith("timer details")) {
                     GetTimer(values[0]);
                 } else if (values[0].startsWith(getString(R.string.timers))) {
                     TimersNamesFunction(values[0]);
+                } else if (curFrag == Constants.Pages.AREASPAGE) {
+                    zoneNames_func(values[0]);
+                }
+                if (curFrag == Constants.Pages.SMARTHOME) {
+                    areas_func(values[0]);
                 } else if (values[0].startsWith(getString(R.string.update))) {
-
-                    //pressedButton = Constants.pBs.INACTVE;
                     if (curFrag == Constants.Pages.REMOTEPAGE) {
                         FragmentManager fm = getSupportFragmentManager();
                         remote remoteFrag;
                         remoteFrag = (remote) fm.findFragmentById(R.id.detailFragment);
                         remoteFrag.resetStatusRing();
-                        // remote.mPullRefreshScrollView.onRefreshComplete();
-                        //remote.oStatusRing.setBackgroundResource(R.drawable.sr_orange);
-                    } else if (curFrag == Constants.Pages.USERSPAGE) {
-                        FragmentManager fm = getSupportFragmentManager();
-                        users userFrag;
-                        userFrag = (users) fm.findFragmentById(R.id.detailFragment);
-                        userFrag.resetStatusRing();
-                    } else if (curFrag == Constants.Pages.AREASPAGE) {
-                        zoneNames_func(values[0]);
-                    }
-                    //=======For Remote Page ===================
-                    if (curFrag == Constants.Pages.REMOTEPAGE) {
                         // ------- Status for arming modes-------------------------
-                        Log.e("remote page", "starts for update");
+                        Log.w("remote page", "starts for update");
                         if (values[0].contains(getString(R.string.statusUpdateDisarmed))) {
                             remote.armStatusRing.setBackgroundResource(R.drawable.sr_arrm_disarm);
                         } else if (values[0].contains(getString(R.string.statusUpdateArmedA))) {
@@ -1103,49 +1188,143 @@ public class main extends FragmentActivity implements View.OnClickListener, View
                         } else {
                             remote.gateStatusRing.setBackgroundResource(R.drawable.sr_gate_unknown);
                         }
-
+                        remoteFrag.resetStatusHandler.removeCallbacks(remoteFrag.restStatusRunnable);
+                        remoteFrag.resetStatusRing();
                     }
 
                 }
 
                 mainLO.setBackgroundResource(R.drawable.light);
-                //enableTouch();
                 asked4update = false;
-                if (curFrag == Constants.Pages.REMOTEPAGE) {
-                    FragmentManager fm = getSupportFragmentManager();
-                    remote remoteFrag;
-                    remoteFrag = (remote) fm.findFragmentById(R.id.detailFragment);
-                    remoteFrag.resetStatusHandler.removeCallbacks(remoteFrag.restStatusRunnable);
-                    remoteFrag.resetStatusRing();
-                    // Log.e(getString(R.string.TagRefresh), getString(R.string.PressedButtonIsEqualTo) + pressedButton);
-                } else if (curFrag == Constants.Pages.USERSPAGE) {
-                    FragmentManager fm = getSupportFragmentManager();
-                    users user;
-                    user = (users) fm.findFragmentById(R.id.detailFragment);
-                    //Todo get this updated
-                    user.resetStatusHandler.removeCallbacks(user.restStatusRunnable);
-                    // user.resetStatusHandler.removeCallbacks(user.restStatusRunnable);
-                    //Log.e(getString(R.string.TagRefresh), getString(R.string.PressedButtonIsEqualTo) + pressedButton);
-                } else if (curFrag == Constants.Pages.TIMERSPAGE) {
-                    FragmentManager fm = getSupportFragmentManager();
-                    timers user;
-                    user = (timers) fm.findFragmentById(R.id.detailFragment);
-
-                    user.resetStatusHandler.removeCallbacks(user.restStatusRunnable);
-                    // user.resetStatusHandler.removeCallbacks(user.restStatusRunnable);
-                    //Log.e(getString(R.string.TagRefresh), getString(R.string.PressedButtonIsEqualTo) + pressedButton);
-                } else if (curFrag == Constants.Pages.AREASPAGE) {
-                    FragmentManager fm = getSupportFragmentManager();
-                    areas user;
-                    user = (areas) fm.findFragmentById(R.id.detailFragment);
-
-                    user.resetStatusHandler.removeCallbacks(user.restStatusRunnable);
-                    // user.resetStatusHandler.removeCallbacks(user.restStatusRunnable);
-                    // Log.e(getString(R.string.TagRefresh), getString(R.string.PressedButtonIsEqualTo) + pressedButton);
-                }
 
             }
 
+        }
+
+        private void areas_func(String value) {
+            Log.w("Areas", "inside areas");
+            if (value.contains(getString(R.string.areas_slash))) {
+                Log.w("Areas", "starts with areas");
+                handler.removeCallbacks(wait4TO);
+                value = value.replaceAll("!!", getString(R.string.emptyString));
+                if (curFrag == Constants.Pages.SMARTHOME) {
+                    sh_areas.wvLoading.setVisibility(View.INVISIBLE);
+                    sh_areas.statusInterval = 15000;
+
+                }
+                String[] parts = value.split("/");
+                if (parts.length > 1 && parts[1].length() > 1) {
+                    String[] subParts = parts[1].split("\\.");
+                    if (subParts.length > 2) {
+                        setArea(sh_areas.ib1, sh_areas.bn1, subParts[0], 1, subParts[1], subParts[2]);
+                    }
+                }
+                if (parts.length > 2 && parts[2].length() > 1) {
+                    String[] subParts = parts[2].split("\\.");
+                    if (subParts.length > 2) {
+                        setArea(sh_areas.ib2, sh_areas.bn2, subParts[0], 2, subParts[1], subParts[2]);
+                    }
+                }
+                if (parts.length > 3 && parts[3].length() > 1) {
+                    String[] subParts = parts[3].split("\\.");
+                    if (subParts.length > 2) {
+                        setArea(sh_areas.ib3, sh_areas.bn3, subParts[0], 3, subParts[1], subParts[2]);
+                    }
+                }
+                if (parts.length > 4 && parts[4].length() > 1) {
+                    String[] subParts = parts[4].split("\\.");
+                    if (subParts.length > 2) {
+                        setArea(sh_areas.ib4, sh_areas.bn4, subParts[0], 4, subParts[1], subParts[2]);
+                    }
+                }
+                if (parts.length > 5 && parts[5].length() > 1) {
+                    String[] subParts = parts[5].split("\\.");
+                    if (subParts.length > 2) {
+                        setArea(sh_areas.ib5, sh_areas.bn5, subParts[0], 5, subParts[1], subParts[2]);
+                    }
+                }
+                if (parts.length > 6 && parts[6].length() > 1) {
+                    String[] subParts = parts[6].split("\\.");
+                    if (subParts.length > 2) {
+                        setArea(sh_areas.ib6, sh_areas.bn6, subParts[0], 6, subParts[1], subParts[2]);
+                    }
+                }
+                if (parts.length > 7 && parts[7].length() > 1) {
+                    String[] subParts = parts[7].split("\\.");
+                    if (subParts.length > 2) {
+                        setArea(sh_areas.ib7, sh_areas.bn7, subParts[0], 7, subParts[1], subParts[2]);
+                    }
+                }
+                if (parts.length > 8 && parts[8].length() > 1) {
+                    String[] subParts = parts[8].split("\\.");
+                    if (subParts.length > 2) {
+                        setArea(sh_areas.ib8, sh_areas.bn8, subParts[0], 8, subParts[1], subParts[2]);
+                    }
+                }
+                if (parts.length > 9 && parts[9].length() > 1) {
+                    String[] subParts = parts[9].split("\\.");
+                    if (subParts.length > 2) {
+                        setArea(sh_areas.ib9, sh_areas.bn9, subParts[0], 9, subParts[1], subParts[2]);
+                    }
+                }
+                if (parts.length > 10 && parts[10].length() > 1) {
+                    String[] subParts = parts[10].split("\\.");
+                    if (subParts.length > 2) {
+                        setArea(sh_areas.ib10, sh_areas.bn10, subParts[0], 10, subParts[1], subParts[2]);
+                    }
+                }
+                if (parts.length > 11 && parts[11].length() > 1) {
+                    String[] subParts = parts[11].split("\\.");
+                    if (subParts.length > 2) {
+                        setArea(sh_areas.ib11, sh_areas.bn11, subParts[0], 11, subParts[1], subParts[2]);
+                    }
+                }
+                if (parts.length > 12 && parts[12].length() > 1) {
+                    String[] subParts = parts[12].split("\\.");
+                    if (subParts.length > 2) {
+                        setArea(sh_areas.ib12, sh_areas.bn12, subParts[0], 12, subParts[1], subParts[2]);
+                    }
+                }
+                if (parts.length > 13 && parts[13].length() > 1) {
+                    String[] subParts = parts[13].split("\\.");
+                    if (subParts.length > 2) {
+                        setArea(sh_areas.ib13, sh_areas.bn13, subParts[0], 13, subParts[1], subParts[2]);
+                    }
+                }
+                if (parts.length > 14 && parts[14].length() > 1) {
+                    String[] subParts = parts[14].split("\\.");
+                    if (subParts.length > 2) {
+                        setArea(sh_areas.ib14, sh_areas.bn14, subParts[0], 14, subParts[1], subParts[2]);
+                    }
+                }
+                if (parts.length > 15 && parts[15].length() > 1) {
+                    String[] subParts = parts[15].split("\\.");
+                    if (subParts.length > 2) {
+                        setArea(sh_areas.ib15, sh_areas.bn15, subParts[0], 15, subParts[1], subParts[2]);
+                    }
+                }
+                if (parts.length > 16 && parts[16].length() > 1) {
+                    String[] subParts = parts[16].split("\\.");
+                    if (subParts.length > 2) {
+                        setArea(sh_areas.ib16, sh_areas.bn16, subParts[0], 16, subParts[1], subParts[2]);
+                    }
+                }
+                if (parts.length > 17 && parts[17].length() > 1) {
+                    String[] subParts = parts[17].split("\\.");
+                    if (subParts.length > 2) {
+                        setArea(sh_areas.ib17, sh_areas.bn17, subParts[0], 17, subParts[1], subParts[2]);
+                    }
+                }
+                if (parts.length > 18 && parts[18].length() > 1) {
+                    String[] subParts = parts[18].split("\\.");
+                    if (subParts.length > 2) {
+                        setArea(sh_areas.ib18, sh_areas.bn18, subParts[0], 18, subParts[1], subParts[2]);
+                    }
+                }
+                mainLO.setBackgroundResource(R.drawable.light);
+                enableTouch();
+                Log.e("areas ", "drawings completed");
+            }
         }
 
 
@@ -1383,6 +1562,7 @@ public class main extends FragmentActivity implements View.OnClickListener, View
             mainLO.setBackgroundResource(R.drawable.light);
             enableTouch();
         }
+
         @Override
         protected void onPostExecute(TCPClient tcpClient) {
             super.onPostExecute(tcpClient);
@@ -1393,239 +1573,5 @@ public class main extends FragmentActivity implements View.OnClickListener, View
 
     }
 
-
-    private void sentSucc() {
-        Log.e("Areas ", "SENT SUCCES");
-        handler.removeCallbacks(wait4TO);
-        if (curFrag == Constants.Pages.REMOTEPAGE) {
-            mainLO.setBackgroundResource(R.drawable.light);
-            // remote.mPullRefreshScrollView.onRefreshComplete();
-            FragmentManager fm = getSupportFragmentManager();
-            remote remoteFrag;
-            remoteFrag = (remote) fm.findFragmentById(R.id.detailFragment);
-            remoteFrag.sentSucc();
-        } else if (curFrag == Constants.Pages.USERSPAGE) {
-            mainLO.setBackgroundResource(R.drawable.light);
-            // remote.mPullRefreshScrollView.onRefreshComplete();
-            FragmentManager fm = getSupportFragmentManager();
-            users userFrag;
-            userFrag = (users) fm.findFragmentById(R.id.detailFragment);
-            userFrag.sentSucc(sc);
-        } else if (curFrag == Constants.Pages.TIMERSPAGE) {
-            mainLO.setBackgroundResource(R.drawable.light);
-            // remote.mPullRefreshScrollView.onRefreshComplete();
-            FragmentManager fm = getSupportFragmentManager();
-            timers userFrag;
-            userFrag = (timers) fm.findFragmentById(R.id.detailFragment);
-            userFrag.sentSucc(sc);
-        } else if (curFrag == Constants.Pages.AREASPAGE) {
-            mainLO.setBackgroundResource(R.drawable.light);
-            // remote.mPullRefreshScrollView.onRefreshComplete();
-            FragmentManager fm = getSupportFragmentManager();
-            areas userFrag;
-            userFrag = (areas) fm.findFragmentById(R.id.detailFragment);
-            userFrag.sentSucc(sc);
-        }
-        //Todo:::
-
-    }
-
-    public TCPClient executeConnectTask() {
-        new connectTask().execute(getString(R.string.emptyString));
-        return mTcpClient;
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        if (mTcpClient != null) {
-            mTcpClient.stopClient();
-        }
-        Log.e("Connection", " Stopped client if running");
-        Crouton.clearCroutonsForActivity(this);
-    }
-
-    protected void onResume() {
-        super.onResume();
-
-        mainLO.setBackgroundResource(R.drawable.light);
-        enableTouch();
-        FragmentManager fm = getSupportFragmentManager();
-        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        ReplaceFragments rp = new ReplaceFragments();
-        if (!gettingContact) {
-            if (sc.getAccountNumber() == 1) {
-                setAccount(0);
-                rp.replaceWithRemote(ft, fm, true);
-            }
-            if (sc.getAccountNumber() == 0) {
-                rp.replaceWithAddAccount(ft, fm, true);
-            }
-            if (sc.getAccountNumber() > 1) {
-                rp.replaceWithAL(ft, fm, true, false);
-            }
-        }
-    }
-
-    Handler handler = new Handler();
-
-    public void wait4Timeout() {
-        waiting4reply = true;
-        sendingScreens();
-        handler.removeCallbacks(wait4TO);
-        handler.postDelayed(wait4TO, 5000);
-    }
-
-    Runnable wait4TO = new Runnable() {
-        @Override
-        public void run() {
-            if (pressedButton == Constants.pBs.INACTVE || pressedButton == Constants.pBs.REFRESHPULL || pressedButton == Constants.pBs.ASKUPDATE
-                    || pressedButton == Constants.pBs.TIMERNAMES || pressedButton == Constants.pBs.ZONENAMES
-                    || pressedButton == Constants.pBs.GETTIMER) {//Todo asked for update
-                handler.removeCallbacks(wait4TO);
-            } else {
-                if (!asked4update)
-                    sentFailed();
-                waiting4reply = false;
-            }
-        }
-    };
-
-    private void sentFailed() {
-        // mainLO.setBackgroundResource(R.drawable.light);
-        Log.e("Areas ", "SENT Failed");
-        //Log.e("SENT FAILED", "Strated run" + curFrag);
-        handler.removeCallbacks(wait4TO);
-        FragmentManager fm = getSupportFragmentManager();
-        if (curFrag == Constants.Pages.REMOTEPAGE) {
-            remote remoteFrag;
-            remoteFrag = (remote) fm.findFragmentById(R.id.detailFragment);
-            remoteFrag.sentFailed();
-        }
-        if (curFrag == Constants.Pages.USERSPAGE) {
-            users userFrag;
-            userFrag = (users) fm.findFragmentById(R.id.detailFragment);
-            userFrag.sentFailed();
-        }
-        if (curFrag == Constants.Pages.TIMERSPAGE) {
-            timers userFrag;
-            userFrag = (timers) fm.findFragmentById(R.id.detailFragment);
-            userFrag.sentFailed();
-        }
-        if (curFrag == Constants.Pages.AREASPAGE) {
-            areas userFrag;
-            userFrag = (areas) fm.findFragmentById(R.id.detailFragment);
-            userFrag.sentFailed();
-        }
-        //todo
-
-    }
-
-    private void sendingScreens() {
-
-        if ((pressedButton == Constants.pBs.REFRESHPULL || asked4update || pressedButton == Constants.pBs.ZoneINFO
-                || pressedButton == Constants.pBs.GETTIMER || pressedButton == Constants.pBs.GETTIMERUP || pressedButton == Constants.pBs.ZONENAMES
-                || pressedButton == Constants.pBs.TIMERNAMES || pressedButton == Constants.pBs.AREAS))
-            ;
-        else {
-            mainLO.setBackgroundResource(R.drawable.medium_dark);
-            if (curFrag == Constants.Pages.REMOTEPAGE) {
-                FragmentManager fm = getSupportFragmentManager();
-                remote remoteFrag;
-                remoteFrag = (remote) fm.findFragmentById(R.id.detailFragment);
-                remoteFrag.sendingScreens(new SupportClass(this));
-            }
-            if (curFrag == Constants.Pages.USERSPAGE) {
-                FragmentManager fm = getSupportFragmentManager();
-                users userFrag;
-                userFrag = (users) fm.findFragmentById(R.id.detailFragment);
-                userFrag.sendingScreens(new SupportClass(this));
-            }
-            if (curFrag == Constants.Pages.TIMERSPAGE) {
-                FragmentManager fm = getSupportFragmentManager();
-                timers userFrag;
-                userFrag = (timers) fm.findFragmentById(R.id.detailFragment);
-                userFrag.sendingScreens(new SupportClass(this));
-            }
-            if (curFrag == Constants.Pages.AREASPAGE) {
-                FragmentManager fm = getSupportFragmentManager();
-                areas userFrag;
-                userFrag = (areas) fm.findFragmentById(R.id.detailFragment);
-                userFrag.sendingScreens(new SupportClass(this));
-            }
-            //todo
-        }
-    }
-
-    public void showCroutonMessage(String Text, int style, boolean mode) {
-
-
-        Crouton.clearCroutonsForActivity(this);
-        Log.e("Crouton", " called");
-        // Todo: Here i am forcing display on Top
-        // Follow it
-
-        Style croutonStyle = null;
-        if (style == Constants.crs.ALERT_GL)// 0 == alert
-            croutonStyle = ALERT_G_LEFT;//, R.id.alternate_view_group);
-
-        else if (style == Constants.crs.ALERT_C)// 0 == alert
-            croutonStyle = ALERT;//, R.id.alternate_view_group);
-
-        else if (style == Constants.crs.INFO_GL)// 0 == alert
-            croutonStyle = INFO_G_LEFT;//, R.id.alternate_view_group);
-
-
-        else if (style == Constants.crs.INFO_C)// 0 == alert
-            croutonStyle = INFO;//, R.id.alternate_view_group);
-
-        else if (style == Constants.crs.SUCC_GL)// 0 == alert
-            croutonStyle = SUCC_G_LEFT;//, R.id.alternate_view_group);
-
-        else if (style == Constants.crs.SUCC_C)
-            croutonStyle = SUCC;//, R.id.alternate_view_group);
-
-
-        crouton = Crouton.makeText(this, Text, croutonStyle);
-
-        if (mode) infiniteCrouton = crouton;
-
-        crouton.setOnClickListener(this).setConfiguration(mode ? CONFIGURATION_INFINITE : Configuration.DEFAULT).show();
-
-
-    }
-
-    @Override
-    protected void onDestroy() {
-        Crouton.clearCroutonsForActivity(this);
-        super.onDestroy();
-        unbindDrawables(findViewById(R.id.main_act_LLO));
-        System.gc();
-    }
-
-    static void unbindDrawables(View view) {
-        try {
-            System.out.println("UNBINDING" + view);
-            if (view.getBackground() != null) {
-
-                ((BitmapDrawable) view.getBackground()).getBitmap().recycle();
-
-
-                view.getBackground().setCallback(null);
-                view = null;
-            }
-
-            if (view instanceof ViewGroup) {
-                for (int i = 0; i < ((ViewGroup) view).getChildCount(); i++) {
-                    unbindDrawables(((ViewGroup) view).getChildAt(i));
-                }
-                ((ViewGroup) view).removeAllViews();
-            }
-
-        } catch (Exception e) {
-            // TODO: handle exception
-            e.printStackTrace();
-        }
-    }
 
 }
