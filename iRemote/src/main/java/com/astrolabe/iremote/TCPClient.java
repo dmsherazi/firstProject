@@ -100,11 +100,8 @@ public class TCPClient {
 
                     String total = "";
                     //BufferedReader in = new BufferedReader(new InputStreamReader(s.getInputStream()));;
-                    while (total.length() < 460 && (!total.endsWith("!!"))) {
-                        //Todo:  correct it after corrections KAS.cpp
-
-
-                        // if the string is less then 160 chars long and not ending with !!
+                    while (total.length() < 360 && (!total.endsWith("!!"))) {
+                         // if the string is less then 460 chars long and not ending with !!
                         int c = in.read(); // read next char in buffer
                         if (c == -1)
                             break; // in.read() return -1 if the end of the buffer was reached
