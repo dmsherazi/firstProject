@@ -468,7 +468,7 @@ public class main extends FragmentActivity implements View.OnClickListener, View
 
         if ((asked4update || pressedButton == Constants.pBs.ZoneINFO
                 || pressedButton == Constants.pBs.GETTIMER || pressedButton == Constants.pBs.GETTIMERUP || pressedButton == Constants.pBs.ZONENAMES
-                || pressedButton == Constants.pBs.TIMERNAMES || pressedButton == Constants.pBs.AREAS) & pressedButton != 35) {
+                || pressedButton == Constants.pBs.TIMERNAMES || pressedButton == Constants.pBs.AREAS) & pressedButton != 35 & pressedButton != Constants.pBs.REFRESH) {
             Log.w("sending screens", "Sending Screens invisble " + pressedButton);
         } else {
             Log.w("sending screens", "Sending Screens");
@@ -644,8 +644,7 @@ public class main extends FragmentActivity implements View.OnClickListener, View
                     askUpdate();
                     sentSucc();
                     if (openZones.length() > 5) {
-                        showCroutonMessage(getString(R.string.Armed) +
-                                getString(R.string.ALERT) + openZones, Constants.crs.INFO_GL, Constants.crs.COUTION_MODE_INFINTE);
+                        showCroutonMessage(openZones, Constants.crs.INFO_GL, Constants.crs.COUTION_MODE_INFINTE);
                         // Log.e("ARM ", "Show Crouton" + openZones);
                     }
                     pressedButton = Constants.pBs.INACTVE;
@@ -1077,7 +1076,7 @@ public class main extends FragmentActivity implements View.OnClickListener, View
             }
             //-------------- SVI/Refresh-------------------------------------
             else if (pressedButton == Constants.pBs.REFRESH && waiting4reply) {
-                if (values[0].equals(getString(R.string.WDoor_Opened))) {
+                if (values[0].contains(getString(R.string.WDoor_Opened))) {
                     askUpdate();
                     sentSucc();
                     pressedButton = Constants.pBs.INACTVE;

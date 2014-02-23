@@ -12,15 +12,16 @@
 <LinearLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	android:orientation="vertical"
-	android:layout_width="fill_parent"
-	android:layout_height="wrap_content"
-	android:gravity="center_vertical|center_horizontal"
+    android:layout_width="0dp"
+    android:layout_weight="1"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical|center_horizontal"
 	android:paddingTop="0dip"
 	android:paddingBottom="0dip"
-	android:paddingLeft="20dip"
-	android:paddingRight="20dip"
-	android:clickable="true"
-	android:background="@drawable/quickaction_slider_btn">
+    android:paddingLeft="10dip"
+    android:paddingRight="10dip"
+    android:clickable="true"
+    android:background="@drawable/quickaction_slider_btn">
 
 	<ImageView
 		android:id="@+id/iv_icon" 

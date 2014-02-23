@@ -21,6 +21,7 @@ public class Constants {
         public static int USERSPAGE = 5;
         public static int HELPPAGE = 6;
         public static int ABOUTPAGE = 7;
+        public static int Settings = 8;
     }
 
     public static class pBs {

@@ -43,9 +43,9 @@ public class menuFrag extends Fragment implements View.OnClickListener {
 
         Log.e("menu fragment", "created");
         assert view != null;
-        users = (ImageButton) view.findViewById(R.id.ibUsers);
+        users = (ImageButton) view.findViewById(R.id.ibMedia);
         areas = (ImageButton) view.findViewById(R.id.ibArea);
-        timers = (ImageButton) view.findViewById(R.id.ibTimer);
+        timers = (ImageButton) view.findViewById(R.id.ibCameras);
         remote = (ImageButton) view.findViewById(R.id.ibRemote);
         ibSettings = (ImageButton) view.findViewById(R.id.ibSettings);
 
@@ -60,14 +60,17 @@ public class menuFrag extends Fragment implements View.OnClickListener {
         final int frag = mActivity.getCurrFrag();
 
 
-        ActionItem option1, option2, option3, option4;
+        ActionItem option1, option2, option3, option4, option5;
         //------ if Accounts fragment shown---------------------
         if (frag == Constants.Pages.ACCLISTS) {
             option1 = new ActionItem(Constants.Pages.ADDEDITSCREEN, "add acc", getResources().getDrawable(R.drawable.add_account_pu));
             title.setText("ACCOUNTS LIST");
             mActivity.setAccount(25);
+            ibSettings.setImageResource(R.drawable.ibsettings);
+
         } else {
             option1 = new ActionItem(Constants.Pages.ACCLISTS, "acc list", getResources().getDrawable(R.drawable.list_pu));
+
         }
 
         //------ if About app or HElp fragment shown---------------------
@@ -79,10 +82,11 @@ public class menuFrag extends Fragment implements View.OnClickListener {
         //------ if About app fragment shown--------------------
         if (frag == Constants.Pages.ABOUTPAGE) {
             title.setText("ABOUT iREMOTE");
-            option3 = new ActionItem(Constants.Pages.HELPPAGE, "help", getResources().getDrawable(R.drawable.help_pu));
+            ibSettings.setImageResource(R.drawable.ibsettings);
+            option4 = new ActionItem(Constants.Pages.HELPPAGE, "help", getResources().getDrawable(R.drawable.help_pu));
         } else
-            option3 = new ActionItem(Constants.Pages.ABOUTPAGE, "about", getResources().getDrawable(R.drawable.info_pu));
-
+            option4 = new ActionItem(Constants.Pages.ABOUTPAGE, "about", getResources().getDrawable(R.drawable.info_pu));
+        option3 = new ActionItem(Constants.Pages.Settings, "add acc", getResources().getDrawable(R.drawable.settings_pu));
         //------ if Remote fragment shown---------------------
         if (frag == Constants.Pages.REMOTEPAGE) {
             title.setText("REMOTE");
@@ -91,7 +95,7 @@ public class menuFrag extends Fragment implements View.OnClickListener {
         //------ if Remote fragment shown---------------------
         if (frag == Constants.Pages.AREASPAGE) {
             title.setText("SETTINGS");
-            users.setImageResource(R.drawable.settings_icon_selected);
+            ibSettings.setImageResource(R.drawable.ibsettings);
         }
 
         //------ if add Account shown---------------------
@@ -100,23 +104,29 @@ public class menuFrag extends Fragment implements View.OnClickListener {
         //------ if Users shown---------------------
         if (frag == Constants.Pages.USERSPAGE) {
             title.setText("SETTINGS");
-            users.setImageResource(R.drawable.settings_icon_selected);
+            ibSettings.setImageResource(R.drawable.ibsettings);
         }
 
         //------ if HELP fragment shown---------------------
-        if (frag == Constants.Pages.HELPPAGE) title.setText("HELP");
+        if (frag == Constants.Pages.HELPPAGE) {
+            title.setText("HELP");
+            ibSettings.setImageResource(R.drawable.ibsettings);
+        }
 
         //------ if Add/modify Account fragment shown---------------------
-        if (frag == Constants.Pages.ADDEDITSCREEN) title.setText("ADD/EDIT ACCOUNTS");
+        if (frag == Constants.Pages.ADDEDITSCREEN) {
+            title.setText("ADD/EDIT ACCOUNTS");
+            ibSettings.setImageResource(R.drawable.ibsettings);
+        }
 
         //------ if Add/modify Account fragment shown---------------------
         if (frag == Constants.Pages.TIMERSPAGE) {
-            users.setImageResource(R.drawable.settings_icon_selected);
+            ibSettings.setImageResource(R.drawable.ibsettings);
             title.setText("SETTINGS");
         }
 
         if (frag == Constants.Pages.METERSPAGE) {
-            users.setImageResource(R.drawable.settings_icon_selected);
+            users.setImageResource(R.drawable.ibsettings);
             title.setText("METERS");
         }
         if (frag == Constants.Pages.SMARTHOME) {
@@ -125,7 +135,7 @@ public class menuFrag extends Fragment implements View.OnClickListener {
         }
         //areas.setImageResource(R.drawable.areas_active);
 
-        option4 = new ActionItem(Constants.QUITAPP, "quit", getResources().getDrawable(R.drawable.quit_pu));
+        option5 = new ActionItem(Constants.QUITAPP, "quit", getResources().getDrawable(R.drawable.quit_pu));
 
         //create QuickActionPopup. Use QuickActionPopup.VERTICAL or QuickActionPopup.HORIZONTAL //param to define orientation
         quickActionPopup1 = new QuickAction(getActivity());
@@ -135,12 +145,8 @@ public class menuFrag extends Fragment implements View.OnClickListener {
         quickActionPopup1.addActionItem(option2);
         quickActionPopup1.addActionItem(option3);
         quickActionPopup1.addActionItem(option4);
+        quickActionPopup1.addActionItem(option5);
 
-
-        //Set listener for action item clicked
-        //Set listener for action item clicked
-
-        //Set listener for action item clicked
         quickActionPopup1.setOnActionItemClickListener(new QuickAction.OnActionItemClickListener() {
             @Override
             public void onItemClick(QuickAction source, int pos, int actionId) {
@@ -154,6 +160,16 @@ public class menuFrag extends Fragment implements View.OnClickListener {
                     rp.replaceWithAddEditAccount(ft, fm, true);
                 } else if (actionId == Constants.Pages.ACCLISTS) {
                     rp.replaceWithAL(ft, fm, true, true);
+
+                } else if (actionId == Constants.Pages.Settings) {
+                    if (mActivity.getAccount() != 25) {
+                        if (mActivity.getCurrFrag() == Constants.Pages.USERSPAGE) {
+                            users timerFrag;
+                            timerFrag = (users) fm.findFragmentById(R.id.detailFragment);
+                            timerFrag.reset_cd();
+                        } else
+                            rp.replaceWithUsers(ft, fm, true);
+                    } else showChooseAccount();
 
                 } else if (actionId == Constants.Pages.ABOUTPAGE) {
                     rp.replaceWithAboutApp(ft, fm, true);
@@ -222,7 +238,7 @@ public class menuFrag extends Fragment implements View.OnClickListener {
                 } else showChooseAccount();
                 break;
 
-            case R.id.ibTimer:
+            case R.id.ibCameras:
                 if (mActivity.getAccount() != 25) {
                     /*if (mActivity.getCurrFrag() == Constants.Pages.TIMERSPAGE) {
                         timers timerFrag;
@@ -234,15 +250,15 @@ public class menuFrag extends Fragment implements View.OnClickListener {
                 } else
                     showChooseAccount();
                 break;
-            case R.id.ibUsers:
+            case R.id.ibMedia:
                 //mActivity.showCroutonMessage("Users clicked", Constants.SUCC_C, Constants.crs.COUTION_MODE_DEFAULT, true);
                 if (mActivity.getAccount() != 25) {
-                    if (mActivity.getCurrFrag() == Constants.Pages.USERSPAGE) {
+                   /* if (mActivity.getCurrFrag() == Constants.Pages.USERSPAGE) {
                         users timerFrag;
                         timerFrag = (users) fm.findFragmentById(R.id.detailFragment);
                         timerFrag.reset_cd();
                     } else
-                        rp.replaceWithUsers(ft, fm, true);
+                        rp.replaceWithUsers(ft, fm, true);*/
                 } else showChooseAccount();
                 break;
             case R.id.ibRemote:
